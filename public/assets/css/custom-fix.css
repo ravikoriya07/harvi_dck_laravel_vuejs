@@ -1,0 +1,409 @@
+/* ─── HEADER LOGO ─────────────────────────────────────────── */
+#pxl-header-elementor .pxl-logo img {
+    max-height: 41px !important;
+    width: auto !important;
+}
+
+/* ─── HEADER COLUMN WIDTHS ────────────────────────────────── */
+@media (min-width: 768px) {
+    .elementor-15 .elementor-element-20eecb0,
+    .elementor-9365 .elementor-element-20eecb0 {
+        width: 24.567%;
+    }
+    .elementor-15 .elementor-element-de87c60,
+    .elementor-9365 .elementor-element-de87c60 {
+        width: 75.433%;
+    }
+}
+
+/* ─── HEADER NAV ALIGNMENT ────────────────────────────────── */
+.elementor-15 .elementor-element-de87c60 .elementor-widget-wrap,
+.elementor-9365 .elementor-element-de87c60 .elementor-widget-wrap {
+    justify-content: flex-end !important;
+    align-items: center !important;
+    align-content: center !important;
+}
+
+.elementor-15 .elementor-element-de87c60 > .elementor-element-populated,
+.elementor-9365 .elementor-element-de87c60 > .elementor-element-populated {
+    padding: 0px 15px 0px 15px;
+}
+
+/* ─── HEADER LOGO COLUMN ──────────────────────────────────── */
+.elementor-15 .elementor-element-20eecb0 > .elementor-element-populated {
+    padding-left: 0;
+}
+.elementor-15 .elementor-element-e9f5301 > .elementor-widget-container,
+.elementor-9365 .elementor-element-e9f5301 > .elementor-widget-container {
+    margin: 0px 0px 0px 64px;
+}
+
+/* ─── NAV WIDGET MARGIN ───────────────────────────────────── */
+.elementor-15 .elementor-element-396e816 > .elementor-widget-container,
+.elementor-9365 .elementor-element-396e816 > .elementor-widget-container {
+    margin: 0px 75px 0px 0px;
+}
+
+/* ─── MOBILE HEADER: logo size + hamburger visibility ─────── */
+/* At ≤1200px the header switches to mobile mode (dark #111     */
+/* background). The logo uses dck-logo-1.png at a sensible     */
+/* height. The icon-line pseudo-elements are #fff by default   */
+/* (visible on the dark bg). For style-light, if the bg is     */
+/* ever light, fall back to a dark colour.                     */
+#pxl-header-elementor #pxl-header-mobile .pxl-header-branding img {
+    max-height: 36px;
+    width: auto;
+}
+
+/* ─── NAV LIST BULLET RESET ───────────────────────────────── */
+/* style.css sets ul li { list-style-position: inside } which  */
+/* causes disc bullets to appear before nav menu items.        */
+.pxl-menu-primary,
+.pxl-menu-primary li,
+.pxl-menu-primary .sub-menu {
+    list-style: none;
+}
+
+/* ─── NAV HOVER PILL FIX ──────────────────────────────────── */
+/* pxl-divider-move is position:absolute — needs a relative   */
+/* ancestor so JS coordinates and CSS positioning share the   */
+/* same reference frame.                                       */
+.pxl-nav-menu.fr-style-box {
+    position: relative;
+}
+
+/* Nav link padding */
+#pxl-header-elementor .pxl-nav-menu .pxl-menu-primary > li > a {
+    padding: 42px 0px 41px 0px;
+}
+
+/* ─── DARK HEADER (px-header--default / inner pages) ─────── */
+.pxl-header-elementor-main.px-header--default {
+    background-color: #000000;
+    position: relative;
+}
+.pxl-header-elementor-main.px-header--default .elementor-section {
+    background-color: #000000;
+}
+/* Nav links: white text on solid black header */
+.pxl-header-elementor-main.px-header--default .pxl-nav-menu .pxl-menu-primary > li > a {
+    color: #FFFFFF;
+}
+.pxl-header-elementor-main.px-header--default .pxl-nav-menu .pxl-menu-primary > li > a .pxl-menu-item-text {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+/* Active-item hover pill: white on dark header */
+.pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-divider-move {
+    background-color: #FFFFFF;
+}
+/* Sticky header uses a separate wrapper; apply same white pill there */
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-divider-move {
+    background-color: #FFFFFF;
+}
+/* Ensure text is blue when white pill is under active/hover item */
+.pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a,
+.pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a,
+.pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a {
+    color: #3E68FF;
+}
+
+/* ─── FOOTER LOGO ─────────────────────────────────────────── */
+#pxl-footer-elementor .pxl-logo img {
+    max-height: 49px !important;
+    width: auto !important;
+}
+
+/* ─── HERO SECTION (elementor-18 wrapper) ─────────────────── */
+.elementor-18 .elementor-element-ac7f8dc {
+    background-color: #f5f4f0;
+}
+
+/* ─── SWIPER OPACITY FIX ──────────────────────────────────── */
+.pxl-swiper-slider {
+    opacity: 1 !important;
+}
+
+/* ─── HERO SLIDESHOW IMAGE (replaces Elementor background slideshow) ── */
+.elementor-element-e695b57 {
+    position: relative;
+    overflow: hidden;
+}
+.elementor-element-e695b57 .elementor-widget-wrap {
+    position: relative;
+    min-height: 670px;
+}
+.elementor-background-slideshow {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+}
+.elementor-background-slideshow__slide {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+}
+.elementor-background-slideshow__slide__image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* ─── WHY CHOOSE US PARALLAX BACKGROUND ─────────────────── */
+/* elementor-generated.css uses a relative URL that resolves  */
+/* to /assets/css/assets/... — override with absolute path.  */
+.elementor-18 .elementor-element.elementor-element-3bc1154 .pxl-section-bg-parallax {
+    background-image: url('/assets/images/home1-01.webp') !important;
+}
+
+/* ─── OUR CLIENTS PARALLAX STRIP BACKGROUND ─────────────── */
+.elementor-18 .elementor-element.elementor-element-c4ae1c0 .pxl-section-bg-parallax {
+    background-image: url('/assets/images/home1-02.webp') !important;
+}
+
+/* ─── PROCUREMENT TAB COLUMN BACKGROUND IMAGES ──────────── */
+/* elementor-generated.css uses relative URLs (url(assets/...))
+   which resolve to /assets/css/assets/... — override with
+   absolute paths for each of the three tab templates.        */
+.elementor-10689 .elementor-element.elementor-element-fe1041d .pxl-column-bg-parallax {
+    background-image: url('/assets/images/work4.webp') !important;
+}
+.elementor-10728 .elementor-element.elementor-element-fe1041d .pxl-column-bg-parallax {
+    background-image: url('/assets/images/work7.webp') !important;
+}
+.elementor-10729 .elementor-element.elementor-element-fe1041d .pxl-column-bg-parallax {
+    background-image: url('/assets/images/work8.webp') !important;
+}
+
+/* ─── PROCUREMENT TABS-SLIP: full-viewport width ─────────── */
+/* Section 5009efb has 50px horizontal padding which shrinks   */
+/* the tabs-slip container. The tabs-slip and its pinned       */
+/* content must fill the full viewport for GSAP to work.      */
+.elementor-18 .elementor-element.elementor-element-5009efb {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+/* The column inside has default padding from elementor — remove it */
+.elementor-18 .elementor-element.elementor-element-5744277 > .elementor-element-populated {
+    padding: 0 !important;
+}
+
+/* ─── TESTIMONIALS PARALLAX IMAGE STRIP (elementor-f4fdb44) ─ */
+/* elementor-generated.css uses relative URL url(assets/images/...) */
+.elementor-18 .elementor-element.elementor-element-f4fdb44 .pxl-section-bg-parallax {
+    background-image: url('/assets/images/home1-team-3.webp') !important;
+}
+
+/* ─── TEAM SECTION BACKGROUND (elementor-9009579) ───────── */
+/* elementor-generated.css uses relative URL url("assets/images/...") */
+/* which resolves to /assets/css/assets/... — override with absolute path */
+.elementor-18 .elementor-element.elementor-element-9009579:not(.elementor-motion-effects-element-type-background) > .elementor-widget-wrap,
+.elementor-18 .elementor-element.elementor-element-9009579 > .elementor-widget-wrap > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-image: url('/assets/images/home1-team-2.webp') !important;
+}
+
+/* ─── DARK CLIENTS / MISSION / VISION BAR ────────────────── */
+.elementor-element-9189f72 > .elementor-element-populated {
+    background-color: #111111;
+    position: relative;
+}
+.elementor-element-9189f72 > .elementor-element-populated > .elementor-background-overlay {
+    background-image: url('/assets/images/home-1-02.webp');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.25;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE FIXES
+   Supplements elementor-generated.css breakpoints.
+   Priority order: these rules load last and have !important
+   only where inline styles need to be overridden.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── GLOBAL: prevent horizontal scroll from stretched sections ── */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* ─── ABOUT IMAGES: inline margin-top override ───────────────────
+   The Vue section has style="margin-top:-140px" (inline) which
+   blocks the elementor-generated.css reset at ≤1200px.
+   !important is required to beat inline style specificity.       */
+@media (max-width: 1200px) {
+    .elementor-18 .elementor-element.elementor-element-d5a9a96 {
+        margin-top: 0px !important;
+    }
+}
+
+/* ─── SERVICES BUTTON: reset 520px left offset on tablet/mobile ─
+   elementor-generated.css has no mobile override for 4b5466d,
+   so the margin: 0 0 25px 520px persists down to xs width.     */
+@media (max-width: 880px) {
+    .elementor-18 .elementor-element.elementor-element-4b5466d > .elementor-widget-container {
+        margin: 0px 0px 25px 0px;
+    }
+    .elementor-18 .elementor-element.elementor-element-4b5466d {
+        width: auto;
+        max-width: 100%;
+    }
+}
+
+/* ─── TABLET RESPONSIVE (max-width: 1024px) ──────────────────── */
+@media (max-width: 1024px) {
+    /* Prevent stretched sections overflowing viewport */
+    .elementor-section.elementor-section-stretched {
+        max-width: 100vw !important;
+        overflow-x: hidden;
+    }
+
+    /* Certifications: counter + heading → stack vertically */
+    .elementor-18 .elementor-element.elementor-element-e3e892f
+    .elementor-column.elementor-col-50 {
+        width: 100%;
+    }
+
+    /* Footer: stack columns at tablet */
+    .elementor-55 .elementor-column {
+        width: 100%;
+    }
+    .elementor-55 .elementor-element.elementor-element-57ae005 > .elementor-element-populated {
+        padding-top: 30px;
+    }
+}
+
+/* ─── MOBILE RESPONSIVE (max-width: 767px) ───────────────────── */
+/* Note: maiko-style.css already handles the header switch        */
+/* (desktop header hidden, mobile header shown) at ≤1200px.      */
+@media (max-width: 767px) {
+
+    /* Base Elementor column stacking — Elementor core CSS is not
+       bundled here so we add the base rules manually. Element-
+       specific overrides in elementor-generated.css (e.g. team
+       inner cols at 50%) have higher specificity (3 classes vs 2)
+       and override these correctly.                              */
+    .elementor .elementor-top-column,
+    .elementor .elementor-inner-column {
+        width: 100%;
+    }
+
+    /* Hero: wireframe decorative image already hidden via pxl-hide-sr-md */
+
+    /* Services: center-align button on mobile */
+    .elementor-18 .elementor-element.elementor-element-4b5466d {
+        text-align: center;
+    }
+    .elementor-18 .elementor-element.elementor-element-4b5466d > .elementor-widget-container {
+        margin: 0px 0px 20px 0px;
+    }
+
+    /* WhyUs: decorative vector image already hidden via pxl-hide-sr-md */
+
+    /* Contact section: outer section stacks columns */
+    .elementor-18 .elementor-element.elementor-element-8ad219f
+    .elementor-column.elementor-col-50 {
+        width: 100%;
+    }
+
+    /* Certifications: ensure counter and heading both full width */
+    .elementor-18 .elementor-element.elementor-element-e3e892f
+    .elementor-column.elementor-col-50 {
+        width: 100%;
+    }
+    .elementor-18 .elementor-element.elementor-element-fbfa517 > .elementor-element-populated {
+        padding-top: 15px;
+    }
+
+    /* Footer: stack all columns vertically */
+    .elementor-55 .elementor-column {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .elementor-55 .elementor-element.elementor-element-57ae005 > .elementor-element-populated {
+        padding-top: 30px;
+    }
+    .elementor-55 .elementor-element.elementor-element-9057e0b > .elementor-element-populated {
+        padding-top: 10px;
+    }
+    #pxl-footer-elementor .pxl-icon-list {
+        gap: 12px;
+    }
+    /* Footer copyright: left-align on mobile */
+    .elementor-55 .elementor-element.elementor-element-326eb85 .pxl-text-editor {
+        text-align: left;
+    }
+
+    /* Team: staff photo hidden via pxl-hide-sr-lg already */
+
+    /* Procurement tabs: ensure section doesn't overflow */
+    .elementor-18 .elementor-element.elementor-element-dc8c063 {
+        overflow-x: hidden;
+    }
+
+    /* Certifications carousel: limit image height on mobile */
+    .elementor-18 .elementor-element.elementor-element-3eb9aad .pxl-item--inner img {
+        max-height: 70px;
+        width: auto;
+    }
+
+    /* Client carousel: similar height constraint */
+    .elementor-18 .elementor-element.elementor-element-09c6945 .pxl-item--inner img {
+        max-height: 60px;
+        width: auto;
+    }
+
+    /* Scroll top button: ensure it doesn't overflow */
+    .pxl-scroll-top {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ABOUT PAGE — TEAM GRID FILTER & PARALLAX FIXES
+   ═══════════════════════════════════════════════════════════ */
+
+/* Hide the "All" filter tab — Isotope.js not loaded so it serves
+   no filtering purpose; without it the 50px gray text appears
+   as stray content at the top of the viewport as you scroll past. */
+.elementor-26444 .elementor-element-52953d08 .pxl-grid-filter {
+    display: none !important;
+}
+
+/* Full-width parallax section: ensure the section fills viewport height
+   so the pinned-zoom-clipped animation has enough scroll distance. */
+.elementor-26444 .elementor-element.elementor-element-6bc8ad73 {
+    min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ABOUT PAGE RESPONSIVE FIXES (elementor-26444)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Quote margin: reset 333px left at tablet/mobile */
+@media (max-width: 880px) {
+    .elementor-26444 .elementor-element.elementor-element-322b201d > .elementor-widget-container {
+        margin: 0px !important;
+    }
+}
+
+/* CEO section columns stack on mobile */
+@media (max-width: 767px) {
+    .elementor-26444 .elementor-element.elementor-element-6c1bfa4,
+    .elementor-26444 .elementor-element.elementor-element-40f2efe5,
+    .elementor-26444 .elementor-element.elementor-element-6ec4d2ff {
+        width: 100% !important;
+    }
+    /* CEO/story columns left padding reset */
+    .elementor-26444 .elementor-element.elementor-element-47e3fb70 > .elementor-element-populated {
+        padding: 30px 15px 0px 15px !important;
+    }
+}
+

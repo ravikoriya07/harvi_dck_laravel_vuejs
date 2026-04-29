@@ -1,0 +1,85 @@
+.elementor-blog {
+    padding-top: 74px;
+    padding-bottom: 110px;
+    background-color: #f3f3f3;
+}
+
+.elementor-blog .pxl-content-wrap {
+    row-gap: 40px;
+    align-items: flex-start;
+}
+
+.elementor-blog,
+.elementor-blog .container,
+.elementor-blog .pxl-content-wrap {
+    overflow: visible !important;
+}
+
+.elementor-blog .pxl-archive-post .post-featured img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.elementor-blog .elementor-455 .elementor-element.elementor-element-903e2ae:not(.elementor-motion-effects-element-type-background),
+.elementor-blog .elementor-455 .elementor-element.elementor-element-903e2ae > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-color: #f1f2eb;
+}
+
+.elementor-blog .elementor-455 .elementor-element.elementor-element-a354939 > .elementor-element-populated {
+    padding: 35px 56px 43px 56px;
+}
+
+.elementor-blog .elementor-455 .elementor-element.elementor-element-2e43bc4 .pxl-image-single {
+    text-align: center;
+}
+
+.elementor-blog .elementor-455 .elementor-element.elementor-element-2e43bc4 .pxl-image-single img,
+.elementor-blog .elementor-455 .elementor-element.elementor-element-2e43bc4 .pxl-item--inner {
+    border-radius: 100px;
+}
+
+.elementor-blog .elementor-455 .elementor-element.elementor-element-c8171b6 > .elementor-widget-container {
+    padding-top: 20px;
+}
+
+.elementor-blog .elementor-455 .elementor-element.elementor-element-c8171b6 .pxl-heading,
+.elementor-blog .elementor-455 .elementor-element.elementor-element-fc6ddbc .pxl-text-editor {
+    text-align: center;
+}
+
+.elementor-blog .elementor-455 .elementor-element.elementor-element-c8171b6 .pxl-heading .pxl-item--title {
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+/* Blog HTML behavior: keep sidebar visible while left column scrolls */
+.elementor-blog #pxl-sidebar-area {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 110px;
+    align-self: flex-start;
+}
+
+.elementor-blog #pxl-sidebar-area .pxl-sidebar-sticky {
+    position: static;
+}
+
+/* Mobile/tablet fallback: disable sticky to avoid cramped overlap */
+@media (max-width: 991px) {
+    .elementor-blog #pxl-sidebar-area {
+        position: static;
+        top: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .elementor-blog {
+        padding-top: 36px;
+        padding-bottom: 64px;
+    }
+
+    .elementor-blog .elementor-455 .elementor-element.elementor-element-a354939 > .elementor-element-populated {
+        padding: 35px 15px 43px 15px;
+    }
+}

@@ -1,0 +1,17 @@
+.elementor-26730 .elementor-element.elementor-element-0da32ca {
+    --display: flex;
+    padding-top: 72px;
+}
+
+/* Keep portfolio cards visually consistent with reference export */
+.elementor-26730 .pxl-portfolio-grid-layout1 .pxl-post--featured img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .elementor-26730 .elementor-element.elementor-element-0da32ca {
+        padding-top: 36px;
+    }
+}

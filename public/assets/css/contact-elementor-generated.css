@@ -1,0 +1,370 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Elementor-1306 (Contact Page) — extracted from contact-us.html export
+   All selectors scoped to .elementor-1306 — safe to load globally.
+   Relative url() paths corrected to absolute /assets/images/ paths.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Hero section ────────────────────────────────────────────────────── */
+.elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-container > .elementor-column > .elementor-widget-wrap {
+    align-content: center;
+    align-items: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-4c0ec44:not(.elementor-motion-effects-element-type-background),
+.elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #AAAAAA 0%, #f2295b 100%);
+}
+
+.elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-container {
+    max-width: 500px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-4c0ec44 .pxl-section-bg-parallax {
+    background-image: url('/assets/images/pt-about1.webp');
+    background-position: center center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-4c0ec44 .pxl-overlay--image.pxl-overlay--imageLeft .bg-image {
+    background-image: url('/assets/images/ov1.png');
+    background-position: top center;
+    background-size: cover;
+}
+
+.elementor-1306 .elementor-element.elementor-element-4c0ec44 .pxl-overlay--image.pxl-overlay--imageRight .bg-image {
+    background-image: url('/assets/images/ov2.png');
+    background-position: center center;
+    background-size: cover;
+}
+
+.elementor-1306 .elementor-element.elementor-element-4c0ec44 {
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 254px 0px 70px 0px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-background-overlay {
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+/* ── Hero heading ────────────────────────────────────────────────────── */
+.elementor-1306 .elementor-element.elementor-element-916b968.elementor-element {
+    --align-self: flex-start;
+}
+
+.elementor-1306 .elementor-element.elementor-element-916b968 {
+    text-align: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-916b968 .elementor-heading-title {
+    font-family: "Roboto", Sans-serif;
+    font-size: 70px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+/* ── Offices heading section ─────────────────────────────────────────── */
+.elementor-1306 .elementor-element.elementor-element-da221b4 {
+    padding: 90px 0px 0px 0px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-ac3fb01 .pxl-heading {
+    text-align: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-ac3fb01 .pxl-heading .pxl-item--title {
+    margin-bottom: 27px;
+}
+
+/* ── Two-column offices section ──────────────────────────────────────── */
+.elementor-1306 .elementor-element.elementor-element-2de5de2 > .elementor-container {
+    max-width: 1225px;
+}
+
+/* Left column: London */
+.elementor-1306 .elementor-element.elementor-element-b9ef462.elementor-column > .elementor-widget-wrap {
+    justify-content: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-c583c8a {
+    width: auto;
+    max-width: auto;
+}
+
+.elementor-1306 .elementor-element.elementor-element-c583c8a > .elementor-widget-container {
+    margin: 0px 0px 28px 0px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-c583c8a .pxl-image-single img {
+    max-height: 311px;
+    object-fit: cover;
+    width: auto;
+}
+
+.elementor-1306 .elementor-element.elementor-element-c583c8a .pxl-item--image {
+    border-radius: 200px 200px 200px 200px;
+}
+
+/* London city name */
+.elementor-1306 .elementor-element.elementor-element-1ab74b7 .pxl-heading {
+    text-align: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-1ab74b7 .pxl-heading .pxl-item--title {
+    font-size: 25px;
+    margin-bottom: 11px;
+}
+
+/* London office type label */
+.elementor-1306 .elementor-element.elementor-element-11f133f .pxl-heading {
+    text-align: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-11f133f .pxl-heading .pxl-item--title {
+    font-family: "DM Sans", Sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+/* London divider */
+.elementor-1306 .elementor-element.elementor-element-56bc4ff > .elementor-widget-container {
+    margin: 0px 0px 23px 0px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-56bc4ff .pxl-divider.horizontal .pxl-divider-separator {
+    width: 105px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-56bc4ff .pxl-divider .pxl-divider-separator {
+    border-color: #111111;
+    border-width: 2px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-56bc4ff .pxl-divider {
+    justify-content: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-56bc4ff .pxl-divider.animated.pxl-animated .pxl-divider-separator {
+    transform-origin: center;
+}
+
+/* London links */
+.elementor-1306 .elementor-element.elementor-element-78e1758 .pxl-link {
+    text-align: center;
+    justify-content: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-78e1758 .pxl-link a:not(:hover) {
+    color: #666666;
+}
+
+.elementor-1306 .elementor-element.elementor-element-78e1758 .pxl-link a:hover {
+    color: #111111;
+}
+
+.elementor-1306 .elementor-element.elementor-element-78e1758 .pxl-link a {
+    font-size: 15px;
+    line-height: 33px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-78e1758 .pxl-link.type-vertical li + li {
+    margin-top: 0px;
+}
+
+/* Right column: Dubai */
+.elementor-1306 .elementor-element.elementor-element-427c71f.elementor-column > .elementor-widget-wrap {
+    justify-content: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-629c561 {
+    width: auto;
+    max-width: auto;
+}
+
+.elementor-1306 .elementor-element.elementor-element-629c561 > .elementor-widget-container {
+    margin: 0px 0px 28px 0px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-629c561 .pxl-image-single img {
+    max-height: 311px;
+    object-fit: cover;
+    width: auto;
+}
+
+.elementor-1306 .elementor-element.elementor-element-629c561 .pxl-item--image {
+    border-radius: 200px 200px 200px 200px;
+}
+
+/* Dubai city name */
+.elementor-1306 .elementor-element.elementor-element-927f336 .pxl-heading {
+    text-align: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-927f336 .pxl-heading .pxl-item--title {
+    font-size: 25px;
+    margin-bottom: 11px;
+}
+
+/* Dubai office type label */
+.elementor-1306 .elementor-element.elementor-element-201c25a .pxl-heading {
+    text-align: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-201c25a .pxl-heading .pxl-item--title {
+    font-family: "DM Sans", Sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+/* Dubai divider */
+.elementor-1306 .elementor-element.elementor-element-8ace087 > .elementor-widget-container {
+    margin: 0px 0px 23px 0px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-8ace087 .pxl-divider.horizontal .pxl-divider-separator {
+    width: 105px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-8ace087 .pxl-divider .pxl-divider-separator {
+    border-color: #111111;
+    border-width: 2px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-8ace087 .pxl-divider {
+    justify-content: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-8ace087 .pxl-divider.animated.pxl-animated .pxl-divider-separator {
+    transform-origin: center;
+}
+
+/* Dubai links */
+.elementor-1306 .elementor-element.elementor-element-8605a05 .pxl-link {
+    text-align: center;
+    justify-content: center;
+}
+
+.elementor-1306 .elementor-element.elementor-element-8605a05 .pxl-link a:not(:hover) {
+    color: #666666;
+}
+
+.elementor-1306 .elementor-element.elementor-element-8605a05 .pxl-link a:hover {
+    color: #111111;
+}
+
+.elementor-1306 .elementor-element.elementor-element-8605a05 .pxl-link a {
+    font-size: 15px;
+    line-height: 33px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-8605a05 .pxl-link.type-vertical li + li {
+    margin-top: 0px;
+}
+
+/* ── Map section ─────────────────────────────────────────────────────── */
+.elementor-1306 .elementor-element.elementor-element-7a38321 {
+    overflow: hidden;
+    margin-top: 103px;
+    margin-bottom: 0px;
+}
+
+.elementor-1306 .elementor-element.elementor-element-7aca63b iframe {
+    height: 570px;
+    filter: brightness(100%) contrast(100%) saturate(0%) blur(0px) hue-rotate(0deg);
+    width: 100%;
+    display: block;
+    border: none;
+}
+
+/* ── Overlay image positioning (left & right decorative overlays) ─────── */
+.elementor-1306 .pxl-overlay--image {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.elementor-1306 .pxl-overlay--image.pxl-overlay--imageLeft {
+    left: 0;
+}
+
+.elementor-1306 .pxl-overlay--image.pxl-overlay--imageRight {
+    right: 0;
+}
+
+.elementor-1306 .pxl-overlay--image .bg-image {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+
+/* ── Hero top padding accounts for the solid black header height (~110px) */
+/* The solid header (px-header--default) sits in document flow, so the hero
+   section's own padding (254px top) already clears it. No extra margin needed. */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Tablet landscape (≤1200px) */
+@media (max-width: 1200px) {
+    .elementor-1306 .elementor-element.elementor-element-4c0ec44 {
+        padding: 100px 0px 70px 0px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-7aca63b iframe {
+        height: 500px;
+    }
+}
+
+/* Tablet portrait (≤1024px) */
+@media (max-width: 1024px) {
+    .elementor-1306 .elementor-element.elementor-element-4c0ec44 {
+        padding: 80px 0px 80px 0px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-da221b4 {
+        padding: 65px 0px 0px 0px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-7a38321 {
+        margin-top: 65px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-7aca63b iframe {
+        height: 400px;
+    }
+}
+
+/* Mobile (≤767px) */
+@media (max-width: 767px) {
+    .elementor-1306 .elementor-element.elementor-element-4c0ec44 {
+        padding: 80px 0px 100px 0px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-916b968 .elementor-heading-title {
+        font-size: 44px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-da221b4 {
+        padding: 50px 0px 0px 0px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-427c71f > .elementor-element-populated {
+        margin: 30px 0px 0px 0px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-7a38321 {
+        margin-top: 40px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-7aca63b iframe {
+        height: 300px;
+    }
+}
