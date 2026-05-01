@@ -15,3 +15,36 @@
         padding-top: 36px;
     }
 }
+
+/* Pagination: flex row + gap (maiko .post-page-numbers is 36×36; Laravel "Previous"/"Next" text is replaced with « / » in Vue) */
+.elementor-26730 .pxl-projects-pagination-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 12px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.elementor-26730 .pxl-projects-pagination-nav .post-page-numbers {
+    margin: 0 !important;
+}
+
+.elementor-26730 .pxl-projects-pagination-nav .post-page-numbers.is-disabled {
+    opacity: 0.38;
+    cursor: default;
+    pointer-events: none;
+}
+
+.elementor-26730 .pxl-projects-pagination-nav .post-page-numbers--ellipsis {
+    opacity: 0.45;
+    cursor: default;
+    pointer-events: none;
+    min-width: 1.5em;
+    width: auto;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-color: transparent;
+    background: transparent;
+}

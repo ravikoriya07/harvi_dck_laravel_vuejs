@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContactCardController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Middleware\UseCardLayout;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -23,13 +26,14 @@ Route::get('/services/{slug}', function () {
     return Inertia::render('Services');
 });
 
-Route::get('/projects', function () {
-    return Inertia::render('Projects');
-});
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 
 Route::get('/blog', function () {
     return Inertia::render('Blog');
 });
+
+Route::get('/cards/{slug}', [ContactCardController::class, 'show'])
+    ->middleware(UseCardLayout::class);
 
 Route::get('/blog/{slug}', function (string $slug) {
     $titles = [

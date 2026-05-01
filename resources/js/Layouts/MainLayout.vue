@@ -75,10 +75,11 @@ onMounted(() => {
         // Client/partner carousel (About page partners section)
         elementorFrontend.hooks.doAction('frontend/element_ready/pxl_client_carousel.default', $body);
 
-        // Tabs-slip scroll section — maiko_triger uses GSAP ScrollTrigger to pin
-        // and horizontally scroll the panel stack. Must call with a broad scope
-        // so $scope.find('.pxl-tabs-slip1.style-2 ...') finds the widget.
-        if ($(window).width() > 767) {
+        // Tabs-slip scroll section — maiko_triger calls gsap.to($panels) unconditionally
+        // even when $panels is empty, causing a GSAP "[object Object] not found" warning on
+        // every page that has no .pxl-tabs-slip1.style-2 widget. Guard with an existence check.
+        if ($(window).width() > 767 &&
+            $body.find('.pxl-tabs-slip1.style-2, .pxl-tabs-slip.style-1').length > 0) {
             elementorFrontend.hooks.doAction('frontend/element_ready/pxl_tabs_slip.default', $body);
         }
 

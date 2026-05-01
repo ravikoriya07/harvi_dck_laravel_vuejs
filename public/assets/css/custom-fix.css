@@ -233,6 +233,29 @@ html, body {
     overflow-x: hidden;
 }
 
+/* Services / Blog: `overflow-x: hidden` on body forces overflow pairing that breaks `position: sticky`.
+   `clip` contains horizontal bleed without creating the same scroll containment as hidden. */
+@supports (overflow: clip) {
+    body:has(#service),
+    body:has(.elementor-blog) {
+        overflow-x: clip !important;
+    }
+}
+
+/* Blog archive: maiko `#pxl-main { overflow-x: hidden }` (≤1200px) also kills sidebar sticky — drop clipping here */
+@media screen and (max-width: 1200px) {
+    #pxl-main:has(.elementor-blog) {
+        overflow-x: visible !important;
+    }
+}
+
+/* Blog: when `overflow: clip` is unsupported, fall back so sticky can still work */
+@supports not (overflow: clip) {
+    body:has(.elementor-blog) {
+        overflow-x: visible !important;
+    }
+}
+
 /* ─── ABOUT IMAGES: inline margin-top override ───────────────────
    The Vue section has style="margin-top:-140px" (inline) which
    blocks the elementor-generated.css reset at ≤1200px.
@@ -258,10 +281,14 @@ html, body {
 
 /* ─── TABLET RESPONSIVE (max-width: 1024px) ──────────────────── */
 @media (max-width: 1024px) {
-    /* Prevent stretched sections overflowing viewport */
-    .elementor-section.elementor-section-stretched {
+    /* Prevent stretched sections overflowing viewport (#service excluded — sticky stack needs visible overflow) */
+    .elementor-section.elementor-section-stretched:not(#service) {
         max-width: 100vw !important;
         overflow-x: hidden;
+    }
+
+    #service.elementor-section.elementor-section-stretched {
+        max-width: 100vw !important;
     }
 
     /* Certifications: counter + heading → stack vertically */

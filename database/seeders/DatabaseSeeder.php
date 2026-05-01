@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'is_admin' => true,
         ]);
+
+        $this->call(ProjectSeeder::class);
     }
 }

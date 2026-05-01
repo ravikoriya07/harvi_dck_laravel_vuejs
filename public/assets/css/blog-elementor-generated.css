@@ -6,7 +6,8 @@
 
 .elementor-blog .pxl-content-wrap {
     row-gap: 40px;
-    align-items: flex-start;
+    /* Stretch columns to equal row height so sticky sidebar releases at blog section bottom */
+    align-items: stretch;
 }
 
 .elementor-blog,
@@ -53,23 +54,34 @@
     margin-bottom: 5px;
 }
 
-/* Blog HTML behavior: keep sidebar visible while left column scrolls */
-.elementor-blog #pxl-sidebar-area {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 110px;
-    align-self: flex-start;
+/* lg+: sticky on inner wrapper (theme only applies .pxl-sidebar-sticky at ≥1201px — we need ≥992px).
+   Sidebar column must stretch with the row so sticky has scroll range to the blog section bottom. */
+@media screen and (min-width: 992px) {
+    .elementor-blog #pxl-sidebar-area.pxl-sidebar-blog {
+        align-self: stretch;
+        /* Clear fixed .pxl-scroll-top (~46px) sitting on viewport edge */
+        padding-right: 56px;
+        box-sizing: border-box;
+    }
+
+    .elementor-blog #pxl-sidebar-area.pxl-sidebar-blog .pxl-sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky !important;
+        top: 120px;
+        align-self: flex-start;
+    }
 }
 
-.elementor-blog #pxl-sidebar-area .pxl-sidebar-sticky {
-    position: static;
+@media screen and (min-width: 992px) and (max-width: 1366px) {
+    .elementor-blog #pxl-sidebar-area.pxl-sidebar-blog .pxl-sidebar-sticky {
+        top: 100px;
+    }
 }
 
-/* Mobile/tablet fallback: disable sticky to avoid cramped overlap */
-@media (max-width: 991px) {
-    .elementor-blog #pxl-sidebar-area {
-        position: static;
-        top: auto;
+@media screen and (max-width: 991px) {
+    .elementor-blog #pxl-sidebar-area.pxl-sidebar-blog .pxl-sidebar-sticky {
+        position: static !important;
+        top: auto !important;
     }
 }
 
@@ -81,5 +93,53 @@
 
     .elementor-blog .elementor-455 .elementor-element.elementor-element-a354939 > .elementor-element-populated {
         padding: 35px 15px 43px 15px;
+    }
+}
+
+/* ─── Sidebar widgets: readable titles + spacing (sticky must not clip descendants) ─── */
+.elementor-blog #pxl-sidebar-area.pxl-sidebar-blog .pxl-sidebar-sticky {
+    overflow: visible !important;
+}
+
+.elementor-blog #pxl-sidebar-area.pxl-sidebar-blog .widget {
+    overflow: visible !important;
+}
+
+/* Categories / sidebar headings — avoid descenders clipped (theme uses fixed line-height + tight box) */
+.elementor-blog #pxl-sidebar-area .widget .widget-title {
+    overflow: visible !important;
+    line-height: 1.35 !important;
+    min-height: 3.25rem;
+    display: flex;
+    align-items: center;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    padding-right: 1rem !important;
+    padding-left: 2.1875rem !important;
+}
+
+.elementor-blog #pxl-sidebar-area .widget .widget-title span {
+    overflow: visible !important;
+    display: inline-block;
+    line-height: inherit;
+}
+
+/* Space between author box and categories */
+.elementor-blog #pxl-sidebar-area .widget.widget_categories {
+    margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 991px) {
+    .elementor-blog #pxl-sidebar-area.pxl-sidebar-blog {
+        padding-right: 15px;
+        padding-left: 15px;
+        box-sizing: border-box;
+    }
+
+    .elementor-blog #pxl-sidebar-area .widget .widget-title {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        font-size: clamp(1.05rem, 2.8vw, 1.375rem);
+        min-height: unset;
     }
 }

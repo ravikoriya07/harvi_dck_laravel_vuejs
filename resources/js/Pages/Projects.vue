@@ -2,7 +2,7 @@
     <Head title="Projects" />
     <MainLayout>
         <div id="pxl-main-content" class="elementor elementor-26730">
-            <ProjectsGridPageSection />
+            <ProjectsGridPageSection :pagination="projects" />
         </div>
     </MainLayout>
 </template>
@@ -11,4 +11,11 @@
 import { Head } from '@inertiajs/vue3';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import ProjectsGridPageSection from '@/Components/Sections/ProjectsGridPageSection.vue';
+
+defineProps({
+    projects: {
+        type: Object,
+        required: true,
+    },
+});
 </script>

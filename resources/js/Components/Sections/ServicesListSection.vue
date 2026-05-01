@@ -29,7 +29,11 @@
                                 :data-perpage="services.length"
                                 data-next-link="">
                                 <div class="pxl-grid-inner pxl-list-inner d-flex-wrap relative row" data-gutter="15">
-                                    <div v-for="(service, index) in services" :key="service.title" class="pxl-grid-item col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div
+                                        v-for="(service, index) in services"
+                                        :key="service.title"
+                                        class="pxl-grid-item col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                        :style="{ zIndex: index + 1 }">
                                         <div class="pxl-post--inner" data-wow-duration="1.2s">
                                             <div class="pxl-holder-content">
                                                 <span class="count-pos">{{ String(index + 1).padStart(2, '0') }}.</span>

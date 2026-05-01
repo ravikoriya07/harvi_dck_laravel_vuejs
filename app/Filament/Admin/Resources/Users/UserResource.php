@@ -25,6 +25,8 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = 10;
 
+    protected static bool $shouldRegisterNavigation = false;
+
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);

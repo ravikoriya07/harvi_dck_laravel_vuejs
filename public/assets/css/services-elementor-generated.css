@@ -132,6 +132,11 @@
 }
 
 /* Service list layered scroll behavior (match HTML sticky stack) */
+/* section#service itself must not become a scroll container (custom-fix.css sets
+   overflow-x:hidden on elementor-section-stretched at ≤1024px, which forces
+   overflow-y:auto per CSS spec and breaks position:sticky on its children) */
+.elementor-5160 .elementor-element.elementor-element-db31e97,
+.elementor-5160 .elementor-element.elementor-element-db31e97 > .elementor-container,
 .elementor-5160 .elementor-element.elementor-element-8b3a6c2,
 .elementor-5160 .elementor-element.elementor-element-8b3a6c2 > .elementor-widget-wrap,
 .elementor-5160 .elementor-element.elementor-element-d51d63d > .elementor-widget-container,
@@ -149,6 +154,7 @@
     margin-right: 0;
 }
 
+/* Sticky stack: later cards sit above earlier ones (z-index from Vue :style per card index) */
 .elementor-5160 .pxl-service-list.layout-service-list-1 .pxl-grid-item {
     position: -webkit-sticky;
     position: sticky !important;
@@ -159,18 +165,10 @@
     padding-left: 0;
     padding-right: 0;
     align-self: flex-start;
-    z-index: 1;
 }
-
-.elementor-5160 .pxl-service-list.layout-service-list-1 .pxl-grid-item:nth-child(2) { z-index: 2; }
-.elementor-5160 .pxl-service-list.layout-service-list-1 .pxl-grid-item:nth-child(3) { z-index: 3; }
-.elementor-5160 .pxl-service-list.layout-service-list-1 .pxl-grid-item:nth-child(4) { z-index: 4; }
-.elementor-5160 .pxl-service-list.layout-service-list-1 .pxl-grid-item:nth-child(5) { z-index: 5; }
-.elementor-5160 .pxl-service-list.layout-service-list-1 .pxl-grid-item:nth-child(6) { z-index: 6; }
-.elementor-5160 .pxl-service-list.layout-service-list-1 .pxl-grid-item:nth-child(7) { z-index: 7; }
 
 @media (max-width: 1366px) {
     .elementor-5160 .pxl-service-list.layout-service-list-1 .pxl-grid-item {
-        top: 30px;
+        top: 30px !important;
     }
 }

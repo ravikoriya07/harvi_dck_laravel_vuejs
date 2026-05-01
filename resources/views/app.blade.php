@@ -66,6 +66,9 @@
     {{-- Blog detail page Elementor CSS (scoped, safe to load globally) --}}
     <link rel="stylesheet" href="/assets/css/blog-detail-elementor-generated.css">
 
+    {{-- Contact page Elementor CSS (elementor-1306 — scoped, safe to load globally) --}}
+    <link rel="stylesheet" href="/assets/css/contact-elementor-generated.css">
+
     {{-- Custom overrides for Vue/Inertia structure (must load last to win specificity) --}}
     <link rel="stylesheet" href="/assets/css/custom-fix.css">
 
@@ -224,6 +227,10 @@
     <script src="/assets/js/counter.js"></script>
     <script src="/assets/js/tabs.js"></script>
     <script src="/assets/js/elementor.js"></script>
+
+    {{-- isotope + grid.js: masonry layout and pxl-effect--3d hover direction classes --}}
+    <script src="/assets/js/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/grid.js"></script>
 
     {{-- main_data stub (replaces WordPress localized script object used by theme.js) --}}
     <script>var main_data = { "ajax_url": "/wp-admin/admin-ajax.php" };</script>
