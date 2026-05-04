@@ -19,6 +19,12 @@ class JobForm
                     ->required()
                     ->maxLength(255),
 
+                TextInput::make('slug')
+                    ->label('Slug')
+                    ->maxLength(255)
+                    ->nullable()
+                    ->helperText('Auto-generated from title if left blank. Used in the public URL.'),
+
                 Select::make('job_category_id')
                     ->label('Category')
                     ->relationship('jobCategory', 'name')

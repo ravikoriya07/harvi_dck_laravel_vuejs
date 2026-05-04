@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactCardController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Middleware\UseCardLayout;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,9 @@ Route::get('/services/{slug}', function () {
 });
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/jobs/{slug}', [JobController::class, 'show'])->name('jobs.show');
 
 Route::get('/blog', function () {
     return Inertia::render('Blog');
