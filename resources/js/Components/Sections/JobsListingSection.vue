@@ -40,17 +40,17 @@
     </section>
 
     <!-- Results Count + Clear -->
-    <section class="jobs-results-bar" v-if="hasActiveFilters || pagination.total > 0">
+    <section class="jobs-results-bar" v-if="hasAppliedFilters || pagination.total > 0">
         <div class="container">
             <div class="jobs-results-inner">
                 <p class="jobs-results-count">
                     <span v-if="pagination.total > 0">
                         Showing <strong>{{ pagination.total }}</strong> {{ pagination.total === 1 ? 'position' : 'positions' }}
-                        <template v-if="hasActiveFilters"> matching your search</template>
+                        <template v-if="hasAppliedFilters"> matching your search</template>
                     </span>
                     <span v-else>No positions found</span>
                 </p>
-                <button v-if="hasActiveFilters" class="jobs-clear-btn" @click="clearFilters">
+                <button v-if="hasAppliedFilters" class="jobs-clear-btn" @click="clearFilters">
                     Clear filters
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
                 </button>
@@ -69,9 +69,9 @@
                 </div>
                 <h3 class="jobs-empty-title">No positions available</h3>
                 <p class="jobs-empty-text">
-                    {{ hasActiveFilters ? 'No jobs match your current search. Try adjusting your filters.' : 'There are no open positions at this time. Please check back soon.' }}
+                    {{ hasAppliedFilters ? 'No jobs match your current search. Try adjusting your filters.' : 'There are no open positions at this time. Please check back soon.' }}
                 </p>
-                <button v-if="hasActiveFilters" class="jobs-empty-clear" @click="clearFilters">Clear filters</button>
+                <button v-if="hasAppliedFilters" class="jobs-empty-clear" @click="clearFilters">Clear filters</button>
             </div>
 
             <!-- Job Cards -->
@@ -313,7 +313,14 @@ watch(() => props.filters, (v) => {
     form.category = v.category ?? '';
 });
 
-const hasActiveFilters = computed(() => !!form.search || !!form.category);
+/** Filters actually applied (URL / server response), not draft text in the bar */
+const hasAppliedFilters = computed(() => {
+    const f = props.filters ?? {};
+    const search = String(f.search ?? '').trim();
+    const cat = f.category;
+    const categoryApplied = cat !== null && cat !== undefined && String(cat).trim() !== '';
+    return search.length > 0 || categoryApplied;
+});
 
 function applyFilters() {
     const query = {};
