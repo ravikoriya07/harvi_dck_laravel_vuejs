@@ -27,4 +27,18 @@ class JobCategoryFactory extends Factory
             'status' => fake()->randomElement(JobCategoryStatus::cases()),
         ];
     }
+
+    public function active(): static
+    {
+        return $this->state(fn (array $attributes): array => [
+            'status' => JobCategoryStatus::Active,
+        ]);
+    }
+
+    public function inactive(): static
+    {
+        return $this->state(fn (array $attributes): array => [
+            'status' => JobCategoryStatus::Inactive,
+        ]);
+    }
 }
