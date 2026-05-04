@@ -20,12 +20,12 @@ class JobForm
                     ->maxLength(255),
 
                 Select::make('job_category_id')
-                    ->label('Keywords')
+                    ->label('Category')
                     ->relationship('jobCategory', 'name')
                     ->searchable()
                     ->preload()
                     ->required()
-                    ->helperText('Maps to a job category. Choose the category that best describes this role.'),
+                    ->helperText('Select the job category that best describes this role.'),
 
                 Textarea::make('description')
                     ->label('Description')

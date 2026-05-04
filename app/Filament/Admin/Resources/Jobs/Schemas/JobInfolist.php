@@ -15,7 +15,7 @@ class JobInfolist
                     ->label('Title'),
 
                 TextEntry::make('jobCategory.name')
-                    ->label('Keywords')
+                    ->label('Category')
                     ->placeholder('—'),
 
                 TextEntry::make('description')

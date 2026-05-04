@@ -23,7 +23,7 @@ class JobsTable
                     ->wrap(),
 
                 TextColumn::make('jobCategory.name')
-                    ->label('Keywords')
+                    ->label('Category')
                     ->searchable()
                     ->sortable(),
 
@@ -44,7 +44,7 @@ class JobsTable
             ->defaultSort('title')
             ->filters([
                 SelectFilter::make('job_category_id')
-                    ->label('Keywords')
+                    ->label('Category')
                     ->relationship('jobCategory', 'name')
                     ->searchable()
                     ->preload(),

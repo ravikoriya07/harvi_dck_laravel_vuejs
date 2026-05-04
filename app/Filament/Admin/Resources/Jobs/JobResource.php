@@ -24,6 +24,10 @@ class JobResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
+    protected static ?string $modelLabel = 'Job listing';
+
+    protected static ?string $pluralModelLabel = 'Job listings';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
 
     protected static string|UnitEnum|null $navigationGroup = 'Jobs';
