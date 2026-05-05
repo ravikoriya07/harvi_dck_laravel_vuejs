@@ -4,8 +4,8 @@
             <div id="pxl-content-area" class="pxl-content-area pxl-content-blog col-12 col-lg-8">
                 <main id="pxl-content-main">
                     <article
-                        v-for="post in posts"
-                        :key="post.href"
+                        v-for="post in posts.data"
+                        :key="post.slug"
                         class="pxl-archive-post post type-post status-publish format-video has-post-thumbnail hentry category-youtube post_format-post-format-video">
                         <div class="content-inner-post">
                             <div class="post-featured">
@@ -16,13 +16,13 @@
                                                 width="810"
                                                 height="385"
                                                 class="attachment-maiko-large size-maiko-large wp-post-image"
-                                                :src="post.image"
+                                                :src="post.image_url"
                                                 :alt="post.title"
                                                 decoding="async" />
                                         </AppLink>
-                                        <div class="pxl-video-popup">
+                                        <div v-if="post.video_url" class="pxl-video-popup">
                                             <div class="content-inner">
-                                                <a class="video-play-button pxl-action-popup" :href="post.videoUrl">
+                                                <a class="video-play-button pxl-action-popup" :href="post.video_url">
                                                     <i class="fas fa-play"></i>
                                                 </a>
                                             </div>
@@ -38,17 +38,19 @@
                                     </AppLink>
                                 </h2>
                                 <div class="pxl-divider"></div>
-                                <div class="post-excerpt"></div>
+                                <div v-if="post.excerpt" class="post-excerpt">
+                                    <p>{{ post.excerpt }}</p>
+                                </div>
                                 <div class="post-bottom">
                                     <div class="post-metas">
                                         <div class="meta-inner">
                                             <span class="post-author">
                                                 <span class="icon-post"><i class="fas fa-user"></i></span>
-                                                <span>By <a href="#" title="Posts by Ramil Veliiev" rel="author">Ramil Veliiev</a></span>
+                                                <span>By <a href="#" rel="author">{{ post.author }}</a></span>
                                             </span>
                                             <span class="post-category">
                                                 <span class="icon-post"><i class="fas fa-tag"></i></span>
-                                                <span><a href="#" rel="tag">YouTube</a></span>
+                                                <span><a href="#" rel="tag">{{ post.category }}</a></span>
                                             </span>
                                         </div>
                                     </div>
@@ -70,6 +72,27 @@
                             </div>
                         </div>
                     </article>
+
+                    <div v-if="posts.data && posts.data.length === 0" class="pxl-no-posts">
+                        <p>No blog posts found.</p>
+                    </div>
+
+                    <div v-if="posts.links && posts.links.length > 3" class="pxl-pagination-wrap">
+                        <nav class="pxl-pagination">
+                            <template v-for="link in posts.links" :key="link.label">
+                                <AppLink
+                                    v-if="link.url"
+                                    :href="link.url"
+                                    class="page-numbers"
+                                    :class="{ current: link.active }"
+                                    v-html="link.label" />
+                                <span
+                                    v-else
+                                    class="page-numbers dots"
+                                    v-html="link.label" />
+                            </template>
+                        </nav>
+                    </div>
                 </main>
             </div>
 
@@ -126,7 +149,12 @@
                         <h2 class="widget-title"><span>Categories</span></h2>
                         <div class="widget-content">
                             <ul>
-                                <li class="cat-item cat-item-1"><a href="#">YouTube</a></li>
+                                <li
+                                    v-for="cat in categories"
+                                    :key="cat.category"
+                                    class="cat-item">
+                                    <a href="#">{{ cat.category }}</a>
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -139,30 +167,14 @@
 <script setup>
 import AppLink from '@/Components/AppLink.vue';
 
-const posts = [
-    {
-        title: 'Conversation with the CEO | DCK Construction',
-        href: '/blog/conversation-with-the-ceo-dck-construction',
-        image: '/assets/images/Screenshot-2026-02-10-083321-810x385.png',
-        videoUrl: 'https://www.youtube.com/watch?v=YHdujsohPMs',
+defineProps({
+    posts: {
+        type: Object,
+        default: () => ({ data: [], links: [], meta: {} }),
     },
-    {
-        title: 'DCK Construction: Newham Voids Works Overview',
-        href: '/blog/dck-construction-newham-voids-works-overview',
-        image: '/assets/images/Screenshot-2026-02-10-082902-810x385.png',
-        videoUrl: 'https://www.youtube.com/watch?v=N5nPA0qzZBY',
+    categories: {
+        type: Array,
+        default: () => [],
     },
-    {
-        title: 'DCK Construction Working with Camden Council | Fire Door Installation',
-        href: '/blog/dck-construction-working-with-camden-council-fire-door-installation',
-        image: '/assets/images/Screenshot-2026-01-06-161416-810x385.png',
-        videoUrl: 'https://www.youtube.com/watch?v=iIU15suqnR0',
-    },
-    {
-        title: 'Kitchen & Bathroom Renewal Programme - Delivering Quality Upgrades for Haringey Homes',
-        href: '/blog/kitchen-bathroom-renewal-programme-delivering-quality-upgrades-for-haringey-homes',
-        image: '/assets/images/Screenshot-2026-01-06-161032-810x385.png',
-        videoUrl: 'https://www.youtube.com/watch?v=GJm6oqf9_bE',
-    },
-];
+});
 </script>

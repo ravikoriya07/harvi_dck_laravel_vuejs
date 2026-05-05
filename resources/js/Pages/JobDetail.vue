@@ -40,7 +40,7 @@
                         <div class="jd-main">
                             <div class="jd-card">
                                 <h2 class="jd-section-title">Job Description</h2>
-                                <div class="jd-description">{{ job.description }}</div>
+                                <div class="jd-description" v-html="job.description"></div>
                             </div>
                         </div>
 
@@ -116,15 +116,17 @@
                     <div class="jd-modal-body">
                         <h3 class="jd-modal-form-heading">Apply For This Job</h3>
 
-                        <form class="jd-apply-form" @submit.prevent>
+                        <form class="jd-apply-form" novalidate @submit.prevent="submitApplication">
                             <div class="jd-form-row">
                                 <label class="jd-form-label" for="jd-name">Name <span class="jd-form-required">*</span></label>
-                                <input id="jd-name" v-model="form.name" type="text" class="jd-form-input" placeholder="Your full name" required />
+                                <input id="jd-name" v-model="form.name" type="text" class="jd-form-input" placeholder="Your full name" />
+                                <p v-if="errors.name" class="jd-form-error">{{ errors.name }}</p>
                             </div>
 
                             <div class="jd-form-row">
                                 <label class="jd-form-label" for="jd-email">Email <span class="jd-form-required">*</span></label>
-                                <input id="jd-email" v-model="form.email" type="email" class="jd-form-input" placeholder="your@email.com" required />
+                                <input id="jd-email" v-model="form.email" type="email" class="jd-form-input" placeholder="your@email.com" />
+                                <p v-if="errors.email" class="jd-form-error">{{ errors.email }}</p>
                             </div>
 
                             <div class="jd-form-row">
@@ -135,11 +137,13 @@
                                     input-class="jd-form-input jd-phone-input"
                                     initial-country="gb"
                                 />
+                                <p v-if="errors.phone" class="jd-form-error">{{ errors.phone }}</p>
                             </div>
 
                             <div class="jd-form-row">
                                 <label class="jd-form-label" for="jd-cover">Cover Letter <span class="jd-form-required">*</span></label>
-                                <textarea id="jd-cover" v-model="form.cover_letter" class="jd-form-textarea" rows="5" placeholder="Tell us why you're a great fit for this role..." required></textarea>
+                                <textarea id="jd-cover" v-model="form.cover_letter" class="jd-form-textarea" rows="5" placeholder="Tell us why you're a great fit for this role..."></textarea>
+                                <p v-if="errors.cover_letter" class="jd-form-error">{{ errors.cover_letter }}</p>
                             </div>
 
                             <div class="jd-form-row">
@@ -152,11 +156,14 @@
                                     </div>
                                     <p class="jd-file-hint">Accepted: PDF, DOC, DOCX, ODT, RTF, TXT</p>
                                 </div>
+                                <p v-if="errors.resume" class="jd-form-error">{{ errors.resume }}</p>
                             </div>
 
                             <div class="jd-form-actions">
                                 <button type="button" class="jd-form-cancel" @click="closeModal">Cancel</button>
-                                <button type="submit" class="jd-form-submit">Submit Application</button>
+                                <button type="submit" class="jd-form-submit" :disabled="submitting">
+                                    {{ submitting ? 'Submitting...' : 'Submit Application' }}
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -164,26 +171,68 @@
             </div>
         </Transition>
     </Teleport>
+
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, watch } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import AppLink from '@/Components/AppLink.vue';
 import IntlTelInput from '@/Components/IntlTelInput.vue';
+import { notifyError, notifySuccess } from '@/utils/toast';
+import * as yup from 'yup';
 
-defineProps({
+const { job } = defineProps({
     job: { type: Object, required: true },
 });
 
 // ── Modal ────────────────────────────────────────────────────────────────────
 const modalOpen   = ref(false);
 const resumeInput = ref(null);
+const submitting = ref(false);
 
 const form = reactive({
     name: '', email: '', phone: '', cover_letter: '',
     resume: null, resume_name: '',
+});
+
+const errors = reactive({
+    name: '',
+    email: '',
+    phone: '',
+    cover_letter: '',
+    resume: '',
+});
+
+const validationSchema = yup.object({
+    name: yup.string().trim().required('Name is required.').max(255, 'Name is too long.'),
+    email: yup.string().trim().required('Email is required.').email('Please enter a valid email address.').max(255, 'Email is too long.'),
+    phone: yup.string().trim().required('Phone is required.').max(50, 'Phone is too long.'),
+    cover_letter: yup.string().trim().required('Cover letter is required.').max(10000, 'Cover letter is too long.'),
+    resume: yup
+        .mixed()
+        .required('Resume is required.')
+        .test('fileType', 'Allowed file types: PDF, DOC, DOCX, ODT, RTF, TXT.', (file) => {
+            if (!file) {
+                return false;
+            }
+
+            // Some browsers/files provide empty or inconsistent MIME types,
+            // so validate using extension as the primary check.
+            const allowedExtensions = ['pdf', 'doc', 'docx', 'odt', 'rtf', 'txt'];
+            const fileName = (file.name || '').toLowerCase();
+            const extension = fileName.includes('.') ? fileName.split('.').pop() : '';
+
+            return allowedExtensions.includes(extension || '');
+        })
+        .test('fileSize', 'Resume file size must not exceed 5MB.', (file) => {
+            if (!file) {
+                return false;
+            }
+
+            return file.size <= 5 * 1024 * 1024;
+        }),
 });
 
 function openModal() {
@@ -194,12 +243,118 @@ function openModal() {
 function closeModal() {
     modalOpen.value = false;
     document.body.classList.remove('jd-modal-open');
+    resetForm();
+}
+
+function resetForm() {
     Object.assign(form, { name: '', email: '', phone: '', cover_letter: '', resume: null, resume_name: '' });
+    clearErrors();
+
+    if (resumeInput.value) {
+        resumeInput.value.value = '';
+    }
+}
+
+function clearErrors() {
+    Object.keys(errors).forEach((key) => {
+        errors[key] = '';
+    });
+}
+
+watch(() => form.name,         () => { errors.name         = ''; });
+watch(() => form.email,        () => { errors.email        = ''; });
+watch(() => form.phone,        () => { errors.phone        = ''; });
+watch(() => form.cover_letter, () => { errors.cover_letter = ''; });
+
+function setError(field, message) {
+    if (Object.prototype.hasOwnProperty.call(errors, field)) {
+        errors[field] = message;
+    }
+}
+
+async function validateForm() {
+    clearErrors();
+
+    // Keep source of truth with actual file input in case model gets stale.
+    const selectedResumeFile = resumeInput.value?.files?.[0] ?? form.resume;
+
+    try {
+        await validationSchema.validate(
+            {
+                name: form.name,
+                email: form.email,
+                phone: form.phone,
+                cover_letter: form.cover_letter,
+                resume: selectedResumeFile,
+            },
+            { abortEarly: false }
+        );
+
+        form.resume = selectedResumeFile ?? null;
+
+        return true;
+    } catch (validationError) {
+        if (validationError instanceof yup.ValidationError) {
+            const issues = validationError.inner?.length ? validationError.inner : [validationError];
+
+            issues.forEach((issue) => {
+                const field = issue.path || 'resume';
+
+                if (!errors[field]) {
+                    setError(field, issue.message);
+                }
+            });
+        }
+
+        return false;
+    }
 }
 
 function handleFile(e) {
     const file = e.target.files?.[0];
-    if (file) { form.resume = file; form.resume_name = file.name; }
+    if (file) {
+        form.resume = file;
+        form.resume_name = file.name;
+        errors.resume = '';
+    }
+}
+
+async function submitApplication() {
+    if (submitting.value || !(await validateForm())) {
+        notifyError('Please fix the validation errors and try again.');
+        return;
+    }
+
+    submitting.value = true;
+
+    try {
+        const payload = new FormData();
+        payload.append('name', form.name.trim());
+        payload.append('email', form.email.trim());
+        payload.append('phone', form.phone.trim());
+        payload.append('cover_letter', form.cover_letter.trim());
+        payload.append('resume', form.resume);
+
+        const response = await window.axios.post(`/jobs/${job.id}/apply`, payload);
+
+        notifySuccess(response.data?.message || 'Application submitted successfully.');
+        closeModal();
+    } catch (error) {
+        const responseErrors = error?.response?.data?.errors ?? {};
+        const errorMessage = error?.response?.data?.message || 'Unable to submit application. Please try again.';
+
+        clearErrors();
+
+        Object.keys(responseErrors).forEach((field) => {
+            const value = responseErrors[field];
+            const message = Array.isArray(value) ? value[0] : String(value ?? '');
+            setError(field, message);
+        });
+
+        notifyError(errorMessage);
+    } finally {
+        submitting.value = false;
+    }
 }
 </script>
 
@@ -328,7 +483,6 @@ function handleFile(e) {
     font-size: 15px;
     line-height: 1.8;
     color: #4a5568;
-    white-space: pre-wrap;
 }
 
 /* ── Sidebar ───────────────────────────────────────────────────────────────── */
@@ -522,6 +676,7 @@ function handleFile(e) {
 
 .jd-apply-form { display: flex; flex-direction: column; gap: 20px; }
 .jd-form-row   { display: flex; flex-direction: column; gap: 6px; }
+.jd-form-error { color: #e53e3e; font-size: 12px; margin: 0; }
 
 .jd-form-label    { font-size: 14px; font-weight: 600; color: #2d3748; }
 .jd-form-required { color: #e53e3e; margin-left: 2px; }
@@ -632,6 +787,8 @@ function handleFile(e) {
     transition: background 0.2s;
 }
 .jd-form-submit:hover { background: #0d4485; }
+.jd-form-submit:disabled { background: #7ea0c9; cursor: not-allowed; }
+
 
 /* ── Modal Transition ──────────────────────────────────────────────────────── */
 .modal-fade-enter-active,

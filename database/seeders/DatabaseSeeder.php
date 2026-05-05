@@ -27,5 +27,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(JobCategorySeeder::class);
         $this->call(JobSeeder::class);
+
+        $this->call(BlogSeeder::class);
     }
 }

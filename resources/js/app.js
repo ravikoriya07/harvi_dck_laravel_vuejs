@@ -1,8 +1,10 @@
 import './bootstrap';
+import 'vue-toastification/dist/index.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import Toast, { POSITION } from 'vue-toastification';
 
 createInertiaApp({
     title: (title) => title ? `${title} - DCK Construction Ltd` : 'DCK Construction Ltd',
@@ -16,6 +18,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(Toast, { position: POSITION.TOP_RIGHT, timeout: 3500, closeOnClick: true, pauseOnHover: true })
             .mount(el);
     },
 

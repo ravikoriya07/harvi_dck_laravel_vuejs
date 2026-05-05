@@ -40,17 +40,17 @@
     </section>
 
     <!-- Results Count + Clear -->
-    <section class="jobs-results-bar" v-if="hasAppliedFilters || pagination.total > 0">
+    <section class="jobs-results-bar" v-if="hasActiveFilters || pagination.total > 0">
         <div class="container">
             <div class="jobs-results-inner">
                 <p class="jobs-results-count">
                     <span v-if="pagination.total > 0">
                         Showing <strong>{{ pagination.total }}</strong> {{ pagination.total === 1 ? 'position' : 'positions' }}
-                        <template v-if="hasAppliedFilters"> matching your search</template>
+                        <template v-if="hasActiveFilters"> matching your search</template>
                     </span>
                     <span v-else>No positions found</span>
                 </p>
-                <button v-if="hasAppliedFilters" class="jobs-clear-btn" @click="clearFilters">
+                <button v-if="hasActiveFilters" class="jobs-clear-btn" @click="clearFilters">
                     Clear filters
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
                 </button>
@@ -69,9 +69,9 @@
                 </div>
                 <h3 class="jobs-empty-title">No positions available</h3>
                 <p class="jobs-empty-text">
-                    {{ hasAppliedFilters ? 'No jobs match your current search. Try adjusting your filters.' : 'There are no open positions at this time. Please check back soon.' }}
+                    {{ hasActiveFilters ? 'No jobs match your current search. Try adjusting your filters.' : 'There are no open positions at this time. Please check back soon.' }}
                 </p>
-                <button v-if="hasAppliedFilters" class="jobs-empty-clear" @click="clearFilters">Clear filters</button>
+                <button v-if="hasActiveFilters" class="jobs-empty-clear" @click="clearFilters">Clear filters</button>
             </div>
 
             <!-- Job Cards -->
@@ -201,7 +201,7 @@
                     <div class="jobs-modal-body">
                         <h3 class="jobs-modal-form-heading">Apply For This Job</h3>
 
-                        <form class="jobs-apply-form" @submit.prevent>
+                        <form class="jobs-apply-form" novalidate @submit.prevent="submitApplication">
                             <div class="jobs-form-row">
                                 <label class="jobs-form-label" for="apply-name">
                                     Name <span class="jobs-form-required">*</span>
@@ -212,8 +212,8 @@
                                     type="text"
                                     class="jobs-form-input"
                                     placeholder="Your full name"
-                                    required
                                 />
+                                <p v-if="applyErrors.name" class="jobs-form-error">{{ applyErrors.name }}</p>
                             </div>
 
                             <div class="jobs-form-row">
@@ -226,8 +226,8 @@
                                     type="email"
                                     class="jobs-form-input"
                                     placeholder="your@email.com"
-                                    required
                                 />
+                                <p v-if="applyErrors.email" class="jobs-form-error">{{ applyErrors.email }}</p>
                             </div>
 
                             <div class="jobs-form-row">
@@ -240,6 +240,7 @@
                                     input-class="jobs-form-input jobs-phone-input"
                                     initial-country="gb"
                                 />
+                                <p v-if="applyErrors.phone" class="jobs-form-error">{{ applyErrors.phone }}</p>
                             </div>
 
                             <div class="jobs-form-row">
@@ -252,8 +253,8 @@
                                     class="jobs-form-textarea"
                                     rows="5"
                                     placeholder="Tell us why you're a great fit for this role..."
-                                    required
                                 ></textarea>
+                                <p v-if="applyErrors.cover_letter" class="jobs-form-error">{{ applyErrors.cover_letter }}</p>
                             </div>
 
                             <div class="jobs-form-row">
@@ -275,11 +276,14 @@
                                     </div>
                                     <p class="jobs-file-hint">Accepted: PDF, DOC, DOCX, ODT, RTF, TXT</p>
                                 </div>
+                                <p v-if="applyErrors.resume" class="jobs-form-error">{{ applyErrors.resume }}</p>
                             </div>
 
                             <div class="jobs-form-actions">
                                 <button type="button" class="jobs-form-cancel" @click="closeModal">Cancel</button>
-                                <button type="submit" class="jobs-form-submit">Submit Application</button>
+                                <button type="submit" class="jobs-form-submit" :disabled="submitting">
+                                    {{ submitting ? 'Submitting...' : 'Submit Application' }}
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -293,6 +297,8 @@
 import { computed, reactive, ref, watch } from 'vue';
 import { Link, router } from '@inertiajs/vue3';
 import IntlTelInput from '@/Components/IntlTelInput.vue';
+import * as yup from 'yup';
+import { notifySuccess, notifyError } from '@/utils/toast';
 
 const props = defineProps({
     pagination: { type: Object, required: true },
@@ -313,13 +319,11 @@ watch(() => props.filters, (v) => {
     form.category = v.category ?? '';
 });
 
-/** Filters actually applied (URL / server response), not draft text in the bar */
-const hasAppliedFilters = computed(() => {
+const hasActiveFilters = computed(() => {
     const f = props.filters ?? {};
     const search = String(f.search ?? '').trim();
     const cat = f.category;
-    const categoryApplied = cat !== null && cat !== undefined && String(cat).trim() !== '';
-    return search.length > 0 || categoryApplied;
+    return search.length > 0 || (cat !== null && cat !== undefined && String(cat).trim() !== '');
 });
 
 function applyFilters() {
@@ -357,18 +361,33 @@ const normalizedLinks = computed(() => {
 });
 
 // ── Apply Modal ──────────────────────────────────────────────────────────────
-const modal = reactive({ open: false, job: null });
+const modal      = reactive({ open: false, job: null });
+const submitting = ref(false);
+const resumeInput = ref(null);
 
 const applyForm = reactive({
-    name:         '',
-    email:        '',
-    phone:        '',
-    cover_letter: '',
-    resume:       null,
-    resume_name:  '',
+    name: '', email: '', phone: '', cover_letter: '',
+    resume: null, resume_name: '',
 });
 
-const resumeInput = ref(null);
+const applyErrors = reactive({
+    name: '', email: '', phone: '', cover_letter: '', resume: '',
+});
+
+const applySchema = yup.object({
+    name:         yup.string().trim().required('Name is required.').max(255, 'Name is too long.'),
+    email:        yup.string().trim().required('Email is required.').email('Enter a valid email address.').max(255, 'Email is too long.'),
+    phone:        yup.string().trim().required('Phone is required.').max(50, 'Phone number is too long.'),
+    cover_letter: yup.string().trim().required('Cover letter is required.').max(10000, 'Cover letter is too long.'),
+    resume: yup.mixed()
+        .required('Resume is required.')
+        .test('ext', 'Allowed file types: PDF, DOC, DOCX, ODT, RTF, TXT.', (f) => {
+            if (!f) return false;
+            const ext = ((f.name || '').toLowerCase().split('.').pop()) ?? '';
+            return ['pdf', 'doc', 'docx', 'odt', 'rtf', 'txt'].includes(ext);
+        })
+        .test('size', 'Resume file size must not exceed 5MB.', (f) => !f || f.size <= 5 * 1024 * 1024),
+});
 
 function openModal(job) {
     modal.job  = job;
@@ -384,12 +403,73 @@ function closeModal() {
 }
 
 function resetForm() {
-    applyForm.name         = '';
-    applyForm.email        = '';
-    applyForm.phone        = '';
-    applyForm.cover_letter = '';
-    applyForm.resume       = null;
-    applyForm.resume_name  = '';
+    Object.assign(applyForm, { name: '', email: '', phone: '', cover_letter: '', resume: null, resume_name: '' });
+    clearApplyErrors();
+    if (resumeInput.value) resumeInput.value.value = '';
+}
+
+function clearApplyErrors() {
+    Object.keys(applyErrors).forEach((k) => (applyErrors[k] = ''));
+}
+
+// Clear each field's error the moment the user changes it
+watch(() => applyForm.name,         () => { applyErrors.name         = ''; });
+watch(() => applyForm.email,        () => { applyErrors.email        = ''; });
+watch(() => applyForm.phone,        () => { applyErrors.phone        = ''; });
+watch(() => applyForm.cover_letter, () => { applyErrors.cover_letter = ''; });
+
+async function validateApplyForm() {
+    clearApplyErrors();
+    const file = resumeInput.value?.files?.[0] ?? applyForm.resume;
+    try {
+        await applySchema.validate(
+            { name: applyForm.name, email: applyForm.email, phone: applyForm.phone, cover_letter: applyForm.cover_letter, resume: file },
+            { abortEarly: false },
+        );
+        applyForm.resume = file ?? null;
+        return true;
+    } catch (e) {
+        if (e instanceof yup.ValidationError) {
+            const issues = e.inner?.length ? e.inner : [e];
+            issues.forEach((issue) => {
+                const field = issue.path || 'resume';
+                if (!applyErrors[field]) applyErrors[field] = issue.message;
+            });
+        }
+        return false;
+    }
+}
+
+async function submitApplication() {
+    if (submitting.value || !(await validateApplyForm())) {
+        notifyError('Please fix the errors below and try again.');
+        return;
+    }
+
+    submitting.value = true;
+    try {
+        const payload = new FormData();
+        payload.append('name',         applyForm.name.trim());
+        payload.append('email',        applyForm.email.trim());
+        payload.append('phone',        applyForm.phone.trim());
+        payload.append('cover_letter', applyForm.cover_letter.trim());
+        payload.append('resume',       applyForm.resume);
+
+        const response = await window.axios.post(`/jobs/${modal.job.id}/apply`, payload);
+        notifySuccess(response.data?.message || 'Application submitted successfully.');
+        closeModal();
+    } catch (error) {
+        const serverErrors = error?.response?.data?.errors ?? {};
+        const message      = error?.response?.data?.message || 'Unable to submit. Please try again.';
+        clearApplyErrors();
+        Object.keys(serverErrors).forEach((field) => {
+            const val = serverErrors[field];
+            if (field in applyErrors) applyErrors[field] = Array.isArray(val) ? val[0] : String(val ?? '');
+        });
+        notifyError(message);
+    } finally {
+        submitting.value = false;
+    }
 }
 
 function handleFileChange(event) {
@@ -397,6 +477,7 @@ function handleFileChange(event) {
     if (file) {
         applyForm.resume      = file;
         applyForm.resume_name = file.name;
+        applyErrors.resume    = '';
     }
 }
 
@@ -818,6 +899,7 @@ function truncate(text, max) {
 }
 
 .jobs-form-required { color: #e53e3e; margin-left: 2px; }
+.jobs-form-error    { color: #e53e3e; font-size: 12px; margin: 0; }
 
 .jobs-form-input,
 .jobs-form-textarea {
@@ -939,7 +1021,8 @@ function truncate(text, max) {
     transition: background 0.2s;
 }
 
-.jobs-form-submit:hover { background: #0d4485; }
+.jobs-form-submit:hover    { background: #0d4485; }
+.jobs-form-submit:disabled { background: #7ea0c9; cursor: not-allowed; }
 
 /* ── Modal Transition ────────────────────────────────────────────────────── */
 .modal-fade-enter-active,

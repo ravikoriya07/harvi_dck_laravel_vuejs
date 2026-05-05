@@ -11,7 +11,7 @@
                         </span>
                         <span class="pxl-item--date">
                             <span class="icon-post"><i class="fas fa-calendar"></i></span>
-                            {{ post.date }}
+                            {{ post.published_at }}
                         </span>
                         <span class="post-category align-items-center">
                             <span class="icon-post"><i class="fas fa-tag"></i></span>
@@ -24,12 +24,12 @@
                     </div>
                 </div>
             </div>
-            <div class="pxl-icon-postformat">
+            <div v-if="post.video_url" class="pxl-icon-postformat">
                 <div class="format-wrap">
                     <div class="link-icon">
                         <div class="pxl-video-popup">
                             <div class="content-inner">
-                                <a class="video-play-button pxl-action-popup" :href="post.videoUrl">
+                                <a class="video-play-button pxl-action-popup" :href="post.video_url">
                                     <i class="fas fa-play"></i>
                                 </a>
                             </div>
@@ -44,12 +44,13 @@
                 <main id="pxl-content-main">
                     <article class="pxl-single-post post type-post status-publish format-video has-post-thumbnail hentry category-youtube post_format-post-format-video">
                         <div class="single-post-inner has-post-thumbnail">
-                            <div class="post-image post-featured">
-                                <img :src="post.image" :alt="post.title" width="810" height="385" />
+                            <div v-if="post.image_url" class="post-image post-featured">
+                                <img :src="post.image_url" :alt="post.title" width="810" height="385" />
                             </div>
                             <div class="post-content">
                                 <div class="content-inner clearfix">
-                                    <p>{{ post.summary }}</p>
+                                    <div v-if="post.content" v-html="post.content"></div>
+                                    <p v-else-if="post.excerpt">{{ post.excerpt }}</p>
                                 </div>
                                 <div class="navigation page-links clearfix empty-none"></div>
                             </div>
@@ -168,7 +169,12 @@
                         <h2 class="widget-title"><span>Categories</span></h2>
                         <div class="widget-content">
                             <ul>
-                                <li class="cat-item cat-item-1"><a href="#">YouTube</a></li>
+                                <li
+                                    v-for="cat in categories"
+                                    :key="cat.category"
+                                    class="cat-item">
+                                    <a href="#">{{ cat.category }}</a>
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -182,58 +188,19 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-    slug: {
-        type: String,
-        default: '',
+    post: {
+        type: Object,
+        default: () => ({}),
+    },
+    categories: {
+        type: Array,
+        default: () => [],
     },
 });
 
-const postMap = {
-    'conversation-with-the-ceo-dck-construction': {
-        title: 'Conversation with the CEO | DCK Construction',
-        image: '/assets/images/Screenshot-2026-02-10-083321-810x385.png',
-        date: '10 Feb 26',
-        category: 'YouTube',
-        author: 'Ramil Veliev',
-        videoUrl: 'https://www.youtube.com/watch?v=YHdujsohPMs',
-        summary: 'Conversation with the CEO of DCK Construction focused on delivery quality, project standards, and ongoing housing refurbishment programs.',
-    },
-    'dck-construction-newham-voids-works-overview': {
-        title: 'DCK Construction: Newham Voids Works Overview',
-        image: '/assets/images/Screenshot-2026-02-10-082902-810x385.png',
-        date: '10 Feb 26',
-        category: 'YouTube',
-        author: 'Ramil Veliev',
-        videoUrl: 'https://www.youtube.com/watch?v=N5nPA0qzZBY',
-        summary: 'Overview of Newham voids works, scope planning, and delivery outcomes for occupied and vacant property turnaround.',
-    },
-    'dck-construction-working-with-camden-council-fire-door-installation': {
-        title: 'DCK Construction Working with Camden Council | Fire Door Installation',
-        image: '/assets/images/Screenshot-2026-01-06-161416-810x385.png',
-        date: '06 Jan 26',
-        category: 'YouTube',
-        author: 'Ramil Veliev',
-        videoUrl: 'https://www.youtube.com/watch?v=iIU15suqnR0',
-        summary: 'A look at fire door installation delivery in collaboration with Camden Council and compliance-led execution on site.',
-    },
-    'kitchen-bathroom-renewal-programme-delivering-quality-upgrades-for-haringey-homes': {
-        title: 'Kitchen & Bathroom Renewal Programme - Delivering Quality Upgrades for Haringey Homes',
-        image: '/assets/images/Screenshot-2026-01-06-161032-810x385.png',
-        date: '06 Jan 26',
-        category: 'YouTube',
-        author: 'Ramil Veliev',
-        videoUrl: 'https://www.youtube.com/watch?v=GJm6oqf9_bE',
-        summary: 'Programme highlights from kitchen and bathroom upgrades delivered for Haringey homes with tenant-focused execution.',
-    },
-};
-
-const fallbackPost = postMap['conversation-with-the-ceo-dck-construction'];
-
-const post = computed(() => postMap[props.slug] || fallbackPost);
-
 const shareUrls = computed(() => {
-    const pageUrl = encodeURIComponent(`https://thedck.com/blog/${props.slug || 'conversation-with-the-ceo-dck-construction'}`);
-    const text = encodeURIComponent(post.value.title);
+    const pageUrl = encodeURIComponent(`https://thedck.com/blog/${props.post.slug || ''}`);
+    const text = encodeURIComponent(props.post.title || '');
     return {
         facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
         twitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`,

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactCardController;
+use App\Http\Controllers\Admin\JobApplicationResumeController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Middleware\UseCardLayout;
@@ -31,24 +34,15 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects.ind
 
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{slug}', [JobController::class, 'show'])->name('jobs.show');
+Route::post('/jobs/{job}/apply', [JobApplicationController::class, 'store'])->name('jobs.apply');
 
-Route::get('/blog', function () {
-    return Inertia::render('Blog');
-});
+Route::get('/blog',        [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/cards/{slug}', [ContactCardController::class, 'show'])
     ->middleware(UseCardLayout::class);
 
-Route::get('/blog/{slug}', function (string $slug) {
-    $titles = [
-        'conversation-with-the-ceo-dck-construction' => 'Conversation with the CEO | DCK Construction',
-        'dck-construction-newham-voids-works-overview' => 'DCK Construction: Newham Voids Works Overview',
-        'dck-construction-working-with-camden-council-fire-door-installation' => 'DCK Construction Working with Camden Council | Fire Door Installation',
-        'kitchen-bathroom-renewal-programme-delivering-quality-upgrades-for-haringey-homes' => 'Kitchen & Bathroom Renewal Programme - Delivering Quality Upgrades for Haringey Homes',
-    ];
-
-    return Inertia::render('BlogDetail', [
-        'slug' => $slug,
-        'title' => $titles[$slug] ?? null,
-    ]);
+Route::middleware('auth')->group(function (): void {
+    Route::get('/admin/job-applications/{jobApplication}/resume', JobApplicationResumeController::class)
+        ->name('admin.job-applications.resume.download');
 });
