@@ -151,56 +151,10 @@
 <script setup>
 import AppLink from '@/Components/AppLink.vue';
 
-const projects = [
-    {
-        title: 'Haringey Broadwater Farm Community Centre',
-        href: '/works/haringey-broadwater-farm-community-centre',
-        image: '/assets/images/projects/1/DCK-Broadwater-Farm-Community-Project-01.png',
+defineProps({
+    projects: {
+        type: Array,
+        default: () => [],
     },
-    {
-        title: 'Haringey Broadwater Farm Estate Fire Safety Works & Communal Decorations',
-        href: '/works/designer-apartment',
-        image: '/assets/images/JOB-70-of-155-scaled.jpg',
-    },
-    {
-        title: 'Great Arthur House, City of London',
-        href: '/works/great-arthur-house-city-of-london',
-        image: '/assets/images/image_3-7-1.png',
-    },
-    {
-        title: 'Seafront Hotel, Brighton',
-        href: '/works/seafront-hotel-brighton',
-        image: '/assets/images/Untitled-design-2-1.png',
-    },
-    {
-        title: 'iQ Kingston, Kingston Upon Thames',
-        href: '/works/iq-kingston-kingston-upon-thames',
-        image: '/assets/images/iQ-Kingston.jpg',
-    },
-    {
-        title: 'Seething Wells Campus, Kingston University',
-        href: '/works/seething-wells-campus-kingston-university',
-        image: '/assets/images/IMG1-1-1.png',
-    },
-    {
-        title: 'Extension Project, Cuffley',
-        href: '/works/extension-project-cuffley',
-        image: '/assets/images/main.jpeg',
-    },
-    {
-        title: 'Southwark Void Refurbishment Programme 2025',
-        href: '/works/southwark-void-refurbishment-programme-2025',
-        image: '/assets/images/Untitled-design-1-1.png',
-    },
-    {
-        title: 'Harrow Aids & Adaptations Works',
-        href: '/works/harrow-aids-adaptations-works',
-        image: '/assets/images/0ab4bbf9-2f9c-42f1-b604-0c4230f95d6a.jpg',
-    },
-    {
-        title: 'Haringey Aids & Adaptations Works',
-        href: '/works/haringey-aids-adaptations-works',
-        image: '/assets/images/6509ab55-97be-4536-9747-018df8c0a9f5.jpg',
-    },
-];
+});
 </script>

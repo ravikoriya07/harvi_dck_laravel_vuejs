@@ -9,7 +9,7 @@
             <WhyUsSection />
             <ServicesSection />
             <ClientsSection />
-        <ProjectsSection />
+        <ProjectsSection :projects="projects" />
             <ProcurementSection />
             <TeamSection />
             <PartnersSection />
@@ -22,6 +22,13 @@
 
 <script setup>
 import { Head } from '@inertiajs/vue3';
+
+defineProps({
+    projects: {
+        type: Array,
+        default: () => [],
+    },
+});
 import MainLayout from '@/Layouts/MainLayout.vue';
 import HeroSection from '@/Components/Sections/HeroSection.vue';
 import AboutSection from '@/Components/Sections/AboutSection.vue';

@@ -15,39 +15,65 @@ class Project extends Model
         'category',
         'image',
         'sort_order',
+        'value',
+        'date',
+        'status',
+        'client',
+        'scope',
+        'description',
+        'gallery',
     ];
 
     protected function casts(): array
     {
         return [
             'sort_order' => 'integer',
+            'gallery'    => 'array',
         ];
     }
 
     /**
-     * Public URL for the listing thumbnail: absolute /assets paths, full URLs, or storage-relative paths.
+     * Public URL for the listing thumbnail.
      */
     public function getImageUrlAttribute(): string
     {
-        $image = $this->image ?? '';
+        return $this->resolveUrl($this->image ?? '');
+    }
 
-        if ($image === '') {
-            return '';
+    /**
+     * Array of public URLs for the gallery carousel.
+     * Falls back to the main image when gallery is empty.
+     */
+    public function getGalleryUrlsAttribute(): array
+    {
+        $paths = $this->gallery ?? [];
+
+        if (empty($paths) && ($this->image ?? '') !== '') {
+            $paths = [$this->image];
         }
 
-        if (preg_match('#^https?://#i', $image)) {
-            return $image;
-        }
-
-        if (str_starts_with($image, '/')) {
-            return $image;
-        }
-
-        return asset('storage/'.$image);
+        return array_values(array_filter(array_map(fn (string $p) => $this->resolveUrl($p), $paths)));
     }
 
     public function getDetailHrefAttribute(): string
     {
-        return '/works/'.$this->slug;
+        return '/works/' . $this->slug;
+    }
+
+    private function resolveUrl(string $path): string
+    {
+        if ($path === '') {
+            return '';
+        }
+
+        if (preg_match('#^https?://#i', $path)) {
+            return $path;
+        }
+
+        if (str_starts_with($path, '/')) {
+            return $path;
+        }
+
+        return asset('storage/' . $path);
     }
 }
