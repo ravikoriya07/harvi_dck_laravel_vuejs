@@ -6,7 +6,10 @@
         data-settings='{"stretch_section":"section-stretched","pxl_parallax_bg_effect_other":"pinned-zoom-clipped"}'>
         <div class="clipped-bg-pinned">
             <div class="clipped-bg">
-                <div class="pxl-section-bg-parallax pinned-zoom-clipped" data-parallax="[]"></div>
+                <div
+                    ref="parallaxLayerRef"
+                    class="pxl-section-bg-parallax pinned-zoom-clipped"
+                    data-parallax="[]"></div>
             </div>
         </div>
         <div class="elementor-container elementor-column-gap-no">
@@ -21,54 +24,140 @@
 import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
 
 const sectionRef = ref(null);
-let cleanup = null;
+const parallaxLayerRef = ref(null);
+let gsapTimeline = null;
+let initCancelled = false;
+let layoutRefreshTimer = null;
+
+const INITIAL_INSET = '20%';
+const INITIAL_SCALE = 0.86;
+
+/**
+ * Timeline fractions (must sum to 1). Mapped to scroll between start/end below.
+ * Expand must span most of the approach phase so full width is not reached while
+ * the section is only partially visible (reference: full width when centered/active).
+ */
+const SCRUB_EXPAND = 0.5;
+const SCRUB_HOLD_FULL = 0.28;
+const SCRUB_SHRINK = 0.22;
 
 const toDomNode = (value) => {
     if (!value) return null;
     if (value instanceof Node) return value;
     if (Array.isArray(value) && value[0] instanceof Node) return value[0];
-    if (typeof value === 'object' && value[0] instanceof Node) return value[0]; // jQuery-like object
+    if (typeof value === 'object' && value[0] instanceof Node) return value[0];
     return null;
 };
 
-const killSectionTriggers = (sectionEl, scrollTrigger) => {
-    if (!sectionEl || !scrollTrigger?.getAll) return;
-    scrollTrigger.getAll().forEach((trigger) => {
+const killSectionTriggers = (sectionEl, ScrollTrigger) => {
+    if (!sectionEl || !ScrollTrigger?.getAll) return;
+    ScrollTrigger.getAll().forEach((trigger) => {
         const triggerNode = toDomNode(trigger?.vars?.trigger);
-        if (triggerNode && sectionEl.contains(triggerNode)) {
-            trigger.kill();
+        if (triggerNode && (triggerNode === sectionEl || sectionEl.contains(triggerNode))) {
+            // revert=true: removes the pin spacer and reverts the element position
+            trigger.kill(true);
         }
     });
 };
 
-const initPinnedZoomClipped = () => {
-    const sectionEl = sectionRef.value;
-    if (!sectionEl || typeof window === 'undefined') return;
-
-    const clippedBg = sectionEl.querySelector('.clipped-bg');
-    if (clippedBg) {
-        clippedBg.style.clipPath = 'inset(0% 20% 0% 20%)';
-        clippedBg.style.transform = 'scale(0.86)';
-    }
-
-    const scrollTrigger = window.ScrollTrigger;
-    killSectionTriggers(sectionEl, scrollTrigger);
-
-    if (typeof window.maiko_parallax_bg === 'function') {
-        window.maiko_parallax_bg();
-    }
-
-    cleanup = () => {
-        killSectionTriggers(sectionEl, scrollTrigger);
-    };
-};
-
 onMounted(async () => {
     await nextTick();
-    initPinnedZoomClipped();
+
+    // Child components mount before MainLayout. MainLayout's onMounted runs
+    // maiko_parallax_bg() which attaches ScrollTrigger + pin on this section
+    // after this hook returns — so any kill/setup here would be overwritten.
+    // Queue init after the current synchronous mount flush so we replace the
+    // theme triggers with our scrub timeline.
+    queueMicrotask(() => {
+        requestAnimationFrame(() => {
+            if (initCancelled) return;
+
+            const sectionEl = sectionRef.value;
+            const parallaxEl = parallaxLayerRef.value;
+            if (!sectionEl || !parallaxEl || typeof window === 'undefined') return;
+
+            const gsap = window.gsap;
+            const ScrollTrigger = window.ScrollTrigger;
+            if (!gsap || !ScrollTrigger) return;
+
+            // Kill theme ScrollTriggers with revert=true to restore pinned layout
+            killSectionTriggers(sectionEl, ScrollTrigger);
+
+            // Animate the inner parallax layer only. Theme puts clip+scale on `.clipped-bg`; combining that with
+            // GSAP transforms caused drift mid-scroll while footer/layout reflow made it look correct sometimes.
+            gsap.killTweensOf(parallaxEl);
+            gsap.set(parallaxEl, { clearProps: 'all' });
+
+            gsap.set(parallaxEl, {
+                clipPath: `inset(0% ${INITIAL_INSET} 0% ${INITIAL_INSET})`,
+                scale: INITIAL_SCALE,
+                transformOrigin: '50% 50%',
+            });
+
+            const fullClip = { clipPath: 'inset(0% 0% 0% 0%)', scale: 1 };
+            const smallClip = {
+                clipPath: `inset(0% ${INITIAL_INSET} 0% ${INITIAL_INSET})`,
+                scale: INITIAL_SCALE,
+            };
+
+            // Scroll span: first pixel of section enters bottom of viewport → section finishes leaving at top.
+            // Timeline ~0 → ~0.5 = gradual widen while bringing section into view (full width ~ viewport-centered).
+            // Middle = hold full while section reads “active”; tail = narrow again on exit (both directions scrub smoothly).
+            gsapTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionEl,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1,
+                    invalidateOnRefresh: true,
+                },
+            });
+
+            gsapTimeline
+                .to(parallaxEl, { ...fullClip, ease: 'none', duration: SCRUB_EXPAND })
+                .to(parallaxEl, { ...fullClip, ease: 'none', duration: SCRUB_HOLD_FULL })
+                .to(parallaxEl, { ...smallClip, ease: 'none', duration: SCRUB_SHRINK });
+
+            ScrollTrigger.refresh();
+
+            // theme.js applies footer fixed margin after ~600ms — refresh ST so scrub math matches final layout.
+            if (layoutRefreshTimer) clearTimeout(layoutRefreshTimer);
+            layoutRefreshTimer = window.setTimeout(() => {
+                layoutRefreshTimer = null;
+                if (!initCancelled && window.ScrollTrigger) {
+                    window.ScrollTrigger.refresh();
+                }
+            }, 700);
+        });
+    });
 });
 
 onBeforeUnmount(() => {
-    if (typeof cleanup === 'function') cleanup();
+    initCancelled = true;
+    if (layoutRefreshTimer) {
+        clearTimeout(layoutRefreshTimer);
+        layoutRefreshTimer = null;
+    }
+    if (gsapTimeline) {
+        gsapTimeline.scrollTrigger?.kill();
+        gsapTimeline.kill();
+        gsapTimeline = null;
+    }
 });
 </script>
+
+<style scoped>
+.clipped-bg-pinned {
+    inset: 0;
+}
+/* Neutralize theme clip/scale on wrapper — GSAP drives clip+scale on `.pxl-section-bg-parallax` instead. */
+.clipped-bg {
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+}
+.pxl-section-bg-parallax {
+    transform-origin: center center;
+}
+</style>

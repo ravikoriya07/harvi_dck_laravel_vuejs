@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\ProjectImage;
 use Illuminate\Database\Seeder;
 
 class ProjectSeeder extends Seeder
@@ -440,7 +441,14 @@ class ProjectSeeder extends Seeder
         ];
 
         foreach ($rows as $index => $row) {
-            Project::updateOrCreate(
+            $gallery = $row['gallery'] ?? [];
+            unset($row['gallery']);
+
+            if (! is_array($gallery)) {
+                $gallery = [];
+            }
+
+            $project = Project::updateOrCreate(
                 ['slug' => $row['slug']],
                 [
                     'title'       => $row['title'],
@@ -453,8 +461,12 @@ class ProjectSeeder extends Seeder
                     'client'      => $row['client']      ?? null,
                     'scope'       => $row['scope']       ?? null,
                     'description' => $row['description'] ?? null,
-                    'gallery'     => $row['gallery']     ?? null,
                 ]
+            );
+
+            ProjectImage::syncOrderedPathsForProject(
+                $project->id,
+                array_values(array_filter($gallery, fn ($p) => is_string($p) && $p !== ''))
             );
         }
     }

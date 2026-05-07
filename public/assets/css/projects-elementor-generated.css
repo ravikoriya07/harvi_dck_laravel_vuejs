@@ -48,3 +48,142 @@
     border-color: transparent;
     background: transparent;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROJECT DETAIL (Vue/Inertia `.pxl-project-detail`) — boxed widths aligned with
+   static HTML reference `works/haringey-broadwater-farm-community-centre.html`.
+   Shared outer rail (--pd-meta-gallery-max); inner boxed blocks stay 1260px (readable column).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.pxl-project-detail {
+    --pd-meta-gallery-max: 1600px;
+}
+
+/*
+ * Bootstrap shell under `#pxl-main` (same as HTML export). `grid.css` caps `.container`
+ * at 1140px at xl — widen only `.pd-project-shell` so 1600px Elementor rails still fit.
+ */
+#pxl-main > .container.pd-project-shell {
+    width: 100%;
+    max-width: min(100%, 1720px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(16px, 4vw, 48px) !important;
+    padding-right: clamp(16px, 4vw, 48px) !important;
+    box-sizing: border-box;
+}
+
+/* Detail column width (~reference screenshot): 90% of `.pd-project-shell` rail, centred */
+#pxl-main #pxl-main-content.pxl-project-detail.elementor {
+    width: 90%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    #pxl-main #pxl-main-content.pxl-project-detail.elementor {
+        width: 92%;
+        max-width: 92%;
+    }
+
+    #pxl-main > .container.pd-project-shell {
+        padding-left: clamp(16px, 4vw, 24px) !important;
+        padding-right: clamp(16px, 4vw, 24px) !important;
+    }
+}
+
+@media (max-width: 767px) {
+    #pxl-main #pxl-main-content.pxl-project-detail.elementor {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .pxl-project-detail .pd-hero-left > .elementor-element-populated {
+        margin-left: 0;
+    }
+}
+
+#pxl-main #pxl-content-main,
+#pxl-main #pxl-content-area.col-12 {
+    box-sizing: border-box;
+}
+
+#pxl-main article.pxl-portfolio-single {
+    margin: 0;
+    padding: 0;
+}
+
+/* Never stretch project detail sections to the viewport (Vue pages omit stretch JS reliably). */
+.pxl-project-detail > .elementor-section {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.pxl-project-detail .pd-hero-section > .elementor-container {
+    max-width: var(--pd-meta-gallery-max);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+}
+
+/* Title column offset — reference `.elementor-element-a08450a` populated */
+.pxl-project-detail .pd-hero-left > .elementor-element-populated {
+    margin: 0 0 0 50px;
+}
+
+.pxl-project-detail .pd-title-wrap .pxl-heading--inner {
+    max-width: 948px;
+}
+
+.pxl-project-detail .pd-cats-wrap .elementor-widget-container {
+    margin: 0 0 4px 0;
+}
+
+.pxl-project-detail .pd-props-max,
+.pxl-project-detail .pd-gallery-max {
+    max-width: var(--pd-meta-gallery-max);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+}
+
+/* Scope / description rail (boxed section `.pd-body-section`) — outer matches hero/meta/gallery */
+.pxl-project-detail .pd-body-section > .elementor-container {
+    max-width: var(--pd-meta-gallery-max) !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+}
+
+/* Inner Elementor rows: narrower text column (reference ~1260px) centred inside the rail */
+.pxl-project-detail .elementor-inner-section.elementor-section-boxed > .elementor-container {
+    max-width: 1260px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pxl-project-detail .pd-nav-section > .elementor-container {
+    max-width: var(--pd-meta-gallery-max) !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+}

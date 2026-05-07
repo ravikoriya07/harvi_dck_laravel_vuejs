@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources\Projects\Schemas;
 
 use App\Models\Project;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Utilities\Set;
@@ -43,11 +44,27 @@ class ProjectForm
                     ->required()
                     ->helperText('Lower numbers appear first on the listing.'),
 
-                TextInput::make('image')
+                // ── Thumbnail image ───────────────────────────────────────────────
+                FileUpload::make('image')
                     ->label('Thumbnail Image')
-                    ->required()
-                    ->maxLength(2048)
-                    ->helperText('Public path (e.g. /assets/images/...) or full URL.')
+                    ->image()
+                    ->disk('public')
+                    ->directory('projects')
+                    ->imageEditor()
+                    ->maxSize(5120)
+                    ->helperText('Upload the project thumbnail. Existing /assets/ paths continue to work on the frontend until replaced here.')
+                    ->formatStateUsing(function ($state) {
+                        // Legacy absolute paths (/assets/...) are not on the public disk,
+                        // so return null to avoid broken preview; they still work on the frontend.
+                        if (is_string($state) && str_starts_with($state, '/')) {
+                            return null;
+                        }
+                        return $state;
+                    })
+                    ->dehydrateStateUsing(function (?string $state, ?Project $record): ?string {
+                        // Preserve existing path when no new file is uploaded.
+                        return $state ?? $record?->image;
+                    })
                     ->columnSpanFull(),
 
                 // ── Detail page fields ───────────────────────────────────────────
@@ -84,18 +101,6 @@ class ProjectForm
                     ->label('Project Description (HTML)')
                     ->rows(12)
                     ->helperText('Full project description. HTML tags are supported (e.g. <h3>, <p>).')
-                    ->columnSpanFull(),
-
-                Textarea::make('gallery')
-                    ->label('Gallery Images')
-                    ->rows(6)
-                    ->helperText('Enter one image path per line (e.g. /assets/images/photo.jpg). These appear in the detail-page carousel.')
-                    ->formatStateUsing(fn ($state) => is_array($state) ? implode("\n", $state) : '')
-                    ->dehydrateStateUsing(
-                        fn ($state) => array_values(
-                            array_filter(array_map('trim', explode("\n", $state ?? '')))
-                        )
-                    )
                     ->columnSpanFull(),
             ]);
     }

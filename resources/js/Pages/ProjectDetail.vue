@@ -1,14 +1,20 @@
 <template>
     <Head :title="project.title + ' — Projects'" />
     <MainLayout>
-        <div id="pxl-main-content" class="elementor pxl-project-detail">
+        <!-- Mirrors static HTML: #pxl-main > .container.pd-project-shell > … > article.pxl-portfolio-single -->
+        <div class="container pd-project-shell">
+            <div class="row">
+                <div id="pxl-content-area" class="col-12">
+                    <main id="pxl-content-main">
+                        <article class="pxl-portfolio-single">
+                            <div id="pxl-main-content" class="elementor pxl-project-detail">
 
             <!-- ── 1. TITLE + CATEGORIES ─────────────────────────────────────────── -->
             <section
-                class="elementor-section elementor-top-section elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none pd-hero-section">
+                class="elementor-section elementor-top-section elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none pd-hero-section">
                 <div class="elementor-container elementor-column-gap-no">
 
-                    <!-- Left: project title (67%) -->
+                    <!-- Left: project title (66.709%) -->
                     <div class="elementor-column elementor-top-column pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no pd-hero-left">
                         <div class="elementor-widget-wrap elementor-element-populated">
                             <div class="elementor-element elementor-widget elementor-widget-pxl_heading">
@@ -25,7 +31,7 @@
                         </div>
                     </div>
 
-                    <!-- Right: categories (33%, bottom-aligned) -->
+                    <!-- Right: categories (33.291%, bottom-aligned) -->
                     <div class="elementor-column elementor-top-column pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no pd-hero-right">
                         <div class="elementor-widget-wrap elementor-element-populated pd-cats-wrap">
                             <div class="elementor-element elementor-widget elementor-widget-pxl_post_categories">
@@ -43,6 +49,7 @@
 
             <!-- ── 2. PROPERTIES BAR ─────────────────────────────────────────────── -->
             <section class="pd-props-section">
+                <div class="pd-props-max">
                 <div class="pd-props-bar">
                     <div v-if="project.category" class="pd-prop-item">
                         <span class="pd-prop-label">Project Type</span>
@@ -65,13 +72,15 @@
                         <span class="pd-prop-value">{{ project.client }}</span>
                     </div>
                 </div>
+                </div>
             </section>
 
             <!-- ── 3. GALLERY CAROUSEL ───────────────────────────────────────────── -->
-            <div v-if="galleryImages.length" class="pd-gallery-wrap" ref="galleryWrap">
+            <div v-if="galleryImages.length" class="pd-gallery-max">
+            <div class="pd-gallery-wrap" ref="galleryWrap">
                 <div class="swiper pd-gallery-swiper">
                     <div class="swiper-wrapper">
-                        <div v-for="(img, i) in galleryImages" :key="i" class="swiper-slide">
+                        <div v-for="img in galleryImages" :key="img" class="swiper-slide">
                             <figure class="pd-gallery-figure">
                                 <img loading="lazy" decoding="async"
                                     :src="img"
@@ -80,7 +89,7 @@
                             </figure>
                         </div>
                     </div>
-                    <!-- Arrows (inside the slide) -->
+                    <!-- Arrows -->
                     <div class="pd-gallery-btn pd-gallery-prev" ref="prevBtn">
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 2 6.6 3.4l5.6 5.6H-4v2h16.2l-5.6 5.6L8 18l8-8z" fill="currentColor"
@@ -92,89 +101,40 @@
                             <path d="M12 2l-1.4 1.4 5.6 5.6H0v2h16.2l-5.6 5.6L12 18l8-8z" fill="currentColor" />
                         </svg>
                     </div>
-                    <!-- Dots -->
+                    <!-- Pagination dots -->
                     <div class="pd-gallery-pagination" ref="paginationEl"></div>
                 </div>
             </div>
+            </div>
 
             <!-- ── 4. SCOPE + DESCRIPTION ────────────────────────────────────────── -->
+            <!--
+              Scope/description omit theme `.pxl-split-text` / GSAP SplitText — those classes set
+              autoAlpha:0 until ScrollTrigger fires; Vue-mounted DOM often misses the initial refresh,
+              so content stays hidden until resize. Plain markup stays visible on first paint.
+            -->
             <section
-                class="elementor-section elementor-top-section elementor-section-full_width elementor-section-stretched pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none">
+                class="elementor-section elementor-top-section elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none pd-content-section pd-body-section">
                 <div class="elementor-container elementor-column-gap-no">
                     <div class="elementor-column elementor-col-100 pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
                         <div class="elementor-widget-wrap elementor-element-populated">
 
-                            <!-- Top divider -->
-                            <div class="elementor-element elementor-widget elementor-widget-pxl_divider">
-                                <div class="elementor-widget-container">
-                                    <div class="pxl-divider horizontal animated slow">
-                                        <div class="pxl-divider-separator"></div>
-                                    </div>
-                                </div>
+                            <div v-if="project.scope" class="pd-scope-block">
+                                <h2 class="pd-scope-heading">Scope</h2>
+                                <div class="pd-scope-rule" aria-hidden="true" />
+                                <p class="pd-scope-summary">{{ project.scope }}</p>
+                                <div class="pd-scope-rule" aria-hidden="true" />
                             </div>
 
-                            <!-- Scope label -->
-                            <section v-if="project.scope"
-                                class="elementor-section elementor-inner-section elementor-section-boxed pxl-row-scroll-none pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none">
-                                <div class="elementor-container elementor-column-gap-extended">
-                                    <div class="elementor-column elementor-col-100 elementor-inner-column pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
-                                        <div class="elementor-widget-wrap elementor-element-populated">
-                                            <div class="elementor-element elementor-widget elementor-widget-pxl_heading">
-                                                <div class="elementor-widget-container">
-                                                    <div class="pxl-heading px-sub-title-default style-default-style">
-                                                        <div class="pxl-heading--inner">
-                                                            <h6 class="pxl-item--title pxl-split-text style-default highlight-default split-lines-rotation-x">
-                                                                Scope
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <!-- Scope text -->
-                            <section v-if="project.scope"
-                                class="elementor-section elementor-inner-section elementor-section-boxed pxl-row-scroll-none pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none">
-                                <div class="elementor-container elementor-column-gap-extended">
-                                    <div class="elementor-column elementor-col-100 elementor-inner-column pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
-                                        <div class="elementor-widget-wrap elementor-element-populated">
-                                            <div class="elementor-element elementor-widget elementor-widget-pxl_heading">
-                                                <div class="elementor-widget-container">
-                                                    <div class="pxl-heading px-sub-title-default style-default-style">
-                                                        <div class="pxl-heading--inner">
-                                                            <h3 class="pxl-item--title pxl-split-text style-default highlight-default split-lines-rotation-x">
-                                                                {{ project.scope }}
-                                                            </h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <!-- Divider -->
-                            <div class="elementor-element elementor-widget elementor-widget-pxl_divider">
-                                <div class="elementor-widget-container">
-                                    <div class="pxl-divider horizontal animated reversal slow">
-                                        <div class="pxl-divider-separator"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Project description (HTML) -->
+                            <!-- Project description -->
                             <section v-if="project.description"
-                                class="elementor-section elementor-inner-section elementor-section-boxed pxl-row-scroll-none pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none">
+                                class="elementor-section elementor-inner-section elementor-section-boxed pxl-row-scroll-none pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none pd-inner-section pd-desc-section">
                                 <div class="elementor-container elementor-column-gap-extended">
                                     <div class="elementor-column elementor-col-100 elementor-inner-column pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
                                         <div class="elementor-widget-wrap elementor-element-populated">
                                             <div class="elementor-element elementor-widget elementor-widget-pxl_text_editor">
                                                 <div class="elementor-widget-container">
-                                                    <div class="pxl-text-editor pxl-split-text split-lines-transform">
+                                                    <div class="pxl-text-editor pd-description-editor">
                                                         <div class="pxl-item--inner">
                                                             <div class="scr_content fl-wrap" v-html="project.description"></div>
                                                         </div>
@@ -193,7 +153,7 @@
 
             <!-- ── 5. PREV / NEXT NAVIGATION ────────────────────────────────────── -->
             <section
-                class="elementor-section elementor-top-section elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none pd-nav-section">
+                class="elementor-section elementor-top-section elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none pd-nav-section">
                 <div class="elementor-container elementor-column-gap-extended">
                     <div class="elementor-column elementor-col-100 pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
                         <div class="elementor-widget-wrap elementor-element-populated">
@@ -255,6 +215,11 @@
                 </div>
             </section>
 
+                            </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
         </div>
     </MainLayout>
 </template>
@@ -281,21 +246,30 @@ const categories = computed(() =>
 const galleryImages = computed(() => props.project.gallery ?? []);
 
 // ── Gallery Swiper ────────────────────────────────────────────────────────────
-const galleryWrap = ref(null);
-const prevBtn     = ref(null);
-const nextBtn     = ref(null);
-const paginationEl = ref(null);
-let swiperInstance = null;
+const galleryWrap   = ref(null);
+const prevBtn       = ref(null);
+const nextBtn       = ref(null);
+const paginationEl  = ref(null);
+let swiperInstance  = null;
 
 onMounted(() => {
     if (!galleryImages.value.length || !galleryWrap.value) return;
     if (typeof window.Swiper === 'undefined') return;
 
     const el = galleryWrap.value.querySelector('.pd-gallery-swiper');
+    const count = galleryImages.value.length;
     swiperInstance = new window.Swiper(el, {
-        loop: galleryImages.value.length > 1,
+        // Loop requires at least slidesPerView+1 clones on each side; use ≥6 as safe threshold.
+        loop: count >= 6,
         speed: 500,
-        autoplay: galleryImages.value.length > 1
+        slidesPerView: 3,
+        spaceBetween: 0,
+        breakpoints: {
+            0:    { slidesPerView: 1 },
+            576:  { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        },
+        autoplay: count > 1
             ? { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }
             : false,
         navigation: {
@@ -320,17 +294,20 @@ onUnmounted(() => {
 <style scoped>
 /* ── Hero section ────────────────────────────────────────────────────────────── */
 .pd-hero-section {
-    padding-top: 120px !important;
+    padding-top: 76px !important;
     padding-bottom: 0 !important;
 }
 
-/* Left column 67% */
+/* Outer shell width comes from `grid.css` + `#pxl-main > .container.pd-project-shell`
+   in projects-elementor-generated.css — do not force hero rail wider here. */
+
+/* Left column 66.709% */
 .pd-hero-left {
     width: 66.709% !important;
     max-width: 66.709% !important;
 }
 
-/* Right column 33%, categories aligned to bottom-right */
+/* Right column 33.291% — categories aligned to bottom-right */
 .pd-hero-right {
     width: 33.291% !important;
     max-width: 33.291% !important;
@@ -342,13 +319,32 @@ onUnmounted(() => {
     align-items: flex-end !important;
 }
 
-/* Title widget container left padding + max-width */
-.pd-title-wrap {
-    padding-left: 50px;
-    padding-right: 30px;
+/* Align hero content with meta/gallery rail (global `.pd-hero-left` offset removed for boxed layout) */
+.pd-hero-left > .elementor-element-populated {
+    margin-left: 0 !important;
 }
 
-/* Title typography — matches reference: 48px / weight 500 / tight leading */
+.pd-title-wrap {
+    padding: 0 24px 0 0;
+}
+
+/* Category tag — reference: small caps, tracked, muted */
+.pxl-portfolio-categories {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pxl-portfolio-categories li {
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #9c9c9c;
+    line-height: 1.4;
+}
+
+/* Title typography — matches reference: ~48px / weight 500 */
 .pd-hero-title {
     font-size: 48px !important;
     font-weight: 500 !important;
@@ -358,37 +354,39 @@ onUnmounted(() => {
     margin-bottom: 0 !important;
 }
 
-/* ── Properties bar ──────────────────────────────────────────────────────────── */
+/* ── Properties bar (boxed — width from `.pd-props-max` in theme CSS) ─────────── */
 .pd-props-section {
-    position: relative;
-    left: 50%;
-    width: 100vw;
-    transform: translateX(-50%);
+    width: 100%;
     margin-top: 50px;
     margin-bottom: 0;
+    box-sizing: border-box;
 }
 
 .pd-props-bar {
     display: flex;
     flex-wrap: nowrap;
     align-items: flex-start;
-    background-color: #F1F2EB;
-    padding: 41px 110px 43px 110px;
+    background-color: #f1f2eb;
+    padding: 41px clamp(24px, 6vw, 110px) 43px;
     gap: 0;
 }
 
+/* Items 1-4: 15% each */
 .pd-prop-item {
-    flex: 1;
+    flex: 0 0 15%;
+    width: 15%;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    padding-right: 20px;
+    padding-right: 2px;
 }
 
-/* Client column gets more flex weight (mirrors original 40% vs 15% each) */
+/* Client: 40% with left indent matching reference (margin-left: 60px on inner widget) */
 .pd-prop-client {
-    flex: 2;
+    flex: 0 0 40%;
+    width: 40%;
     padding-right: 0;
+    padding-left: 60px;
 }
 
 .pd-prop-label {
@@ -398,6 +396,7 @@ onUnmounted(() => {
     text-transform: uppercase;
     letter-spacing: 1.3px;
     line-height: 30px;
+    color: #7a7a7a;
 }
 
 .pd-prop-value {
@@ -406,16 +405,24 @@ onUnmounted(() => {
     font-weight: 400;
     line-height: 30px;
     margin: 0;
+    color: #111;
 }
 
-/* ── Gallery carousel ────────────────────────────────────────────────────────── */
+/* ── Gallery carousel (inside `.pd-gallery-max` rail) ──────────────────────── */
+.pd-gallery-max {
+    width: 100%;
+    margin-top: 0;
+}
+
 .pd-gallery-wrap {
     position: relative;
-    left: 50%;
-    width: 100vw;
-    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     overflow: hidden;
     line-height: 0;
+    box-sizing: border-box;
 }
 
 .pd-gallery-figure {
@@ -424,9 +431,10 @@ onUnmounted(() => {
     display: block;
 }
 
+/* Square images — natural aspect ratio, no fixed height */
 .pd-gallery-img {
     width: 100%;
-    height: 600px;
+    aspect-ratio: 1;
     object-fit: cover;
     display: block;
 }
@@ -478,7 +486,6 @@ onUnmounted(() => {
     gap: 8px;
 }
 
-/* Bullet styles (scoped deep via :deep for dynamically inserted elements) */
 :deep(.pd-dot) {
     width: 8px;
     height: 8px;
@@ -493,10 +500,78 @@ onUnmounted(() => {
     background: #fff;
 }
 
+/* ── Content section (scope + description) ───────────────────────────────────── */
+.pd-content-section {
+    padding-top: 80px;
+}
+
+.pd-inner-section {
+    margin-top: 0;
+}
+
+/* Scope — static markup (reference: large title → rule → uppercase summary → rule) */
+.pd-scope-block {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.pd-scope-heading {
+    margin: 0 0 18px;
+    padding: 0;
+    font-size: clamp(2rem, 4vw, 3.125rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: #111;
+}
+
+.pd-scope-rule {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    background: #d8d8d8;
+}
+
+.pd-scope-summary {
+    margin: 22px 0;
+    padding: 0;
+    font-size: clamp(0.875rem, 1.35vw, 1.0625rem);
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #111;
+}
+
+/* Description block below scope */
+.pd-desc-section {
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+:deep(.scr_content h3),
+:deep(.scr_content h2) {
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 16px;
+    line-height: 1.35;
+}
+
+/* Description text line-height */
+:deep(.scr_content p),
+:deep(.scr_content) {
+    line-height: 26px;
+    color: #333;
+}
+
 /* ── Navigation section ──────────────────────────────────────────────────────── */
 .pd-nav-section {
     padding-top: 29px;
-    padding-bottom: 60px;
+    padding-bottom: 101px;
 }
 
 .pxl--item--hidden {
@@ -506,7 +581,8 @@ onUnmounted(() => {
 /* ── Responsive ──────────────────────────────────────────────────────────────── */
 @media (max-width: 1366px) {
     .pd-props-bar {
-        padding: 40px 15px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
 
@@ -515,12 +591,28 @@ onUnmounted(() => {
         padding-top: 50px !important;
     }
 
+    .pd-hero-title {
+        font-size: 48px !important;
+    }
+
     .pd-props-section {
         margin-top: 30px;
     }
 
-    .pd-gallery-img {
-        height: 480px;
+    .pd-prop-item {
+        flex: 0 0 33.333%;
+        width: 33.333%;
+        margin-bottom: 15px;
+    }
+
+    .pd-prop-client {
+        flex: 0 0 33.333%;
+        width: 33.333%;
+        padding-left: 0;
+    }
+
+    .pd-props-bar {
+        flex-wrap: wrap;
     }
 }
 
@@ -553,27 +645,34 @@ onUnmounted(() => {
         margin-top: -10px !important;
     }
 
-    .pd-props-bar {
-        flex-wrap: wrap;
-        gap: 20px 0;
-    }
-
-    .pd-prop-item {
-        flex: 0 0 33.333%;
-        padding-right: 12px;
-    }
-
+    .pd-prop-item,
     .pd-prop-client {
-        flex: 0 0 33.333%;
-    }
-
-    .pd-gallery-img {
-        height: 320px;
+        flex: 0 0 50%;
+        width: 50%;
+        padding-left: 0;
+        padding-right: 10px;
     }
 
     .pd-gallery-btn {
         width: 40px;
         height: 40px;
+    }
+
+    .pd-content-section {
+        padding-top: 56px;
+    }
+
+    .pd-scope-heading {
+        margin-bottom: 14px;
+    }
+
+    .pd-scope-summary {
+        margin: 18px 0;
+        letter-spacing: 0.06em;
+    }
+
+    .pd-desc-section {
+        margin-top: 32px;
     }
 }
 
@@ -591,17 +690,10 @@ onUnmounted(() => {
         gap: 16px 0;
     }
 
-    .pd-prop-item {
-        flex: 0 0 50%;
-        padding-right: 10px;
-    }
-
+    .pd-prop-item,
     .pd-prop-client {
-        flex: 0 0 50%;
-    }
-
-    .pd-gallery-img {
-        height: 240px;
+        flex: 0 0 100%;
+        width: 100%;
     }
 }
 </style>

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 class Project extends Model
 {
@@ -21,46 +23,46 @@ class Project extends Model
         'client',
         'scope',
         'description',
-        'gallery',
     ];
 
     protected function casts(): array
     {
         return [
             'sort_order' => 'integer',
-            'gallery'    => 'array',
         ];
     }
 
-    /**
-     * Public URL for the listing thumbnail.
-     */
-    public function getImageUrlAttribute(): string
+    protected static function booted(): void
     {
-        return $this->resolveUrl($this->image ?? '');
+        static::deleting(function (Project $project): void {
+            $project->galleryImages()->get()->each(fn (ProjectImage $image) => $image->delete());
+
+            self::deleteManagedPublicDiskPath($project->image ?? '');
+        });
     }
 
     /**
-     * Array of public URLs for the gallery carousel.
-     * Falls back to the main image when gallery is empty.
+     * Delete storage-backed files under the public disk (projects/* only).
+     * Legacy absolute URLs (/assets/…) and remote URLs are skipped.
      */
-    public function getGalleryUrlsAttribute(): array
+    public static function deleteManagedPublicDiskPath(string $path): void
     {
-        $paths = $this->gallery ?? [];
-
-        if (empty($paths) && ($this->image ?? '') !== '') {
-            $paths = [$this->image];
+        if ($path === '' || str_starts_with($path, '/') || preg_match('#\.\.#', $path)) {
+            return;
         }
 
-        return array_values(array_filter(array_map(fn (string $p) => $this->resolveUrl($p), $paths)));
+        if (! str_starts_with($path, 'projects/')) {
+            return;
+        }
+
+        $disk = Storage::disk('public');
+
+        if ($disk->exists($path)) {
+            $disk->delete($path);
+        }
     }
 
-    public function getDetailHrefAttribute(): string
-    {
-        return '/works/' . $this->slug;
-    }
-
-    private function resolveUrl(string $path): string
+    public static function absoluteMediaUrl(string $path): string
     {
         if ($path === '') {
             return '';
@@ -75,5 +77,59 @@ class Project extends Model
         }
 
         return asset('storage/' . $path);
+    }
+
+    /** @return HasMany<ProjectImage, $this> */
+    public function galleryImages(): HasMany
+    {
+        return $this->hasMany(ProjectImage::class)->orderBy('sort_order')->orderBy('id');
+    }
+
+    public function getImageUrlAttribute(): string
+    {
+        return static::absoluteMediaUrl($this->image ?? '');
+    }
+
+    /**
+     * Ordered gallery URLs for the detail carousel (project_images only).
+     */
+    public function getGalleryUrlsAttribute(): array
+    {
+        $paths = $this->relationalGalleryPathsOrdered();
+
+        if ($paths === [] && ($this->image ?? '') !== '') {
+            $paths = [$this->image];
+        }
+
+        return array_values(array_filter(array_map(fn (string $p) => static::absoluteMediaUrl($p), $paths)));
+    }
+
+    /**
+     * @return list<string>
+     */
+    protected function relationalGalleryPathsOrdered(): array
+    {
+        if ($this->relationLoaded('galleryImages')) {
+            return $this->galleryImages
+                ->pluck('path')
+                ->filter(fn ($p) => is_string($p) && $p !== '')
+                ->values()
+                ->all();
+        }
+
+        if (! $this->exists) {
+            return [];
+        }
+
+        return $this->galleryImages()
+            ->pluck('path')
+            ->filter(fn ($p) => is_string($p) && $p !== '')
+            ->values()
+            ->all();
+    }
+
+    public function getDetailHrefAttribute(): string
+    {
+        return '/works/' . $this->slug;
     }
 }

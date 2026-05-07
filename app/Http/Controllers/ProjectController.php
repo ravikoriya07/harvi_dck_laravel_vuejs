@@ -29,7 +29,10 @@ class ProjectController extends Controller
 
     public function show(string $slug): Response
     {
-        $project = Project::where('slug', $slug)->firstOrFail();
+        $project = Project::query()
+            ->where('slug', $slug)
+            ->with('galleryImages')
+            ->firstOrFail();
 
         // Build ordered ID list to find prev/next
         $orderedIds = Project::orderBy('sort_order')->orderBy('id')->pluck('id')->toArray();

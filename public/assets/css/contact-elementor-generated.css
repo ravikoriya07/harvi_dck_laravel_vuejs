@@ -283,7 +283,7 @@
 .elementor-1306 .pxl-overlay--image {
     position: absolute;
     top: 0;
-    width: 50%;
+    /* width: 50%; */
     height: 100%;
     pointer-events: none;
     overflow: hidden;

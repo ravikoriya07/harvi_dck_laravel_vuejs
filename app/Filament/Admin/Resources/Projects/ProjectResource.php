@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Projects;
 
+use App\Filament\Admin\Resources\Projects\RelationManagers\GalleryImagesRelationManager;
 use App\Filament\Admin\Resources\Projects\Pages\CreateProject;
 use App\Filament\Admin\Resources\Projects\Pages\EditProject;
 use App\Filament\Admin\Resources\Projects\Pages\ListProjects;
@@ -37,7 +38,9 @@ class ProjectResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            GalleryImagesRelationManager::make(),
+        ];
     }
 
     public static function getPages(): array
