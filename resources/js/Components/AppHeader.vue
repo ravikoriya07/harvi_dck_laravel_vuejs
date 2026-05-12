@@ -4,10 +4,8 @@
         <!-- ── Home: transparent (overlays hero). Inner pages: solid black (px-header--default). ── -->
             <div :class="['pxl-header-elementor-main', isHomePage ? 'px-header--transparent' : 'px-header--default']">
                 <div class="pxl-header-content">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="elementor elementor-15">
-                                <section class="elementor-section elementor-top-section elementor-element elementor-element-6514195 elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none">
+                    <div class="elementor elementor-15">
+                        <section class="elementor-section elementor-top-section elementor-element elementor-element-6514195 elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none">
                                     <div class="elementor-container elementor-column-gap-extended">
                                         <!-- Logo column -->
                                         <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-20eecb0 pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no" data-element_type="column">
@@ -49,8 +47,6 @@
                                         </div>
                                     </div>
                                 </section>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -58,10 +54,8 @@
             <!-- ── White sticky header (shown on scroll) ── -->
             <div class="pxl-header-elementor-sticky pxl-onepage-sticky pxl-sticky-stt">
                 <div class="pxl-header-content">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="elementor elementor-9365">
-                                <section class="elementor-section elementor-top-section elementor-element elementor-element-6514195 elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none" style="background-color:#FFFFFF; box-shadow:0px 0px 10px 0px rgba(0,0,0,0.05);">
+                    <div class="elementor elementor-9365">
+                        <section class="elementor-section elementor-top-section elementor-element elementor-element-6514195 elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none" style="background-color:#FFFFFF; box-shadow:0px 0px 10px 0px rgba(0,0,0,0.05);">
                                     <div class="elementor-container elementor-column-gap-extended" style="max-width:1852px;">
                                         <!-- Sticky Logo column -->
                                         <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-20eecb0 pxl-column-none" style="padding:0 15px;" data-element_type="column">
@@ -102,9 +96,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </section>
-                            </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>

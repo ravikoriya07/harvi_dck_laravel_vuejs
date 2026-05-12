@@ -1,10 +1,7 @@
 <template>
     <footer id="pxl-footer-elementor" class="pxl-footer-show">
         <div class="footer-elementor-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="elementor elementor-55">
+            <div class="elementor elementor-55">
 
                             <!-- ── Top footer: dark bg, logo + contact info + brochure + social ── -->
                             <section
@@ -158,9 +155,6 @@
                                 </div>
                             </section>
 
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </footer>
