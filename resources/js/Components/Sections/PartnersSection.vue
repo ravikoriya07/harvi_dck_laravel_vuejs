@@ -64,8 +64,8 @@
 
 <script setup>
 const partners = [
-    { src: '/assets/images/Paritet_logo-removebg-preview.png',          alt: 'Paritet' },
-    { src: '/assets/images/logo-transparent-png-scaled-e1760627393297.png', alt: 'Partner' },
-    { src: '/assets/images/Stypix.png',                                  alt: 'Stypix' },
+    { src: '/assets/images/Paritet_logo-removebg-preview.avif',          alt: 'Paritet' },
+    { src: '/assets/images/logo-transparent-png-scaled-e1760627393297.avif', alt: 'Partner' },
+    { src: '/assets/images/Stypix.avif',                                  alt: 'Stypix' },
 ];
 </script>

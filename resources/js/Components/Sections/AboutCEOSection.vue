@@ -44,7 +44,7 @@
                                 <div class="pxl-item--inner">
                                     <div class="pxl-item--image noise">
                                         <img loading="lazy" decoding="async" width="832" height="1159"
-                                             src="/assets/images/Rustam.png"
+                                             src="/assets/images/Rustam.avif"
                                              class="no-lazyload attachment-full"
                                              alt="Rustam Isayev - CEO DCK Construction" />
                                     </div>

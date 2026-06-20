@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+@php
+    use App\Support\PageAssets;
+
+    $isJobs = request()->is('jobs*');
+    $syncStylesheets = PageAssets::stylesheetsForRequest(request());
+    $asyncStylesheets = array_values(array_diff(PageAssets::allStylesheetBundles(), $syncStylesheets));
+    $preloadImages = PageAssets::preloadImagesForRequest(request());
+@endphp
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -8,14 +17,19 @@
 
     <link rel="icon" href="/assets/images/favicon/favicon-1.png" type="image/png">
 
+    @foreach ($preloadImages as $image)
+        <link rel="preload" as="image" href="{{ $image['href'] }}" fetchpriority="high"@if (! empty($image['media'])) media="{{ $image['media'] }}"@endif>
+    @endforeach
+
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    {{-- Font Awesome: local CSS + CDN webfonts (local woff2 files are missing; CDN provides the actual font) --}}
+    {{-- Font Awesome (local CSS + webfonts in /assets/webfonts/) --}}
+    <link rel="preload" href="/assets/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     {{-- Elementor icon font + frontend base --}}
     <link rel="stylesheet" href="/assets/css/elementor-icons.min.css">
@@ -30,11 +44,13 @@
     {{-- Animations (animate.min.css covers fadeIn, bounce, etc.) --}}
     <link rel="stylesheet" href="/assets/css/animate.min.css">
 
-    {{-- UI plugins --}}
+    {{-- UI plugins (skip jquery-ui on homepage — not used above the fold) --}}
     <link rel="stylesheet" href="/assets/css/magnific-popup.css">
     <link rel="stylesheet" href="/assets/css/perfect-scrollbar.min.css">
     <link rel="stylesheet" href="/assets/css/hint.min.css">
-    <link rel="stylesheet" href="/assets/css/jquery-ui.css">
+    @if ($isJobs)
+        <link rel="stylesheet" href="/assets/css/jquery-ui.css">
+    @endif
 
     {{-- Theme layout + components --}}
     <link rel="stylesheet" href="/assets/css/grid.css">
@@ -48,32 +64,19 @@
     <link rel="stylesheet" href="/assets/css/maiko-style.css">
     <link rel="stylesheet" href="/assets/css/maiko.css">
 
-    {{-- Elementor page-specific CSS (extracted from original WordPress export) --}}
-    <link rel="stylesheet" href="/assets/css/elementor-generated.css">
-
-    {{-- About page Elementor CSS (elementor-26444 — scoped, safe to load globally) --}}
-    <link rel="stylesheet" href="/assets/css/about-elementor-generated.css">
-
-    {{-- Services page Elementor CSS (elementor-5160 — scoped, safe to load globally) --}}
-    <link rel="stylesheet" href="/assets/css/services-elementor-generated.css">
-
-    {{-- Projects page Elementor CSS (elementor-26730 — scoped, safe to load globally) --}}
-    <link rel="stylesheet" href="/assets/css/projects-elementor-generated.css">
-
-    {{-- Blog page Elementor CSS (scoped, safe to load globally) --}}
-    <link rel="stylesheet" href="/assets/css/blog-elementor-generated.css">
-
-    {{-- Blog detail page Elementor CSS (scoped, safe to load globally) --}}
-    <link rel="stylesheet" href="/assets/css/blog-detail-elementor-generated.css">
-
-    {{-- Contact page Elementor CSS (elementor-1306 — scoped, safe to load globally) --}}
-    <link rel="stylesheet" href="/assets/css/contact-elementor-generated.css">
+    {{-- Current page Elementor CSS (sync) + other pages (async, for Inertia SPA navigation) --}}
+    @foreach ($syncStylesheets as $stylesheet)
+        <link rel="stylesheet" href="/assets/css/{{ $stylesheet }}">
+    @endforeach
+    @foreach ($asyncStylesheets as $stylesheet)
+        <link rel="stylesheet" href="/assets/css/{{ $stylesheet }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="/assets/css/{{ $stylesheet }}"></noscript>
+    @endforeach
 
     {{-- Custom overrides for Vue/Inertia structure (must load last to win specificity) --}}
     <link rel="stylesheet" href="/assets/css/custom-fix.css">
 
     @inertiaHead
-    @vite(['resources/js/app.js'])
 </head>
 
 <body class="pxl-wapper-outer elementor-bc-flex-widget">
@@ -122,15 +125,15 @@
 
     {{-- jQuery core (synchronous — all subsequent scripts depend on it) --}}
     <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/jquery-migrate.min.js"></script>
+    <script src="/assets/js/jquery-migrate.min.js" defer></script>
 
     {{-- jQuery UI plugins --}}
-    <script src="/assets/js/waypoints.min.js"></script>
-    <script src="/assets/js/jarallax.min.js"></script>
-    <script src="/assets/js/counter.min.js"></script>
+    <script src="/assets/js/waypoints.min.js" defer></script>
+    <script src="/assets/js/jarallax.min.js" defer></script>
+    <script src="/assets/js/counter.min.js" defer></script>
 
     {{-- main.js: registers elementorFrontend.waypoint — must load before Elementor JS --}}
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/main.js" defer></script>
 
     {{-- Elementor frontend config stub (replaces the PHP-injected WordPress global) --}}
     <script>
@@ -190,83 +193,75 @@
     </script>
 
     {{-- Elementor runtime (must load after elementorFrontendConfig stub) --}}
-    <script src="/assets/js/webpack.runtime.min.js"></script>
-    <script src="/assets/js/frontend-modules.min.js"></script>
-    <script src="/assets/js/core.min.js"></script>
-    <script src="/assets/js/frontend.min.js"></script>
+    <script src="/assets/js/webpack.runtime.min.js" defer></script>
+    <script src="/assets/js/frontend-modules.min.js" defer></script>
+    <script src="/assets/js/core.min.js" defer></script>
+    <script src="/assets/js/frontend.min.js" defer></script>
 
     {{-- GSAP + scroll animation plugins --}}
-    <script src="/assets/js/gsap.min.js"></script>
-    <script src="/assets/js/scroll-trigger.js"></script>
-    <script src="/assets/js/scroll-toplpugin.js"></script>
-    <script src="/assets/js/split-text.js"></script>
-    <script src="/assets/js/observer.js"></script>
-    <script src="/assets/js/scrollmagic.min.js"></script>
-    <script src="/assets/js/tweenmax.min.js"></script>
+    <script src="/assets/js/gsap.min.js" defer></script>
+    <script src="/assets/js/scroll-trigger.js" defer></script>
+    <script src="/assets/js/scroll-toplpugin.js" defer></script>
+    <script src="/assets/js/split-text.js" defer></script>
+    <script src="/assets/js/observer.js" defer></script>
+    <script src="/assets/js/scrollmagic.min.js" defer></script>
+    <script src="/assets/js/tweenmax.min.js" defer></script>
 
     {{-- Swiper --}}
-    <script src="/assets/js/swiper.min.js"></script>
+    <script src="/assets/js/swiper.min.js" defer></script>
 
     {{-- UI plugins --}}
-    <script src="/assets/js/jquery-numerator.min.js"></script>
-    <script src="/assets/js/magnific-popup.min.js"></script>
-    <script src="/assets/js/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/assets/js/wow.min.js"></script>
-    <script src="/assets/js/progressbar.min.js"></script>
-    <script src="/assets/js/tilt.min.js"></script>
-    <script src="/assets/js/modernizr.min.js"></script>
-    <script src="/assets/js/counter-slide.min.js"></script>
-    <script src="/assets/js/Snap.svg.js"></script>
-    <script src="/assets/js/parallax-background.js"></script>
-    <script src="/assets/js/parallax-scroll.js"></script>
-    <script src="/assets/js/smoothscroll.js"></script>
-    <script src="/assets/js/bundled-lenis.min.js"></script>
+    <script src="/assets/js/jquery-numerator.min.js" defer></script>
+    <script src="/assets/js/magnific-popup.min.js" defer></script>
+    <script src="/assets/js/perfect-scrollbar.jquery.min.js" defer></script>
+    <script src="/assets/js/wow.min.js" defer></script>
+    <script src="/assets/js/progressbar.min.js" defer></script>
+    <script src="/assets/js/tilt.min.js" defer></script>
+    <script src="/assets/js/modernizr.min.js" defer></script>
+    <script src="/assets/js/counter-slide.min.js" defer></script>
+    <script src="/assets/js/Snap.svg.js" defer></script>
+    <script src="/assets/js/parallax-background.js" defer></script>
+    <script src="/assets/js/parallax-scroll.js" defer></script>
+    <script src="/assets/js/smoothscroll.js" defer></script>
+    <script src="/assets/js/bundled-lenis.min.js" defer></script>
 
     {{-- Theme carousel / tabs / Elementor hooks --}}
-    <script src="/assets/js/carousel.js"></script>
-    <script src="/assets/js/counter.js"></script>
-    <script src="/assets/js/tabs.js"></script>
-    <script src="/assets/js/elementor.js"></script>
+    <script src="/assets/js/carousel.js" defer></script>
+    <script src="/assets/js/counter.js" defer></script>
+    <script src="/assets/js/tabs.js" defer></script>
+    <script src="/assets/js/elementor.js" defer></script>
 
     {{-- isotope + grid.js: masonry layout and pxl-effect--3d hover direction classes --}}
-    <script src="/assets/js/isotope.pkgd.min.js"></script>
-    <script src="/assets/js/grid.js"></script>
+    <script src="/assets/js/isotope.pkgd.min.js" defer></script>
+    <script src="/assets/js/grid.js" defer></script>
 
     {{-- main_data stub (replaces WordPress localized script object used by theme.js) --}}
     <script>var main_data = { "ajax_url": "/wp-admin/admin-ajax.php" };</script>
+    <script>window.__pxlLoaderManagedByVue = true;</script>
 
-    {{-- theme.js: exposes all maiko_* functions; hides loader on window.load --}}
-    <script src="/assets/js/theme.js"></script>
+    {{-- theme.js: exposes all maiko_* functions --}}
+    <script src="/assets/js/theme.js" defer></script>
 
     {{-- cursor.js: custom mouse cursor behaviour --}}
-    <script src="/assets/js/cursor.js"></script>
+    <script src="/assets/js/cursor.js" defer></script>
 
-    {{-- ── Inertia SPA: same #pxl-loadding / .pxl-loader as full page refresh ──
-         theme.js adds .is-loaded after window.load (+60ms). On client visits we
-         remove it at inertia:start and re-apply after inertia:finish (+60ms).
-    ──────────────────────────────────────────────────────────────────────── --}}
+    {{-- Vue/Inertia must mount after legacy globals (jQuery, GSAP, Elementor, WOW) --}}
+    @vite(['resources/js/app.js'])
+
+    {{-- Inertia SPA loader + fail-safe hide if Vue bootstrap is delayed --}}
     <script>
         (function () {
             var loader = document.querySelector('.pxl-loader');
             if (!loader) return;
 
-            var hideTimer;
-
-            function showLoader() {
-                clearTimeout(hideTimer);
+            document.addEventListener('inertia:start', function () {
                 loader.classList.remove('is-loaded');
-            }
+            });
 
-            function hideLoader() {
-                clearTimeout(hideTimer);
-                // Match public/assets/js/theme.js $(window).on('load') delay
-                hideTimer = setTimeout(function () {
-                    loader.classList.add('is-loaded');
-                }, 60);
-            }
-
-            document.addEventListener('inertia:start', showLoader);
-            document.addEventListener('inertia:finish', hideLoader);
+            // Fail-safe: never block the page longer than 8s on slow networks
+            setTimeout(function () {
+                loader.classList.add('is-loaded');
+            }, 8000);
         })();
     </script>
 

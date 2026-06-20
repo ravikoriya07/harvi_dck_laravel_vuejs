@@ -58,16 +58,16 @@
 
 <script setup>
 const teamMembers = [
-    { name: 'Anvarjon Umarov',    position: 'Project Manager',           image: '/assets/images/1.jpg' },
-    { name: 'Iurii Sama',         position: 'Division Manager',          image: '/assets/images/21.jpg' },
-    { name: 'Oleksandr Morozov',  position: 'Contracts Manager',         image: '/assets/images/9-scaled.jpg' },
-    { name: 'Tom Sessions',       position: 'Managing Quantity Surveyor', image: '/assets/images/8.jpg' },
-    { name: 'Omar Khalid',        position: 'Social Value Manager',       image: '/assets/images/22-scaled.jpg' },
-    { name: 'Iurii Torchynovich', position: 'Senior Quantity Surveyor',   image: '/assets/images/18.jpg' },
-    { name: 'Ruslan Bizans',      position: 'Project Manager',           image: '/assets/images/11.jpg' },
-    { name: 'Janis Bizans',       position: 'Site Manager',              image: '/assets/images/16.jpg' },
-    { name: 'Josh Newman',        position: 'Site Manager',              image: '/assets/images/10.jpg' },
-    { name: 'Dmytro Biienko',     position: 'Quantity Surveyor',         image: '/assets/images/6-1.jpg' },
-    { name: 'Andrei Capinus',     position: 'RLO',                       image: '/assets/images/17.jpg' },
+    { name: 'Anvarjon Umarov',    position: 'Project Manager',           image: '/assets/images/1.avif' },
+    { name: 'Iurii Sama',         position: 'Division Manager',          image: '/assets/images/21.avif' },
+    { name: 'Oleksandr Morozov',  position: 'Contracts Manager',         image: '/assets/images/9-scaled.avif' },
+    { name: 'Tom Sessions',       position: 'Managing Quantity Surveyor', image: '/assets/images/8.avif' },
+    { name: 'Omar Khalid',        position: 'Social Value Manager',       image: '/assets/images/22-scaled.avif' },
+    { name: 'Iurii Torchynovich', position: 'Senior Quantity Surveyor',   image: '/assets/images/18.avif' },
+    { name: 'Ruslan Bizans',      position: 'Project Manager',           image: '/assets/images/11.avif' },
+    { name: 'Janis Bizans',       position: 'Site Manager',              image: '/assets/images/16.avif' },
+    { name: 'Josh Newman',        position: 'Site Manager',              image: '/assets/images/10.avif' },
+    { name: 'Dmytro Biienko',     position: 'Quantity Surveyor',         image: '/assets/images/6-1.avif' },
+    { name: 'Andrei Capinus',     position: 'RLO',                       image: '/assets/images/17.avif' },
 ];
 </script>

@@ -15,7 +15,7 @@
                                             <div class="elementor-element elementor-element-b20be30 elementor-widget elementor-widget-pxl_logo">
                                                 <div class="elementor-widget-container">
                                                     <div class="pxl-logo">
-                                                        <Link href="/"><img loading="lazy" src="/assets/images/dck-logo-1.png" class="attachment-full" alt="DCK Construction" /></Link>
+                                                        <Link href="/"><img loading="lazy" src="/assets/images/dck-logo-1.avif" class="attachment-full" alt="DCK Construction" /></Link>
                                                     </div>
                                                 </div>
                                             </div>

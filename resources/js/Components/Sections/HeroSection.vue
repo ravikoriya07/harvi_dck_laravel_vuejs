@@ -6,10 +6,14 @@
         <!-- Floating parallax wireframe image (desktop only) -->
         <div class="pxl-section-effect-images">
             <img decoding="async"
+                fetchpriority="high"
+                loading="eager"
+                width="400"
+                height="400"
                 data-parallax-value=""
                 data-parallax='{"x":100}'
                 class="pxl-item--image elementor-repeater-item-355d72f pxl-parallax-scroll pxl-hide-sr-md pxl-hide-sr-sm"
-                src="/assets/images/home-1-01.webp"
+                src="/assets/images/home-1-01.avif"
                 alt=""
                 style="top:250px; right:110px;" />
         </div>
@@ -59,11 +63,18 @@
                             <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-e695b57 pxl-column-none pxl-column-overflow-hidden-no"
                                  data-settings='{"background_background":"slideshow"}'>
                                 <div class="elementor-widget-wrap elementor-element-populated">
-                                    <!-- Static replacement for Elementor background slideshow -->
                                     <div class="elementor-background-slideshow">
                                         <div class="elementor-background-slideshow__slide">
-                                            <div class="elementor-background-slideshow__slide__image"
-                                                 style="background-image: url('/assets/images/bg-2_H-e1760689052181_1_11zon.jpg'); background-size: cover; background-position: center center; position: absolute; top:0; left:0; width:100%; height:100%;"></div>
+                                            <div class="elementor-background-slideshow__slide__image hero-building-slide">
+                                                <img
+                                                    src="/assets/images/bg-2_H-e1760689052181_1_11zon.avif"
+                                                    alt=""
+                                                    fetchpriority="high"
+                                                    loading="eager"
+                                                    decoding="async"
+                                                    class="hero-building-photo"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="elementor-background-overlay"></div>

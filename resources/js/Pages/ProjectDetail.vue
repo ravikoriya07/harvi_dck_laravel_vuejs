@@ -80,9 +80,12 @@
             <div class="pd-gallery-wrap" ref="galleryWrap">
                 <div class="swiper pd-gallery-swiper">
                     <div class="swiper-wrapper">
-                        <div v-for="img in galleryImages" :key="img" class="swiper-slide">
+                        <div v-for="(img, index) in galleryImages" :key="img" class="swiper-slide">
                             <figure class="pd-gallery-figure">
-                                <img loading="lazy" decoding="async"
+                                <img
+                                    :loading="index === 0 ? 'eager' : 'lazy'"
+                                    :fetchpriority="index === 0 ? 'high' : 'auto'"
+                                    decoding="async"
                                     :src="img"
                                     :alt="project.title"
                                     class="pd-gallery-img" />

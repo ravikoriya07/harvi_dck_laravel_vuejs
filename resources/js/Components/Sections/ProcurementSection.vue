@@ -195,22 +195,22 @@ const tabs = [
         elementorClass: 'elementor-10689',
         title: 'Reliable Delivery',
         desc: 'We take pride in delivering every project safely, on time and to the highest standard. With directly employed teams and a hands-on management approach, we maintain full control over quality, efficiency and client satisfaction.',
-        image: '/assets/images/work4.webp',
-        bgImage: '/assets/images/home1-appro1.webp',
+        image: '/assets/images/work4.avif',
+        bgImage: '/assets/images/home1-appro1.avif',
     },
     {
         elementorClass: 'elementor-10728',
         title: 'Working with People',
         desc: 'Our experience in occupied properties has taught us the value of communication, care and respect. We work closely with residents, clients and partners to ensure every project runs smoothly with minimal disruption.',
-        image: '/assets/images/home1-appro1.webp',
-        bgImage: '/assets/images/home-1-01.webp',
+        image: '/assets/images/home1-appro1.avif',
+        bgImage: '/assets/images/home-1-01.avif',
     },
     {
         elementorClass: 'elementor-10729',
         title: 'Safety & Compliance First',
         desc: 'Health, safety and compliance are at the core of everything we do. From fire safety works to complex refurbishments, our processes meet the highest industry standards and regulatory requirements.',
-        image: '/assets/images/home1-appro2.webp',
-        bgImage: '/assets/images/home-3-s3-3.webp',
+        image: '/assets/images/home1-appro2.avif',
+        bgImage: '/assets/images/home-3-s3-3.avif',
     },
 ];
 </script>

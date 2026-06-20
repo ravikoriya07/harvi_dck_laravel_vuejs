@@ -159,7 +159,7 @@ body {
 .banner {
     width: 100%;
     height: 200px;
-    background-image: url('/assets/images/dck-logo-1.png');
+    background-image: url('/assets/images/dck-logo-1.avif');
     position: relative;
     background-size: 400px;
     background-repeat: no-repeat;

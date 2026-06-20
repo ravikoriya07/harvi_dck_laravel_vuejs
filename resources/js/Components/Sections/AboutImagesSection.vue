@@ -35,8 +35,8 @@
 
 <script setup>
 const images = [
-    { src: '/assets/images/About-us_13_11zon.jpg',               w: 1066, h: 1600, delay: '200ms', elId: 'elementor-element-926d570' },
-    { src: '/assets/images/STAFF-41-of-61-1-scaled_9_11zon.jpg', w: 1596, h: 2560, delay: '400ms', elId: 'elementor-element-be6c009' },
-    { src: '/assets/images/STAFF-59-of-61-scaled_8_11zon.jpg',   w: 2560, h: 1707, delay: '600ms', elId: 'elementor-element-46a4bb7' },
+    { src: '/assets/images/About-us_13_11zon.avif',               w: 1066, h: 1600, delay: '200ms', elId: 'elementor-element-926d570' },
+    { src: '/assets/images/STAFF-41-of-61-1-scaled_9_11zon.avif', w: 1596, h: 2560, delay: '400ms', elId: 'elementor-element-be6c009' },
+    { src: '/assets/images/STAFF-59-of-61-scaled_8_11zon.avif',   w: 2560, h: 1707, delay: '600ms', elId: 'elementor-element-46a4bb7' },
 ];
 </script>

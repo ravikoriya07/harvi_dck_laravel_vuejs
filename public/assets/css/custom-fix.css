@@ -46,7 +46,7 @@
 
 /* ─── MOBILE HEADER: logo size + hamburger visibility ─────── */
 /* At ≤1200px the header switches to mobile mode (dark #111     */
-/* background). The logo uses dck-logo-1.png at a sensible     */
+/* background). The logo uses dck-logo-1.avif at a sensible     */
 /* height. The icon-line pseudo-elements are #fff by default   */
 /* (visible on the dark bg). For style-light, if the bg is     */
 /* ever light, fall back to a dark colour.                     */
@@ -155,12 +155,12 @@
 /* elementor-generated.css uses a relative URL that resolves  */
 /* to /assets/css/assets/... — override with absolute path.  */
 .elementor-18 .elementor-element.elementor-element-3bc1154 .pxl-section-bg-parallax {
-    background-image: url('/assets/images/home1-01.webp') !important;
+    background-image: url('/assets/images/home1-01.avif') !important;
 }
 
 /* ─── OUR CLIENTS PARALLAX STRIP BACKGROUND ─────────────── */
 .elementor-18 .elementor-element.elementor-element-c4ae1c0 .pxl-section-bg-parallax {
-    background-image: url('/assets/images/home1-02.webp') !important;
+    background-image: url('/assets/images/home1-02.avif') !important;
 }
 
 /* ─── PROCUREMENT TAB COLUMN BACKGROUND IMAGES ──────────── */
@@ -168,13 +168,13 @@
    which resolve to /assets/css/assets/... — override with
    absolute paths for each of the three tab templates.        */
 .elementor-10689 .elementor-element.elementor-element-fe1041d .pxl-column-bg-parallax {
-    background-image: url('/assets/images/work4.webp') !important;
+    background-image: url('/assets/images/work4.avif') !important;
 }
 .elementor-10728 .elementor-element.elementor-element-fe1041d .pxl-column-bg-parallax {
-    background-image: url('/assets/images/work7.webp') !important;
+    background-image: url('/assets/images/work7.avif') !important;
 }
 .elementor-10729 .elementor-element.elementor-element-fe1041d .pxl-column-bg-parallax {
-    background-image: url('/assets/images/work8.webp') !important;
+    background-image: url('/assets/images/work8.avif') !important;
 }
 
 /* ─── PROCUREMENT TABS-SLIP: full-viewport width ─────────── */
@@ -193,7 +193,7 @@
 /* ─── TESTIMONIALS PARALLAX IMAGE STRIP (elementor-f4fdb44) ─ */
 /* elementor-generated.css uses relative URL url(assets/images/...) */
 .elementor-18 .elementor-element.elementor-element-f4fdb44 .pxl-section-bg-parallax {
-    background-image: url('/assets/images/home1-team-3.webp') !important;
+    background-image: url('/assets/images/home1-team-3.avif') !important;
 }
 
 /* ─── TEAM SECTION BACKGROUND (elementor-9009579) ───────── */
@@ -201,7 +201,7 @@
 /* which resolves to /assets/css/assets/... — override with absolute path */
 .elementor-18 .elementor-element.elementor-element-9009579:not(.elementor-motion-effects-element-type-background) > .elementor-widget-wrap,
 .elementor-18 .elementor-element.elementor-element-9009579 > .elementor-widget-wrap > .elementor-motion-effects-container > .elementor-motion-effects-layer {
-    background-image: url('/assets/images/home1-team-2.webp') !important;
+    background-image: url('/assets/images/home1-team-2.avif') !important;
 }
 
 /* ─── DARK CLIENTS / MISSION / VISION BAR ────────────────── */
@@ -210,7 +210,7 @@
     position: relative;
 }
 .elementor-element-9189f72 > .elementor-element-populated > .elementor-background-overlay {
-    background-image: url('/assets/images/home-1-02.webp');
+    background-image: url('/assets/images/home-1-02.avif');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -475,5 +475,49 @@ html, body {
     .elementor-26444 .elementor-element.elementor-element-47e3fb70 > .elementor-element-populated {
         padding: 30px 15px 0px 15px !important;
     }
+}
+
+/* ─── HOMEPAGE PERFORMANCE (LCP / first paint) ─────────────────────────── */
+
+/*
+ * Above-fold hero: keep header + hero text visible while GSAP split-text initializes.
+ * Building photo uses elementor-invisible + fadeInUp; LCP <img> stays discoverable.
+ */
+.elementor-18 .elementor-element-ac7f8dc .pxl-split-text,
+.elementor-18 .elementor-element-ac7f8dc .pxl-text-editor {
+    visibility: visible;
+}
+
+/* LCP image remains in DOM for preload even before fadeInUp runs */
+.elementor-18 .elementor-element-5844082.elementor-invisible .hero-building-photo {
+    visibility: visible;
+}
+
+/* App shell visible as soon as Vue mounts (loader fades on top) */
+#pxl-wapper {
+    opacity: 1;
+}
+
+/* Hero building photo: replace CSS background with discoverable <img> */
+.elementor-18 .hero-building-slide {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.elementor-18 .hero-building-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* LCP: keep hero building photo discoverable while section uses fadeInUp */
+.elementor-18 .elementor-element-5844082.elementor-invisible:not(.animated) .hero-building-photo {
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 

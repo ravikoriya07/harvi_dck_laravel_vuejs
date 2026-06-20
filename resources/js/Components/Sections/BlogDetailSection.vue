@@ -132,7 +132,7 @@
                                                                 <img
                                                                     width="1627"
                                                                     height="1626"
-                                                                    src="/assets/images/cropped_circle_image-2.png"
+                                                                    src="/assets/images/cropped_circle_image-2.avif"
                                                                     class="no-lazyload attachment-full"
                                                                     alt="Ramil Veliiev" />
                                                             </div>

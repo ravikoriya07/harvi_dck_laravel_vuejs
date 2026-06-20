@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\ContactCards\Schemas;
 
+use App\Filament\Support\AvifFileUpload;
 use App\Models\ContactCard;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
@@ -23,6 +24,7 @@ class ContactCardForm
                     ->directory('contact-cards')
                     ->visibility('public')
                     ->maxSize(2048)
+                    ->tap(fn (FileUpload $field) => AvifFileUpload::configure($field))
                     ->required(),
 
                 TextInput::make('name')

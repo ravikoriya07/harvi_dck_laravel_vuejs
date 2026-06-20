@@ -17,7 +17,7 @@
                                 <div class="pxl-item--inner" data-wow-delay="120ms" data-parallax='{"y":80}'>
                                     <div class="pxl-item--image df" data-wow-delay="ms">
                                         <img decoding="async" width="1702" height="1993"
-                                             src="/assets/images/STAFF-37-of-61-scaled-e1760215326296.jpg"
+                                             src="/assets/images/STAFF-37-of-61-scaled-e1760215326296.avif"
                                              class="no-lazyload attachment-full"
                                              alt="DCK Staff" />
                                     </div>

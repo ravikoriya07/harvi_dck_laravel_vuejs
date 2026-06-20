@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Blogs\Schemas;
 
+use App\Filament\Support\AvifFileUpload;
 use App\Enums\BlogStatus;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
@@ -80,6 +81,7 @@ class BlogForm
                     ->imageResizeMode('cover')
                     ->imageCropAspectRatio('16:9')
                     ->nullable()
+                    ->tap(fn (FileUpload $field) => AvifFileUpload::configure($field))
                     ->columnSpanFull(),
 
                 Textarea::make('excerpt')

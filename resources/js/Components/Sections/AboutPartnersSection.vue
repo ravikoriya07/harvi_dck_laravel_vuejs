@@ -64,20 +64,20 @@ const partners = [
     {
         name: 'Paritet',
         href: 'https://paritet.uk/',
-        imageBw: '/assets/images/Paritet_logo-removebg-preview-1.png',
-        imageColor: '/assets/images/Paritet_logo-removebg-preview.png',
+        imageBw: '/assets/images/Paritet_logo-removebg-preview-1.avif',
+        imageColor: '/assets/images/Paritet_logo-removebg-preview.avif',
     },
     {
         name: 'Partner 2',
         href: '#',
-        imageBw: '/assets/images/logo-transparent-png-1-scaled.png',
-        imageColor: '/assets/images/logo-transparent-png-scaled-e1760627393297.png',
+        imageBw: '/assets/images/logo-transparent-png-1-scaled.avif',
+        imageColor: '/assets/images/logo-transparent-png-scaled-e1760627393297.avif',
     },
     {
         name: 'Stypix',
         href: '#',
-        imageBw: '/assets/images/Stypix_bw.png',
-        imageColor: '/assets/images/Stypix.png',
+        imageBw: '/assets/images/Stypix_bw.avif',
+        imageColor: '/assets/images/Stypix.avif',
     },
 ];
 </script>

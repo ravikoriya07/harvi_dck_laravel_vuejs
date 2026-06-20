@@ -13,7 +13,7 @@
                                                 <div class="elementor-element elementor-element-e9f5301 elementor-widget elementor-widget-pxl_logo">
                                                     <div class="elementor-widget-container">
                                                         <div class="pxl-logo">
-                                                            <Link href="/"><img fetchpriority="high" src="/assets/images/dck-logo-1.png" alt="DCK Construction" /></Link>
+                                                            <Link href="/"><img fetchpriority="high" src="/assets/images/dck-logo-1.avif" alt="DCK Construction" /></Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -63,7 +63,7 @@
                                                 <div class="elementor-element elementor-element-e9f5301 elementor-widget elementor-widget-pxl_logo">
                                                     <div class="elementor-widget-container">
                                                         <div class="pxl-logo">
-                                                            <Link href="/"><img src="/assets/images/dck-logo-1.png" alt="DCK Construction" style="max-height:41px;" /></Link>
+                                                            <Link href="/"><img src="/assets/images/dck-logo-1.avif" alt="DCK Construction" style="max-height:41px;" /></Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="pxl-header-mobile-default">
                             <div class="pxl-header-branding">
-                                <Link href="/"><img src="/assets/images/dck-logo-1.png" alt="DCK Construction Ltd" /></Link>
+                                <Link href="/"><img src="/assets/images/dck-logo-1.avif" alt="DCK Construction Ltd" /></Link>
                             </div>
                             <div id="pxl-nav-mobile">
                                 <div class="pxl-nav-mobile-button pxl-anchor-divider pxl-cursor--cta">

@@ -9,7 +9,7 @@
                  data-parallax-value=""
                  data-parallax='{"x":80}'
                  class="pxl-item--image elementor-repeater-item-fce42b0 pxl-parallax-scroll pxl-hide-sr-md pxl-hide-sr-sm"
-                 src="/assets/images/home1-vector.webp"
+                 src="/assets/images/home1-vector.avif"
                  alt="" />
         </div>
 

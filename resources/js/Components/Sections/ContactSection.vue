@@ -156,7 +156,7 @@
                                                     <div class="pxl-item--image df move-from-right">
                                                         <img loading="lazy" decoding="async"
                                                              width="1066" height="1600"
-                                                             src="/assets/images/Lets-Talk_10_11zon.jpg"
+                                                             src="/assets/images/Lets-Talk_10_11zon.avif"
                                                              class="no-lazyload attachment-full"
                                                              alt="Let's Talk" />
                                                     </div>

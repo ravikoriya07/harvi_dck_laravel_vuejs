@@ -4,7 +4,7 @@
             <div id="pxl-content-area" class="pxl-content-area pxl-content-blog col-12 col-lg-8">
                 <main id="pxl-content-main">
                     <article
-                        v-for="post in posts.data"
+                        v-for="(post, index) in posts.data"
                         :key="post.slug"
                         class="pxl-archive-post post type-post status-publish format-video has-post-thumbnail hentry category-youtube post_format-post-format-video">
                         <div class="content-inner-post">
@@ -18,6 +18,8 @@
                                                 class="attachment-maiko-large size-maiko-large wp-post-image"
                                                 :src="post.image_url"
                                                 :alt="post.title"
+                                                :loading="index === 0 ? 'eager' : 'lazy'"
+                                                :fetchpriority="index === 0 ? 'high' : 'auto'"
                                                 decoding="async" />
                                         </AppLink>
                                         <div v-if="post.video_url" class="pxl-video-popup">
@@ -112,7 +114,7 @@
                                                                 <img
                                                                     width="1627"
                                                                     height="1626"
-                                                                    src="/assets/images/cropped_circle_image-2.png"
+                                                                    src="/assets/images/cropped_circle_image-2.avif"
                                                                     class="no-lazyload attachment-full"
                                                                     alt="Ramil Veliiev" />
                                                             </div>

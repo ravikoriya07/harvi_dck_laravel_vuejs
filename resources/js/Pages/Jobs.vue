@@ -5,6 +5,14 @@
 
             <!-- Page Hero Banner -->
             <section class="jobs-hero">
+                <img
+                    class="jobs-hero-photo"
+                    src="/assets/images/bg-2_H-e1760689052181_1_11zon.avif"
+                    alt=""
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async"
+                />
                 <div class="jobs-hero-overlay"></div>
                 <div class="container">
                     <div class="jobs-hero-content">
@@ -47,10 +55,19 @@ defineProps({
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 .jobs-hero {
     position: relative;
-    background: #0d1b2a url('/assets/images/bg-page-header.jpg') center/cover no-repeat;
     padding: 80px 0 70px;
     text-align: center;
     overflow: hidden;
+}
+
+.jobs-hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
 }
 
 .jobs-hero-overlay {

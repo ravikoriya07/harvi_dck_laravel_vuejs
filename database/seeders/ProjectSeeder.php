@@ -17,7 +17,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'London Borough of Haringey - Kitchen & Bathroom Refurbishment',
                 'category' => 'Refurbishment',
                 'slug'     => 'london-borough-of-haringey-kitchen-bathroom-refurbishment',
-                'image'    => '/assets/images/DCK-Northumberland-Park-15-3-600x600.png',
+                'image'    => '/assets/images/DCK-Northumberland-Park-15-3-600x600.avif',
                 'value'    => '£2.4 million',
                 'date'     => 'March 2022',
                 'status'   => 'Completed',
@@ -29,7 +29,7 @@ class ProjectSeeder extends Seeder
 <p>DCK\'s directly employed workforce manages all trades in-house, ensuring rigorous quality control, minimal disruption to residents, and timely programme delivery. A dedicated resident liaison officer was assigned to the contract, maintaining clear communication throughout the works and addressing any concerns promptly.</p>
 <p>The programme delivered significant improvements to the living standards of residents across Haringey. Social value commitments included the creation of local employment opportunities and engagement with community initiatives, reflecting DCK\'s commitment to delivering value beyond the contract itself.</p>',
                 'gallery'  => [
-                    '/assets/images/DCK-Northumberland-Park-15-3-600x600.png',
+                    '/assets/images/DCK-Northumberland-Park-15-3-600x600.avif',
                 ],
             ],
 
@@ -38,7 +38,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'LB Haringey - Void Refurbishment',
                 'category' => 'Refurbishment',
                 'slug'     => 'lb-haringey-void-refurbishment',
-                'image'    => '/assets/images/WhatsApp-Image-2025-09-25-at-15.46.02_0bb1e965-600x600.jpg',
+                'image'    => '/assets/images/WhatsApp-Image-2025-09-25-at-15.46.02_0bb1e965-600x600.avif',
                 'value'    => '£1.6 million',
                 'date'     => 'September 2022',
                 'status'   => 'Completed',
@@ -50,7 +50,7 @@ class ProjectSeeder extends Seeder
 <p>DCK\'s rapid-response approach and on-site management ensured properties were turned around well within the council\'s target timescales. The team coordinated closely with the council\'s housing management team and contractors to manage the programme across multiple sites simultaneously.</p>
 <p>The programme contributed directly to reducing Haringey\'s housing waiting list by returning quality homes to available stock, while DCK\'s social value commitments provided local employment and apprenticeship opportunities across the borough.</p>',
                 'gallery'  => [
-                    '/assets/images/WhatsApp-Image-2025-09-25-at-15.46.02_0bb1e965-600x600.jpg',
+                    '/assets/images/WhatsApp-Image-2025-09-25-at-15.46.02_0bb1e965-600x600.avif',
                 ],
             ],
 
@@ -59,7 +59,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'LB Hackney - Void Full Refurbishment Programme',
                 'category' => 'Refurbishment',
                 'slug'     => 'lb-hackney-void-full-refurbishment-programme',
-                'image'    => '/assets/images/WhatsApp-Image-2025-09-25-at-15.45.01_27d90c71-600x600.jpg',
+                'image'    => '/assets/images/WhatsApp-Image-2025-09-25-at-15.45.01_27d90c71-600x600.avif',
                 'value'    => '£2.2 million',
                 'date'     => 'January 2023',
                 'status'   => 'Completed',
@@ -71,7 +71,7 @@ class ProjectSeeder extends Seeder
 <p>DCK employed a co-ordinated project management approach, with dedicated site managers overseeing multiple concurrent properties. Regular reporting to the council\'s asset management team ensured full visibility of programme progress and any variations to scope were managed efficiently.</p>
 <p>All works were carried out in compliance with the council\'s specification and current Building Regulations. DCK\'s commitment to quality assurance included post-works inspections and a snagging process prior to handover, ensuring properties met the required lettable standard on first inspection.</p>',
                 'gallery'  => [
-                    '/assets/images/WhatsApp-Image-2025-09-25-at-15.45.01_27d90c71-600x600.jpg',
+                    '/assets/images/WhatsApp-Image-2025-09-25-at-15.45.01_27d90c71-600x600.avif',
                 ],
             ],
 
@@ -80,7 +80,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Extension and Refurbishment Project | LB Haringey',
                 'category' => 'Refurbishment',
                 'slug'     => 'extension-and-refurbishment-project-lb-haringey',
-                'image'    => '/assets/images/WhatsApp-Image-2025-09-25-at-15.41.48_402f275d-600x600.jpg',
+                'image'    => '/assets/images/WhatsApp-Image-2025-09-25-at-15.41.48_402f275d-600x600.avif',
                 'value'    => '£850,000',
                 'date'     => 'April 2023',
                 'status'   => 'Completed',
@@ -92,7 +92,7 @@ class ProjectSeeder extends Seeder
 <p>DCK worked closely with the council\'s planning and building control teams to ensure all elements of the project received the necessary approvals and complied with current Building Regulations. The design incorporated energy-efficiency measures including upgraded insulation, double-glazing, and a high-efficiency boiler.</p>
 <p>The project was completed on programme and within budget, delivering a significantly improved residential property that meets modern standards of comfort, energy efficiency, and accessibility.</p>',
                 'gallery'  => [
-                    '/assets/images/WhatsApp-Image-2025-09-25-at-15.41.48_402f275d-600x600.jpg',
+                    '/assets/images/WhatsApp-Image-2025-09-25-at-15.41.48_402f275d-600x600.avif',
                 ],
             ],
 
@@ -101,7 +101,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Haringey Aids & Adaptations Works',
                 'category' => 'Aids and adaptations',
                 'slug'     => 'haringey-aids-adaptations-works',
-                'image'    => '/assets/images/6509ab55-97be-4536-9747-018df8c0a9f5-600x600.jpg',
+                'image'    => '/assets/images/6509ab55-97be-4536-9747-018df8c0a9f5-600x600.avif',
                 'value'    => '£1.1 million',
                 'date'     => 'October 2022',
                 'status'   => 'Ongoing',
@@ -113,7 +113,7 @@ class ProjectSeeder extends Seeder
 <p>DCK\'s Aids and Adaptations team operates with a sensitive and person-centred approach, recognising that works are carried out in residents\' homes. Appointments are scheduled to minimise disruption, and a dedicated site supervisor ensures each job is carried out to the highest standard and handed over with all necessary demonstrations and documentation.</p>
 <p>The contract operates on an open-book basis, with transparent pricing and full reporting to the council on a monthly basis. DCK\'s performance is measured against KPIs including appointment satisfaction, completion on time, and first-time fix rates, all of which consistently exceed the council\'s targets.</p>',
                 'gallery'  => [
-                    '/assets/images/6509ab55-97be-4536-9747-018df8c0a9f5-600x600.jpg',
+                    '/assets/images/6509ab55-97be-4536-9747-018df8c0a9f5-600x600.avif',
                 ],
             ],
 
@@ -122,7 +122,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Harrow Aids & Adaptations Works',
                 'category' => 'Aids and adaptations',
                 'slug'     => 'harrow-aids-adaptations-works',
-                'image'    => '/assets/images/0ab4bbf9-2f9c-42f1-b604-0c4230f95d6a-600x600.jpg',
+                'image'    => '/assets/images/0ab4bbf9-2f9c-42f1-b604-0c4230f95d6a-600x600.avif',
                 'value'    => '£900,000',
                 'date'     => 'July 2023',
                 'status'   => 'Ongoing',
@@ -134,7 +134,7 @@ class ProjectSeeder extends Seeder
 <p>DCK operates a responsive service, attending properties within agreed timescales and ensuring all works are completed to a high standard with minimum disruption to residents. Each project is managed by an experienced supervisor who ensures compliance with the specification, Building Regulations, and the council\'s quality standards.</p>
 <p>All completed works are signed off by the council\'s Occupational Therapy team following a post-completion inspection. DCK\'s track record on this contract has resulted in consistently high resident satisfaction scores and strong performance against all contractual KPIs.</p>',
                 'gallery'  => [
-                    '/assets/images/0ab4bbf9-2f9c-42f1-b604-0c4230f95d6a-600x600.jpg',
+                    '/assets/images/0ab4bbf9-2f9c-42f1-b604-0c4230f95d6a-600x600.avif',
                 ],
             ],
 
@@ -143,7 +143,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Aids & Adaptations, London Borough of Haringey',
                 'category' => 'Aids and adaptations',
                 'slug'     => 'aids-adaptations-london-borough-of-haringey',
-                'image'    => '/assets/images/LAS1-1-600x600.jpg',
+                'image'    => '/assets/images/LAS1-1-600x600.avif',
                 'value'    => '£750,000',
                 'date'     => 'February 2022',
                 'status'   => 'Completed',
@@ -155,7 +155,7 @@ class ProjectSeeder extends Seeder
 <p>DCK\'s approach prioritised the wellbeing and comfort of residents throughout the works process. Site supervisors maintained close communication with residents and their carers, and works were scheduled to minimise any disruption to daily routines. Completed installations were demonstrated to residents and any support documentation was provided at handover.</p>
 <p>The programme was delivered on time and within budget, achieving high resident satisfaction scores throughout. DCK\'s performance on this contract contributed directly to residents\' quality of life, independence, and safety in their homes.</p>',
                 'gallery'  => [
-                    '/assets/images/LAS1-1-600x600.jpg',
+                    '/assets/images/LAS1-1-600x600.avif',
                 ],
             ],
 
@@ -164,7 +164,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Southwark Void Refurbishment Programme 2025',
                 'category' => 'Construction',
                 'slug'     => 'southwark-void-refurbishment-programme-2025',
-                'image'    => '/assets/images/Untitled-design-1-1-600x600.png',
+                'image'    => '/assets/images/Untitled-design-1-1-600x600.avif',
                 'value'    => '£3.1 million',
                 'date'     => 'January 2025',
                 'status'   => 'In Progress',
@@ -176,7 +176,7 @@ class ProjectSeeder extends Seeder
 <p>DCK employs a dedicated project management team for the Southwark programme, with a contract manager, multiple site supervisors, and a planning team coordinating the workflow across all active sites. Reporting to the council includes weekly progress updates, KPI dashboards, and financial reporting.</p>
 <p>The programme is currently in progress and on track to deliver all properties within the council\'s target timescales. DCK\'s social value plan for the contract includes employment of Southwark residents, apprenticeship opportunities, and contributions to local community projects.</p>',
                 'gallery'  => [
-                    '/assets/images/Untitled-design-1-1-600x600.png',
+                    '/assets/images/Untitled-design-1-1-600x600.avif',
                 ],
             ],
 
@@ -185,7 +185,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Extension Project, Cuffley',
                 'category' => 'Construction',
                 'slug'     => 'extension-project-cuffley',
-                'image'    => '/assets/images/main-600x600.jpeg',
+                'image'    => '/assets/images/main-600x600.avif',
                 'value'    => '£420,000',
                 'date'     => 'August 2022',
                 'status'   => 'Completed',
@@ -197,7 +197,7 @@ class ProjectSeeder extends Seeder
 <p>Internal works included the installation of a new open-plan kitchen and dining area within the rear extension, two additional bedrooms and a family bathroom within the side extension, full redecoration throughout, and the fitting of new floor finishes. Mechanical and electrical works covered new central heating, new electrical circuits, and the integration of smart home technology.</p>
 <p>The project required close coordination with the local planning authority and building control. DCK managed all aspects of the project from pre-construction through to final handover, including procurement, site management, and quality assurance, delivering a result that the client was delighted with.</p>',
                 'gallery'  => [
-                    '/assets/images/main-600x600.jpeg',
+                    '/assets/images/main-600x600.avif',
                 ],
             ],
 
@@ -206,7 +206,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Seething Wells Campus, Kingston University',
                 'category' => 'Construction',
                 'slug'     => 'seething-wells-campus-kingston-university',
-                'image'    => '/assets/images/IMG1-1-1-600x600.png',
+                'image'    => '/assets/images/IMG1-1-1-600x600.avif',
                 'value'    => '£4.8 million',
                 'date'     => 'June 2021',
                 'status'   => 'Completed',
@@ -218,7 +218,7 @@ class ProjectSeeder extends Seeder
 <p>Mechanical and electrical works included full rewiring, new data and communication infrastructure, new heating and hot water systems, fire detection and alarm upgrades, and new ventilation systems throughout. All works were designed and installed to meet current Building Regulations and the university\'s specification.</p>
 <p>The project was delivered during summer vacation periods to minimise disruption to students, requiring careful phasing and programme management. DCK worked closely with the university\'s estates team to ensure the accommodation was available for occupation at the start of the new academic year. The completed project received excellent feedback from university management and students alike.</p>',
                 'gallery'  => [
-                    '/assets/images/IMG1-1-1-600x600.png',
+                    '/assets/images/IMG1-1-1-600x600.avif',
                 ],
             ],
 
@@ -227,7 +227,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Seafront Hotel, Brighton',
                 'category' => 'Construction',
                 'slug'     => 'seafront-hotel-brighton',
-                'image'    => '/assets/images/Untitled-design-2-1-600x600.png',
+                'image'    => '/assets/images/Untitled-design-2-1-600x600.avif',
                 'value'    => '£2.7 million',
                 'date'     => 'November 2022',
                 'status'   => 'Completed',
@@ -239,7 +239,7 @@ class ProjectSeeder extends Seeder
 <p>Public areas including the restaurant, bar, lounge, and lobby were fully refurbished with new furniture, fittings, and finishes, creating a fresh and contemporary guest experience. Back-of-house areas including staff facilities, laundry, and kitchen infrastructure were also upgraded as part of the programme.</p>
 <p>Mechanical and electrical works included replacement of the heating and hot water infrastructure, new electrical distribution, fire alarm upgrade, emergency lighting, and improvements to the ventilation system throughout. The project was carefully phased to allow the hotel to remain partially operational during the works, minimising the impact on trading and revenue.</p>',
                 'gallery'  => [
-                    '/assets/images/Untitled-design-2-1-600x600.png',
+                    '/assets/images/Untitled-design-2-1-600x600.avif',
                 ],
             ],
 
@@ -248,7 +248,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Great Arthur House, City of London',
                 'category' => 'Construction',
                 'slug'     => 'great-arthur-house-city-of-london',
-                'image'    => '/assets/images/image_3-7-1-600x600.png',
+                'image'    => '/assets/images/image_3-7-1-600x600.avif',
                 'value'    => '£5.2 million',
                 'date'     => 'March 2023',
                 'status'   => 'Completed',
@@ -260,7 +260,7 @@ class ProjectSeeder extends Seeder
 <p>Internal communal works included full refurbishment of all stairwells, lift lobbies, and communal corridors, including new floor finishes, wall and ceiling treatments, lighting upgrades, and wayfinding signage. Two new passenger lifts were installed to replace the existing aging infrastructure, improving accessibility and reliability for residents.</p>
 <p>Fire safety works formed a significant element of the contract, including the installation of a new fire detection and alarm system throughout, fire door replacements throughout the building, installation of dry rising mains, and smoke ventilation improvements. All works were carried out in accordance with current fire safety legislation and the building\'s fire risk assessment. The project was completed on programme, with residents remaining in occupation throughout.</p>',
                 'gallery'  => [
-                    '/assets/images/image_3-7-1-600x600.png',
+                    '/assets/images/image_3-7-1-600x600.avif',
                 ],
             ],
 
@@ -269,7 +269,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Haringey Broadwater Farm Estate Fire Safety Works & Communal Decorations',
                 'category' => 'Construction',
                 'slug'     => 'designer-apartment',
-                'image'    => '/assets/images/JOB-70-of-155-scaled-600x600.jpg',
+                'image'    => '/assets/images/JOB-70-of-155-scaled-600x600.avif',
                 'value'    => '£3.5 million',
                 'date'     => 'November 2023',
                 'status'   => 'Completed in 2024',
@@ -283,11 +283,11 @@ class ProjectSeeder extends Seeder
 <p>Whilst the design and the range of colour choices of the doors will be set by the council, residents will have a choice of door colour to complement the new wall decorations. Of the 655 flats to receive a new FED, 91 are occupied by leaseholders.</p>
 <p>DCK has committed to a range of social value activities that include providing new jobs for residents, a pledge to spend at least £280,000 with locally based businesses, and supporting local community-based organisations with donations and resources to undertake events and projects that will benefit the local community.</p>',
                 'gallery'  => [
-                    '/assets/images/projects/2/JOB-18-of-155-scaled.jpg',
-                    '/assets/images/projects/2/JOB-1-of-155-1-scaled.jpg',
-                    '/assets/images/projects/2/JOB-104-of-155-scaled.jpg',
-                    '/assets/images/projects/2/JOB-62-of-155-scaled.jpg',
-                    '/assets/images/projects/2/JOB-24-of-155-scaled.jpg',
+                    '/assets/images/projects/2/JOB-18-of-155-scaled.avif',
+                    '/assets/images/projects/2/JOB-1-of-155-1-scaled.avif',
+                    '/assets/images/projects/2/JOB-104-of-155-scaled.avif',
+                    '/assets/images/projects/2/JOB-62-of-155-scaled.avif',
+                    '/assets/images/projects/2/JOB-24-of-155-scaled.avif',
                 ],
             ],
 
@@ -296,7 +296,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Haringey Broadwater Farm Community Centre',
                 'category' => 'Construction',
                 'slug'     => 'haringey-broadwater-farm-community-centre',
-                'image'    => '/assets/images/projects/1/DCK-Broadwater-Farm-Community-Project-01-600x600.png',
+                'image'    => '/assets/images/projects/1/DCK-Broadwater-Farm-Community-Project-01-600x600.avif',
                 'value'    => '£1.9 million',
                 'date'     => 'May 2022',
                 'status'   => 'Completed',
@@ -308,7 +308,7 @@ class ProjectSeeder extends Seeder
 <p>Internal works included full strip-out and refurbishment of all activity rooms, the main hall, kitchen facilities, toilets and changing rooms, and office accommodation. New flooring, ceilings, wall finishes, and joinery were installed throughout, and the full internal decoration was completed in a fresh, modern palette.</p>
 <p>Mechanical and electrical works included new LED lighting throughout, a new heating and hot water system, ventilation improvements, full electrical upgrade, and a new fire detection and alarm system. The project was delivered with the centre remaining partially operational, requiring careful phasing and close communication with centre management and users throughout the programme.</p>',
                 'gallery'  => [
-                    '/assets/images/projects/1/DCK-Broadwater-Farm-Community-Project-01-600x600.png',
+                    '/assets/images/projects/1/DCK-Broadwater-Farm-Community-Project-01-600x600.avif',
                 ],
             ],
 
@@ -317,7 +317,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Void Property Renovations, London Borough of Haringey',
                 'category' => 'Construction',
                 'slug'     => 'void-property-renovations-london-borough-of-haringey',
-                'image'    => '/assets/images/WhatsApp-Image-2025-09-25-at-15.37.48_3369e48e-600x600.jpg',
+                'image'    => '/assets/images/WhatsApp-Image-2025-09-25-at-15.37.48_3369e48e-600x600.avif',
                 'value'    => '£1.3 million',
                 'date'     => 'August 2023',
                 'status'   => 'Completed',
@@ -329,7 +329,7 @@ class ProjectSeeder extends Seeder
 <p>DCK\'s site management team operated a clear workflow system to manage multiple properties concurrently, ensuring efficient use of resources and consistent delivery against the council\'s target turnaround times. Regular progress meetings with the council\'s housing management team ensured full transparency throughout the programme.</p>
 <p>The programme was delivered on time and within budget, achieving average void turnaround times significantly below the council\'s target, and contributing to a meaningful reduction in Haringey\'s void stock. Post-completion inspections confirmed all properties met the council\'s required lettable standard prior to handover.</p>',
                 'gallery'  => [
-                    '/assets/images/WhatsApp-Image-2025-09-25-at-15.37.48_3369e48e-600x600.jpg',
+                    '/assets/images/WhatsApp-Image-2025-09-25-at-15.37.48_3369e48e-600x600.avif',
                 ],
             ],
 
@@ -338,7 +338,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Void Property Renovations, Ministry of Defence',
                 'category' => 'Construction',
                 'slug'     => 'void-property-renovations-ministry-of-defence',
-                'image'    => '/assets/images/main-9-600x600.jpg',
+                'image'    => '/assets/images/main-9-600x600.avif',
                 'value'    => '£2.8 million',
                 'date'     => 'April 2022',
                 'status'   => 'Completed',
@@ -350,7 +350,7 @@ class ProjectSeeder extends Seeder
 <p>Higher-condition voids received more extensive works including structural repairs, replastering, full rewires, boiler replacements, and new windows and doors. DCK\'s experienced site teams managed the full range of refurbishment works using directly employed tradespeople supplemented by specialist subcontractors for elements such as roofing and specialist flooring.</p>
 <p>The programme was delivered to a demanding programme, with DCK achieving average completion times within the MoD\'s target void turnaround periods. Quality assurance was maintained throughout via independent post-works inspections, and DCK\'s performance consistently met or exceeded the contract KPIs across all measured categories.</p>',
                 'gallery'  => [
-                    '/assets/images/main-9-600x600.jpg',
+                    '/assets/images/main-9-600x600.avif',
                 ],
             ],
 
@@ -359,7 +359,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Kitchens & Bathrooms, London Borough of Haringey',
                 'category' => 'Construction',
                 'slug'     => 'kitchens-bathrooms-london-borough-of-haringey',
-                'image'    => '/assets/images/5-3-600x600.png',
+                'image'    => '/assets/images/5-3-600x600.avif',
                 'value'    => '£1.7 million',
                 'date'     => 'January 2023',
                 'status'   => 'Completed',
@@ -371,7 +371,7 @@ class ProjectSeeder extends Seeder
 <p>Kitchen works included full strip-out of existing fittings, making good to walls and floor, installation of new base and wall units, worktops, sink and taps, new floor finishes, tiling, and plumbing and electrical connections. Bathroom works included full strip-out, new sanitaryware (bath or shower enclosure, WC, basin), full tiling, new floor finishes, and associated plumbing and electrical connections.</p>
 <p>All materials were selected from the council\'s approved schedule of rates and sourced from approved suppliers. DCK\'s quality management process included pre-works, mid-works, and post-works inspections by site supervisors, ensuring all completions met the required standard before handover to residents.</p>',
                 'gallery'  => [
-                    '/assets/images/5-3-600x600.png',
+                    '/assets/images/5-3-600x600.avif',
                 ],
             ],
 
@@ -380,7 +380,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Haringey Kitchens & Bathrooms 2024 Programme',
                 'category' => 'Construction',
                 'slug'     => 'haringey-kitchens-bathrooms-2024-programme',
-                'image'    => '/assets/images/71bfe462-bc1a-4842-8e7e-abbe413f4e59-600x600.jpg',
+                'image'    => '/assets/images/71bfe462-bc1a-4842-8e7e-abbe413f4e59-600x600.avif',
                 'value'    => '£2.0 million',
                 'date'     => 'March 2024',
                 'status'   => 'In Progress',
@@ -392,7 +392,7 @@ class ProjectSeeder extends Seeder
 <p>Kitchen works include full strip-out, making good, new fitted units to the council\'s current specification, worktops, sink and taps, splashback tiling, floor finishes, and plumbing and electrical connections. Bathroom works include full strip-out, new sanitaryware, full tiling, floor finishes, and plumbing and electrical connections, with the option for either a bath or walk-in shower configuration depending on property layout and resident preference.</p>
 <p>The programme is progressing well and on track to complete all 115 properties within the 2024/25 financial year. DCK\'s resident engagement approach ensures residents are fully informed throughout and any specific requirements are accommodated within the programme\'s constraints.</p>',
                 'gallery'  => [
-                    '/assets/images/71bfe462-bc1a-4842-8e7e-abbe413f4e59-600x600.jpg',
+                    '/assets/images/71bfe462-bc1a-4842-8e7e-abbe413f4e59-600x600.avif',
                 ],
             ],
 
@@ -401,7 +401,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Haringey Community Benefit Society (HCBS) Voids Refurbishment Works',
                 'category' => 'Construction',
                 'slug'     => 'haringey-community-benefit-society-hcbs-voids-refurbishment-works',
-                'image'    => '/assets/images/2-5-600x600.png',
+                'image'    => '/assets/images/2-5-600x600.avif',
                 'value'    => '£1.4 million',
                 'date'     => 'November 2022',
                 'status'   => 'Completed',
@@ -413,7 +413,7 @@ class ProjectSeeder extends Seeder
 <p>DCK worked closely with the HCBS management team to agree priorities and manage the programme efficiently. The client\'s community-focused ethos aligned closely with DCK\'s own values, and the project incorporated social value activities including the engagement of local residents in training and employment opportunities associated with the works.</p>
 <p>The programme was completed on time and within budget. Post-completion feedback from HCBS highlighted the quality of DCK\'s workmanship, the professionalism of the site teams, and the strong communication maintained throughout the programme as key strengths of the delivery.</p>',
                 'gallery'  => [
-                    '/assets/images/2-5-600x600.png',
+                    '/assets/images/2-5-600x600.avif',
                 ],
             ],
 
@@ -422,7 +422,7 @@ class ProjectSeeder extends Seeder
                 'title'    => 'Hackney Capital Works Programme Refurbishment',
                 'category' => 'Construction',
                 'slug'     => 'hackney-capital-works-programme-refurbishment',
-                'image'    => '/assets/images/1-8-600x600.png',
+                'image'    => '/assets/images/1-8-600x600.avif',
                 'value'    => '£3.6 million',
                 'date'     => 'February 2023',
                 'status'   => 'Completed',
@@ -434,7 +434,7 @@ class ProjectSeeder extends Seeder
 <p>Internal communal area works covered full refurbishment of communal corridors, stairwells, and lift lobbies across multiple blocks, including new floor finishes, wall and ceiling treatments, new LED lighting, and improved wayfinding and signage. Lift upgrades were carried out to improve reliability and accessibility for residents.</p>
 <p>Fire safety works included fire door replacement throughout all buildings, installation of sprinkler systems in higher-risk blocks, upgrade of fire detection and alarm systems, and improvements to emergency lighting and signage. All fire safety works were designed in consultation with the council\'s Fire Safety team and carried out in compliance with current legislation and the buildings\' fire risk assessments. The programme was completed on programme and within budget, with all properties remaining occupied throughout the works.</p>',
                 'gallery'  => [
-                    '/assets/images/1-8-600x600.png',
+                    '/assets/images/1-8-600x600.avif',
                 ],
             ],
 

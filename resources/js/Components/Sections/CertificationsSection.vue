@@ -101,15 +101,15 @@
 
 <script setup>
 const certifications = [
-    { src: '/assets/images/thumbnail_45001-SSIP-e1758120151217_17_11zon.jpg',                     alt: 'SSIP 45001' },
-    { src: '/assets/images/thumbnail_Cyber-Essentials-Plus-Logo-web-removebg-preview_6_11zon.jpg', alt: 'Cyber Essentials Plus' },
-    { src: '/assets/images/thumbnail_Fensa_16_11zon.jpg',                                          alt: 'FENSA' },
-    { src: '/assets/images/thumbnail_Forefront_UKAS_15_11zon.jpg',                                alt: 'Forefront UKAS' },
-    { src: '/assets/images/thumbnail_Gold_RGB_5_11zon.jpg',                                        alt: 'Gold' },
-    { src: '/assets/images/thumbnail_SSIP_Member_4_11zon.jpg',                                    alt: 'SSIP Member' },
-    { src: '/assets/images/thumbnail_thermoguard-logo-removebg-preview_3_11zon.jpg',              alt: 'Thermoguard' },
-    { src: '/assets/images/thumbnail_UKAS-Q-Mark-FDI-FDM-FSI-Colour-black-UKAS_14_11zon.jpg',    alt: 'UKAS Q Mark' },
-    { src: '/assets/images/thumbnail_xElite-Badge.png.pagespeed.ic_.2BAm9hdid-.png',              alt: 'Elite Badge' },
-    { src: '/assets/images/thumbnail_LW_logo_employer_rgb-removebg-preview_1_11zon.jpg',          alt: 'Living Wage Employer' },
+    { src: '/assets/images/thumbnail_45001-SSIP-e1758120151217_17_11zon.avif',                     alt: 'SSIP 45001' },
+    { src: '/assets/images/thumbnail_Cyber-Essentials-Plus-Logo-web-removebg-preview_6_11zon.avif', alt: 'Cyber Essentials Plus' },
+    { src: '/assets/images/thumbnail_Fensa_16_11zon.avif',                                          alt: 'FENSA' },
+    { src: '/assets/images/thumbnail_Forefront_UKAS_15_11zon.avif',                                alt: 'Forefront UKAS' },
+    { src: '/assets/images/thumbnail_Gold_RGB_5_11zon.avif',                                        alt: 'Gold' },
+    { src: '/assets/images/thumbnail_SSIP_Member_4_11zon.avif',                                    alt: 'SSIP Member' },
+    { src: '/assets/images/thumbnail_thermoguard-logo-removebg-preview_3_11zon.avif',              alt: 'Thermoguard' },
+    { src: '/assets/images/thumbnail_UKAS-Q-Mark-FDI-FDM-FSI-Colour-black-UKAS_14_11zon.avif',    alt: 'UKAS Q Mark' },
+    { src: '/assets/images/thumbnail_xElite-Badge.png.pagespeed.ic_.2BAm9hdid-.avif',              alt: 'Elite Badge' },
+    { src: '/assets/images/thumbnail_LW_logo_employer_rgb-removebg-preview_1_11zon.avif',          alt: 'Living Wage Employer' },
 ];
 </script>

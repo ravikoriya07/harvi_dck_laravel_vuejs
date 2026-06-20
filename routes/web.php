@@ -15,6 +15,7 @@ Route::get('/', function () {
     $projects = Project::query()
         ->orderBy('sort_order')
         ->orderByDesc('id')
+        ->limit(12)
         ->get()
         ->map(fn (Project $project) => [
             'title' => $project->title,

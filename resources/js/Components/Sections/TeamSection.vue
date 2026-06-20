@@ -28,7 +28,7 @@
                                     <div class="pxl-item--image df">
                                         <img loading="lazy" decoding="async"
                                              width="2350" height="1003"
-                                             src="/assets/images/STAFF-52-of-61-scaled-e1750700599226_11_11zon.jpg"
+                                             src="/assets/images/STAFF-52-of-61-scaled-e1750700599226_11_11zon.avif"
                                              class="no-lazyload attachment-full"
                                              alt="" />
                                     </div>

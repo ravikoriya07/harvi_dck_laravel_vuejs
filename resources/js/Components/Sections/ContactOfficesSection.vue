@@ -38,7 +38,7 @@
                                 <div class="pxl-item--inner">
                                     <div class="pxl-item--image hover-noise">
                                         <img decoding="async" width="800" height="800"
-                                            src="/assets/images/contact1.webp"
+                                            src="/assets/images/contact1.avif"
                                             class="no-lazyload attachment-full"
                                             alt="London Office" />
                                     </div>
@@ -124,7 +124,7 @@
                                 <div class="pxl-item--inner">
                                     <div class="pxl-item--image hover-noise">
                                         <img decoding="async" width="800" height="800"
-                                            src="/assets/images/contact2.webp"
+                                            src="/assets/images/contact2.avif"
                                             class="no-lazyload attachment-full"
                                             alt="Dubai Office" />
                                     </div>

@@ -133,37 +133,37 @@ const services = [
     {
         title: 'Refurbishment / General Build',
         href: '/services/general-build',
-        image: '/assets/images/image_5-4.jpg',
+        image: '/assets/images/image_5-4.avif',
         desc: 'We have vast experience of delivering high-quality construction projects in several specialist sectors. Key to our success is building strong client partnerships and our ability to work quickly, safely and efficiently in challenging environments.',
     },
     {
         title: 'Fire Safety Works',
         href: '/services/fire-safety',
-        image: '/assets/images/JOB-17-of-155-scaled.jpg',
+        image: '/assets/images/JOB-17-of-155-scaled.avif',
         desc: 'DCK delivers comprehensive fire safety solutions, including fire door installations, compartmentation works, and fire-stopping measures. Our expert team ensures compliance with the latest regulations, enhancing the safety and protection of residential and commercial properties.',
     },
     {
         title: 'Aids and Adaptations',
         href: '/services/adaptions',
-        image: '/assets/images/LAS18.jpg',
+        image: '/assets/images/LAS18.avif',
         desc: 'We provide specialist mobility adaptations, including Level Access Showers, disabled access ramps, and lifting solutions. Working with a trusted supply chain, we install stairlifts, hoists, platform lifts, and door entry systems.',
     },
     {
         title: 'Roofing',
         href: '/services/roofing',
-        image: '/assets/images/service-sg1.jpg',
+        image: '/assets/images/service-sg1.avif',
         desc: 'Our roofing specialists deliver high-quality solutions for residential and commercial properties. From flat roof systems and pitched roofing to emergency repairs and full replacements, we ensure lasting protection.',
     },
     {
         title: 'Architecture Services',
         href: '/services/architecture-services',
-        image: '/assets/images/service-sg2-833x534.jpg',
+        image: '/assets/images/service-sg2-833x534.avif',
         desc: 'Our architectural team offers comprehensive design and planning services, ensuring your project meets both aesthetic aspirations and regulatory requirements from concept through to completion.',
     },
     {
         title: 'Disrepair',
         href: '/services/disrepair',
-        image: '/assets/images/service-sg3-1-360x534.jpg',
+        image: '/assets/images/service-sg3-1-360x534.avif',
         desc: 'We specialise in addressing property disrepair for social housing, local authorities, and housing associations. Our rapid-response teams ensure properties are restored to a high standard with minimal disruption.',
     },
 ];

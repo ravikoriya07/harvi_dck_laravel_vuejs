@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Support\ImagePaths;
+use App\Support\ImagePaths;
 use App\Models\Project;
 use App\Models\ProjectImage;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -15,11 +17,12 @@ final class ProjectImageMigrationService
 
     public function __construct(
         private Filesystem $disk,
+        private AvifConversionService $avifConverter,
     ) {}
 
     public static function usingPublicDisk(): self
     {
-        return new self(Storage::disk('public'));
+        return new self(Storage::disk('public'), app(AvifConversionService::class));
     }
 
     /**
@@ -187,6 +190,14 @@ final class ProjectImageMigrationService
                 return $normalized;
             }
 
+            $legacy = ImagePaths::resolveLegacyAssetByBasename(basename($path));
+
+            if ($legacy !== null) {
+                $absolute = public_path(ltrim($legacy, '/'));
+
+                return $this->copyIntoProjectStorage($slug, $absolute, basename($normalized));
+            }
+
             Log::warning('ProjectImageMigrationService: storage path missing on disk', ['path' => $normalized]);
 
             return null;
@@ -268,6 +279,8 @@ final class ProjectImageMigrationService
             return null;
         }
 
-        return $relative;
+        $avifRelative = $this->avifConverter->convertPublicDiskPath($relative);
+
+        return $avifRelative ?? $relative;
     }
 }

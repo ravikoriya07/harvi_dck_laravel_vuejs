@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\ImagePaths;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -73,7 +74,19 @@ class Project extends Model
         }
 
         if (str_starts_with($path, '/')) {
-            return $path;
+            return ImagePaths::preferAvif($path);
+        }
+
+        $resolved = ImagePaths::preferAvif($path);
+
+        if (Storage::disk('public')->exists($resolved)) {
+            return asset('storage/' . $resolved);
+        }
+
+        $legacy = ImagePaths::resolveLegacyAssetByBasename(basename($path));
+
+        if ($legacy !== null) {
+            return $legacy;
         }
 
         return asset('storage/' . $path);

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Projects\Schemas;
 
+use App\Filament\Support\AvifFileUpload;
 use App\Models\Project;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
@@ -52,7 +53,8 @@ class ProjectForm
                     ->directory('projects')
                     ->imageEditor()
                     ->maxSize(5120)
-                    ->helperText('Upload the project thumbnail. Existing /assets/ paths continue to work on the frontend until replaced here.')
+                    ->helperText('Upload the project thumbnail. Images are stored as AVIF automatically.')
+                    ->tap(fn (FileUpload $field) => AvifFileUpload::configure($field))
                     ->formatStateUsing(function ($state) {
                         // Legacy absolute paths (/assets/...) are not on the public disk,
                         // so return null to avoid broken preview; they still work on the frontend.

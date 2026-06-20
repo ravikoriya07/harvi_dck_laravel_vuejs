@@ -5,6 +5,14 @@
 
             <!-- Hero -->
             <section class="jd-hero">
+                <img
+                    class="jd-hero-photo"
+                    src="/assets/images/bg-2_H-e1760689052181_1_11zon.avif"
+                    alt=""
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async"
+                />
                 <div class="jd-hero-overlay"></div>
                 <div class="container">
                     <div class="jd-hero-content">
@@ -362,10 +370,19 @@ async function submitApplication() {
 /* ── Hero ──────────────────────────────────────────────────────────────────── */
 .jd-hero {
     position: relative;
-    background: #0d1b2a url('/assets/images/bg-page-header.jpg') center/cover no-repeat;
     padding: 72px 0 60px;
     text-align: center;
     overflow: hidden;
+}
+
+.jd-hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
 }
 
 .jd-hero-overlay {

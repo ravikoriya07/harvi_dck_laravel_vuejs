@@ -119,7 +119,7 @@
                                 <div class="pxl-item--inner" data-wow-delay="120ms" data-parallax='{"y":80}'>
                                     <div class="pxl-item--image circle">
                                         <img decoding="async" width="1596" height="2560"
-                                             src="/assets/images/STAFF-41-of-61-1-scaled.jpg"
+                                             src="/assets/images/STAFF-41-of-61-1-scaled.avif"
                                              class="no-lazyload attachment-full"
                                              alt="DCK Staff" />
                                     </div>

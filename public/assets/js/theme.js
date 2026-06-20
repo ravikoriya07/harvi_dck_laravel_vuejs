@@ -11,7 +11,9 @@
 
     $(window).on('load', function () {
         setTimeout(function() {
-            $(".pxl-loader").addClass("is-loaded");
+            if (!window.__pxlLoaderManagedByVue) {
+                $(".pxl-loader").addClass("is-loaded");
+            }
         }, 60);
         $('.pxl-swiper-slider, .pxl-header-mobile-elementor').css('opacity', '1');
         $('.pxl-gallery-scroll').parents('body').addClass('body-overflow').addClass('body-visible-sm');

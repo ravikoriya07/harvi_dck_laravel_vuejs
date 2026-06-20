@@ -21,18 +21,18 @@
 }
 
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 .pxl-section-bg-parallax {
-    background-image: url('/assets/images/pt-about1.webp');
+    background-image: url('/assets/images/pt-about1.avif');
     background-position: center center;
 }
 
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 .pxl-overlay--image.pxl-overlay--imageLeft .bg-image {
-    background-image: url('/assets/images/ov1.png');
+    background-image: url('/assets/images/ov1.avif');
     background-position: top center;
     background-size: cover;
 }
 
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 .pxl-overlay--image.pxl-overlay--imageRight .bg-image {
-    background-image: url('/assets/images/ov2.png');
+    background-image: url('/assets/images/ov2.avif');
     background-position: center center;
     background-size: cover;
 }

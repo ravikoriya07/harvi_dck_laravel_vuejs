@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Blog;
+use App\Models\ContactCard;
+use App\Models\Project;
+use App\Models\ProjectImage;
+use App\Observers\AvifImageObserver;
+use App\Services\AvifConversionService;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(AvifConversionService::class);
     }
 
     /**
@@ -21,5 +27,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+
+        $observer = $this->app->make(AvifImageObserver::class);
+
+        Project::saved(fn (Project $project) => $observer->saved($project));
+        ProjectImage::saved(fn (ProjectImage $image) => $observer->saved($image));
+        Blog::saved(fn (Blog $blog) => $observer->saved($blog));
+        ContactCard::saved(fn (ContactCard $card) => $observer->saved($card));
     }
 }

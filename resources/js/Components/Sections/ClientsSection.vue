@@ -89,36 +89,36 @@
 <script setup>
 const clients = [
     {
-        color:  '/assets/images/R-scaled-e1757582678238.png',
-        normal: '/assets/images/1-01833329_22_11zon.jpg',
+        color:  '/assets/images/R-scaled-e1757582678238.avif',
+        normal: '/assets/images/1-01833329_22_11zon.avif',
     },
     {
-        color:  '/assets/images/hounslowsquare-e1757586426401_21_11zon-removebg-preview.png',
-        normal: '/assets/images/hounslowsquare-e1757586426401_21_11zon-1.jpg',
+        color:  '/assets/images/hounslowsquare-e1757586426401_21_11zon-removebg-preview.avif',
+        normal: '/assets/images/hounslowsquare-e1757586426401_21_11zon-1.avif',
     },
     {
-        color:  '/assets/images/southwark_council_logo_thumb_080525-removebg-preview-e1757586556672.png',
-        normal: '/assets/images/southwark_council_logo_thumb_080525-removebg-preview-e1757586556672_20_11zon.jpg',
+        color:  '/assets/images/southwark_council_logo_thumb_080525-removebg-preview-e1757586556672.avif',
+        normal: '/assets/images/southwark_council_logo_thumb_080525-removebg-preview-e1757586556672_20_11zon.avif',
     },
     {
-        color:  '/assets/images/o_1172-removebg-preview-e1757586310795.png',
-        normal: '/assets/images/o_1172-removebg-preview-e1757586310795_19_11zon.jpg',
+        color:  '/assets/images/o_1172-removebg-preview-e1757586310795.avif',
+        normal: '/assets/images/o_1172-removebg-preview-e1757586310795_19_11zon.avif',
     },
     {
-        color:  '/assets/images/EQUANS_logotype_RGG-e1757587263463.png',
-        normal: '/assets/images/EQUANS_logotype_RGG-e1757587263463_18_11zon.jpg',
+        color:  '/assets/images/EQUANS_logotype_RGG-e1757587263463.avif',
+        normal: '/assets/images/EQUANS_logotype_RGG-e1757587263463_18_11zon.avif',
     },
     {
-        color:  '/assets/images/image-removebg-preview-e1757587302187.png',
-        normal: '/assets/images/image-removebg-preview-e1757587302187_17_11zon.jpg',
+        color:  '/assets/images/image-removebg-preview-e1757587302187.avif',
+        normal: '/assets/images/image-removebg-preview-e1757587302187_17_11zon.avif',
     },
     {
-        color:  '/assets/images/image-removebg-preview.png',
-        normal: '/assets/images/image-removebg-preview_16_11zon.jpg',
+        color:  '/assets/images/image-removebg-preview.avif',
+        normal: '/assets/images/image-removebg-preview_16_11zon.avif',
     },
     {
-        color:  '/assets/images/image-removebg-preview-1.png',
-        normal: '/assets/images/image-removebg-preview-1_15_11zon.jpg',
+        color:  '/assets/images/image-removebg-preview-1.avif',
+        normal: '/assets/images/image-removebg-preview-1_15_11zon.avif',
     },
 ];
 </script>

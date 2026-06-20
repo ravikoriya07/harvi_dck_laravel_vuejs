@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Projects\RelationManagers;
 
+use App\Filament\Support\AvifFileUpload;
 use App\Models\Project;
 use App\Models\ProjectImage;
 use Filament\Actions\BulkActionGroup;
@@ -34,7 +35,8 @@ class GalleryImagesRelationManager extends RelationManager
                 ->directory('projects/gallery')
                 ->visibility('public')
                 ->maxSize(5120)
-                ->helperText('Images are stored on the public disk and listed on the project detail carousel in this order.')
+                ->helperText('Images are stored as AVIF on the public disk and listed on the project detail carousel in this order.')
+                ->tap(fn (FileUpload $field) => AvifFileUpload::configure($field))
                 ->formatStateUsing(function ($state): mixed {
                     if (is_string($state) && str_starts_with($state, '/')) {
                         return null;
