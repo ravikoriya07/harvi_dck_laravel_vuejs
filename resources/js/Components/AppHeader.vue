@@ -29,13 +29,8 @@
                                                             <div class="menu-menu-main-home-container">
                                                                 <ul class="pxl-menu-primary clearfix">
                                                                     <li v-for="item in navItems" :key="item.label"
-                                                                        :class="['menu-item', item.children ? 'menu-item-has-children' : '', item.active ? 'current-menu-item current_page_item' : '']">
-                                                                        <AppLink :href="item.href"><span class="pxl-menu-item-text">{{ item.label }}<i class="fas fa-angle-down pxl-hide"></i></span></AppLink>
-                                                                        <ul v-if="item.children" class="sub-menu">
-                                                                            <li v-for="child in item.children" :key="child.label" class="menu-item">
-                                                                                <AppLink :href="child.href"><span class="pxl-menu-item-text">{{ child.label }}</span></AppLink>
-                                                                            </li>
-                                                                        </ul>
+                                                                        :class="['menu-item', item.active ? 'current-menu-item current_page_item' : '']">
+                                                                        <AppLink :href="item.href"><span class="pxl-menu-item-text">{{ item.label }}</span></AppLink>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -79,13 +74,8 @@
                                                             <div class="menu-menu-main-home-container">
                                                                 <ul class="pxl-menu-primary clearfix">
                                                                     <li v-for="item in navItems" :key="'sticky-' + item.label"
-                                                                        :class="['menu-item', item.children ? 'menu-item-has-children' : '', item.active ? 'current-menu-item' : '']">
-                                                                        <AppLink :href="item.href"><span class="pxl-menu-item-text">{{ item.label }}<i class="fas fa-angle-down pxl-hide"></i></span></AppLink>
-                                                                        <ul v-if="item.children" class="sub-menu">
-                                                                            <li v-for="child in item.children" :key="child.label" class="menu-item">
-                                                                                <AppLink :href="child.href"><span class="pxl-menu-item-text">{{ child.label }}</span></AppLink>
-                                                                            </li>
-                                                                        </ul>
+                                                                        :class="['menu-item', item.active ? 'current-menu-item' : '']">
+                                                                        <AppLink :href="item.href"><span class="pxl-menu-item-text">{{ item.label }}</span></AppLink>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -128,13 +118,8 @@
                                 <nav class="pxl-header-nav">
                                     <ul class="pxl-menu-primary clearfix">
                                         <li v-for="item in navItems" :key="'mobile-' + item.label"
-                                            :class="['menu-item', item.children ? 'menu-item-has-children' : '', item.active ? 'current-menu-item' : '']">
+                                            :class="['menu-item', item.active ? 'current-menu-item' : '']">
                                             <AppLink :href="item.href"><span class="pxl-menu-item-text">{{ item.label }}</span></AppLink>
-                                            <ul v-if="item.children" class="sub-menu">
-                                                <li v-for="child in item.children" :key="child.label" class="menu-item">
-                                                    <AppLink :href="child.href"><span class="pxl-menu-item-text">{{ child.label }}</span></AppLink>
-                                                </li>
-                                            </ul>
                                         </li>
                                     </ul>
                                 </nav>
@@ -166,13 +151,8 @@ const isHomePage = computed(() => currentPath.value === '/');
 
 function itemIsActive(item) {
     const p = currentPath.value;
-    if (item.label === 'Home') return p === '/';
-    if (item.children?.length) {
-        return item.children.some(
-            (c) => c.href && c.href.startsWith('/') && (p === c.href || p.startsWith(c.href + '/')),
-        );
-    }
-    if (item.href && item.href.startsWith('/') && !item.href.startsWith('/#')) {
+    if (item.href === '/') return p === '/';
+    if (item.href?.startsWith('/')) {
         return p === item.href || p.startsWith(item.href + '/');
     }
     return false;
@@ -181,9 +161,9 @@ function itemIsActive(item) {
 const navItems = computed(() => {
     const base = [
         { label: 'Home', href: '/' },
-        { label: 'About US', href: '#about-us', children: [{ label: 'About Us', href: '/about' }] },
-        { label: 'Services', href: '#services', children: [{ label: 'Our Services', href: '/services' }] },
-        { label: 'Projects', href: '#projects', children: [{ label: 'Projects', href: '/projects' }] },
+        { label: 'About US', href: '/about' },
+        { label: 'Services', href: '/services' },
+        { label: 'Projects', href: '/projects' },
         { label: 'Contact Us', href: '/contact' },
         { label: 'Blog', href: '/blog' },
         { label: 'Current Jobs', href: '/jobs' },

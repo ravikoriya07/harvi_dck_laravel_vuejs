@@ -77,6 +77,50 @@
     padding: 42px 0px 41px 0px;
 }
 
+/* Disable theme hover dropdowns in the header (links navigate on click) */
+#pxl-header-elementor .pxl-menu-primary > li > .sub-menu {
+    display: none !important;
+}
+
+/* ─── LIGHT HEADER (homepage transparent + sticky white bar) ─ */
+/* Theme sets hover text to white; without a visible pill it disappears on the
+   light background. Use brand-blue fill on hover so labels stay readable.    */
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-divider-move,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-divider-move {
+    background-color: #3E68FF;
+}
+
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a,
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.pxl-shape-active > a,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.pxl-shape-active > a {
+    color: #FFFFFF !important;
+}
+
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a .pxl-menu-item-text,
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.pxl-shape-active > a .pxl-menu-item-text,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a .pxl-menu-item-text,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.pxl-shape-active > a .pxl-menu-item-text {
+    background-color: #3E68FF;
+    border-color: #3E68FF;
+}
+
+/* Active page on light header: blue text, normal pill border (no fill) */
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a,
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a {
+    color: #3E68FF !important;
+}
+
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item:not(:hover) > a .pxl-menu-item-text,
+.pxl-header-elementor-main.px-header--transparent .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item:not(:hover) > a .pxl-menu-item-text,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item:not(:hover) > a .pxl-menu-item-text,
+.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item:not(:hover) > a .pxl-menu-item-text {
+    background-color: transparent;
+    border-color: #d0d0cb;
+}
+
 /* ─── DARK HEADER (px-header--default / inner pages) ─────── */
 .pxl-header-elementor-main.px-header--default {
     background-color: #000000;
@@ -92,21 +136,14 @@
 .pxl-header-elementor-main.px-header--default .pxl-nav-menu .pxl-menu-primary > li > a .pxl-menu-item-text {
     border-color: rgba(255, 255, 255, 0.35);
 }
-/* Active-item hover pill: white on dark header */
+/* Dark inner pages: white pill, blue text on hover/active */
 .pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-divider-move {
     background-color: #FFFFFF;
 }
-/* Sticky header uses a separate wrapper; apply same white pill there */
-.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-divider-move {
-    background-color: #FFFFFF;
-}
-/* Ensure text is blue when white pill is under active/hover item */
+/* Ensure text is blue when white pill is under active/hover item (dark header only) */
 .pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a,
 .pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a,
-.pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a,
-.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a,
-.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a,
-.pxl-header-elementor-sticky .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a {
+.pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a {
     color: #3E68FF;
 }
 
