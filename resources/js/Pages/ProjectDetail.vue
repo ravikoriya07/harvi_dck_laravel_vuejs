@@ -9,74 +9,49 @@
                         <article class="pxl-portfolio-single">
                             <div id="pxl-main-content" class="elementor pxl-project-detail">
 
-            <!-- ── 1. TITLE + CATEGORIES ─────────────────────────────────────────── -->
-            <section
-                class="elementor-section elementor-top-section elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none pd-hero-section">
-                <div class="elementor-container elementor-column-gap-no">
+            <!-- ── 1. HERO ───────────────────────────────────────────────────────── -->
+            <section class="pd-hero-section">
+                <div class="pd-hero-inner">
+                    <AppLink href="/projects" class="pd-back-link">← All Projects</AppLink>
 
-                    <!-- Left: project title (66.709%) -->
-                    <div class="elementor-column elementor-top-column pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no pd-hero-left">
-                        <div class="elementor-widget-wrap elementor-element-populated">
-                            <div class="elementor-element elementor-widget elementor-widget-pxl_heading">
-                                <div class="elementor-widget-container pd-title-wrap">
-                                    <div class="pxl-heading px-sub-title-default style-default-style">
-                                        <div class="pxl-heading--inner">
-                                            <h6 class="pd-hero-title pxl-item--title pxl-split-text style-default highlight-default split-in-right">
-                                                {{ project.title }}
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ul v-if="categories.length" class="pd-category-list" aria-label="Project categories">
+                        <li v-for="cat in categories" :key="cat" class="pd-category-pill">{{ cat }}</li>
+                    </ul>
 
-                    <!-- Right: categories (33.291%, bottom-aligned) -->
-                    <div class="elementor-column elementor-top-column pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no pd-hero-right">
-                        <div class="elementor-widget-wrap elementor-element-populated pd-cats-wrap">
-                            <div class="elementor-element elementor-widget elementor-widget-pxl_post_categories">
-                                <div class="elementor-widget-container">
-                                    <ul class="pxl-portfolio-categories">
-                                        <li v-for="cat in categories" :key="cat">{{ cat }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <h1 class="pd-hero-title">{{ project.title }}</h1>
                 </div>
             </section>
 
-            <!-- ── 2. PROPERTIES BAR ─────────────────────────────────────────────── -->
-            <section class="pd-props-section">
-                <div class="pd-props-max">
-                <div class="pd-props-bar">
-                    <div v-if="project.category" class="pd-prop-item">
-                        <span class="pd-prop-label">Project Type</span>
-                        <span class="pd-prop-value">{{ project.category }}</span>
-                    </div>
-                    <div v-if="project.value" class="pd-prop-item">
-                        <span class="pd-prop-label">Value</span>
-                        <span class="pd-prop-value">{{ project.value }}</span>
-                    </div>
-                    <div v-if="project.date" class="pd-prop-item">
-                        <span class="pd-prop-label">Date</span>
-                        <span class="pd-prop-value">{{ project.date }}</span>
-                    </div>
-                    <div v-if="project.status" class="pd-prop-item">
-                        <span class="pd-prop-label">Status</span>
-                        <span class="pd-prop-value">{{ project.status }}</span>
-                    </div>
-                    <div v-if="project.client" class="pd-prop-item pd-prop-client">
-                        <span class="pd-prop-label">Client</span>
-                        <span class="pd-prop-value">{{ project.client }}</span>
-                    </div>
-                </div>
+            <!-- ── 2. PROJECT META ───────────────────────────────────────────────── -->
+            <section v-if="hasMetaFields" class="pd-meta-section">
+                <div class="pd-meta-card">
+                    <dl class="pd-meta-grid">
+                        <div v-if="project.category" class="pd-meta-item">
+                            <dt class="pd-meta-label">Project Type</dt>
+                            <dd class="pd-meta-value">{{ project.category }}</dd>
+                        </div>
+                        <div v-if="project.value" class="pd-meta-item">
+                            <dt class="pd-meta-label">Value</dt>
+                            <dd class="pd-meta-value">{{ project.value }}</dd>
+                        </div>
+                        <div v-if="project.date" class="pd-meta-item">
+                            <dt class="pd-meta-label">Date</dt>
+                            <dd class="pd-meta-value">{{ project.date }}</dd>
+                        </div>
+                        <div v-if="project.status" class="pd-meta-item">
+                            <dt class="pd-meta-label">Status</dt>
+                            <dd class="pd-meta-value">{{ project.status }}</dd>
+                        </div>
+                        <div v-if="project.client" class="pd-meta-item">
+                            <dt class="pd-meta-label">Client</dt>
+                            <dd class="pd-meta-value">{{ project.client }}</dd>
+                        </div>
+                    </dl>
                 </div>
             </section>
 
             <!-- ── 3. GALLERY CAROUSEL ───────────────────────────────────────────── -->
-            <div v-if="galleryImages.length" class="pd-gallery-max">
+            <div v-if="galleryImages.length" class="pd-gallery-max pd-gallery-section">
             <div class="pd-gallery-wrap" ref="galleryWrap">
                 <div class="swiper pd-gallery-swiper">
                     <div class="swiper-wrapper">
@@ -248,6 +223,16 @@ const categories = computed(() =>
 
 const galleryImages = computed(() => props.project.gallery ?? []);
 
+const hasMetaFields = computed(() =>
+    Boolean(
+        props.project.category ||
+        props.project.value ||
+        props.project.date ||
+        props.project.status ||
+        props.project.client,
+    ),
+);
+
 // ── Gallery Swiper ────────────────────────────────────────────────────────────
 const galleryWrap   = ref(null);
 const prevBtn       = ref(null);
@@ -295,126 +280,122 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* ── Hero section ────────────────────────────────────────────────────────────── */
+/* ── Layout rail (matches projects-elementor-generated.css) ───────────────── */
+.pd-hero-inner,
+.pd-meta-section,
+.pd-gallery-section {
+    max-width: var(--pd-meta-gallery-max, 1600px);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────────────────── */
 .pd-hero-section {
-    padding-top: 76px !important;
-    padding-bottom: 0 !important;
+    padding-top: clamp(40px, 6vw, 72px);
+    padding-bottom: 0;
 }
 
-/* Outer shell width comes from `grid.css` + `#pxl-main > .container.pd-project-shell`
-   in projects-elementor-generated.css — do not force hero rail wider here. */
-
-/* Left column 66.709% */
-.pd-hero-left {
-    width: 66.709% !important;
-    max-width: 66.709% !important;
+.pd-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
 }
 
-/* Right column 33.291% — categories aligned to bottom-right */
-.pd-hero-right {
-    width: 33.291% !important;
-    max-width: 33.291% !important;
+.pd-back-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #3e68ff;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
 }
 
-.pd-cats-wrap {
-    justify-content: flex-end !important;
-    align-content: flex-end !important;
-    align-items: flex-end !important;
+.pd-back-link:hover {
+    opacity: 0.75;
 }
 
-/* Align hero content with meta/gallery rail (global `.pd-hero-left` offset removed for boxed layout) */
-.pd-hero-left > .elementor-element-populated {
-    margin-left: 0 !important;
-}
-
-.pd-title-wrap {
-    padding: 0 24px 0 0;
-}
-
-/* Category tag — reference: small caps, tracked, muted */
-.pxl-portfolio-categories {
+.pd-category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.pxl-portfolio-categories li {
-    font-size: 13px;
-    font-weight: 400;
+.pd-category-pill {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #d0d0cb;
+    border-radius: 19.5px;
+    font-size: 12px;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: #9c9c9c;
-    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: #111;
+    line-height: 1.2;
+    background: #fff;
 }
 
-/* Title typography — matches reference: ~48px / weight 500 */
 .pd-hero-title {
-    font-size: 48px !important;
-    font-weight: 500 !important;
-    line-height: 1em !important;
-    letter-spacing: -0.9px !important;
-    word-spacing: 2px !important;
-    margin-bottom: 0 !important;
-}
-
-/* ── Properties bar (boxed — width from `.pd-props-max` in theme CSS) ─────────── */
-.pd-props-section {
-    width: 100%;
-    margin-top: 50px;
-    margin-bottom: 0;
-    box-sizing: border-box;
-}
-
-.pd-props-bar {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    background-color: #f1f2eb;
-    padding: 41px clamp(24px, 6vw, 110px) 43px;
-    gap: 0;
-}
-
-/* Items 1-4: 15% each */
-.pd-prop-item {
-    flex: 0 0 15%;
-    width: 15%;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    padding-right: 2px;
-}
-
-/* Client: 40% with left indent matching reference (margin-left: 60px on inner widget) */
-.pd-prop-client {
-    flex: 0 0 40%;
-    width: 40%;
-    padding-right: 0;
-    padding-left: 60px;
-}
-
-.pd-prop-label {
-    display: block;
-    font-size: 13px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1.3px;
-    line-height: 30px;
-    color: #7a7a7a;
-}
-
-.pd-prop-value {
-    display: block;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 30px;
     margin: 0;
+    max-width: 22em;
+    font-size: clamp(1.75rem, 4.5vw, 3rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     color: #111;
 }
 
-/* ── Gallery carousel (inside `.pd-gallery-max` rail) ──────────────────────── */
-.pd-gallery-max {
-    width: 100%;
-    margin-top: 0;
+/* ── Project meta card ─────────────────────────────────────────────────────── */
+.pd-meta-section {
+    margin-top: clamp(24px, 4vw, 40px);
+}
+
+.pd-meta-card {
+    background: #f5f4f0;
+    border: 1px solid #e3e3dc;
+    border-radius: 12px;
+    padding: clamp(20px, 3.5vw, 36px) clamp(20px, 4vw, 40px);
+}
+
+.pd-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 28px);
+    margin: 0;
+}
+
+.pd-meta-item {
+    margin: 0;
+    min-width: 0;
+}
+
+.pd-meta-label {
+    display: block;
+    margin: 0 0 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #7a7a7a;
+    line-height: 1.4;
+}
+
+.pd-meta-value {
+    margin: 0;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.4;
+    color: #111;
+    word-break: break-word;
+}
+
+/* ── Gallery ───────────────────────────────────────────────────────────────── */
+.pd-gallery-section {
+    margin-top: clamp(24px, 4vw, 40px);
 }
 
 .pd-gallery-wrap {
@@ -582,80 +563,13 @@ onUnmounted(() => {
 }
 
 /* ── Responsive ──────────────────────────────────────────────────────────────── */
-@media (max-width: 1366px) {
-    .pd-props-bar {
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-}
-
 @media (max-width: 1024px) {
-    .pd-hero-section {
-        padding-top: 50px !important;
-    }
-
     .pd-hero-title {
-        font-size: 48px !important;
-    }
-
-    .pd-props-section {
-        margin-top: 30px;
-    }
-
-    .pd-prop-item {
-        flex: 0 0 33.333%;
-        width: 33.333%;
-        margin-bottom: 15px;
-    }
-
-    .pd-prop-client {
-        flex: 0 0 33.333%;
-        width: 33.333%;
-        padding-left: 0;
-    }
-
-    .pd-props-bar {
-        flex-wrap: wrap;
-    }
-}
-
-@media (max-width: 880px) {
-    .pd-hero-title {
-        font-size: 38px !important;
+        max-width: none;
     }
 }
 
 @media (max-width: 767px) {
-    .pd-hero-left,
-    .pd-hero-right {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    .pd-hero-title {
-        font-size: 34px !important;
-    }
-
-    .pd-title-wrap {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .pd-cats-wrap {
-        justify-content: flex-start !important;
-        align-items: flex-start !important;
-        align-content: flex-start !important;
-        margin-top: -10px !important;
-    }
-
-    .pd-prop-item,
-    .pd-prop-client {
-        flex: 0 0 50%;
-        width: 50%;
-        padding-left: 0;
-        padding-right: 10px;
-    }
-
     .pd-gallery-btn {
         width: 40px;
         height: 40px;
@@ -681,22 +595,12 @@ onUnmounted(() => {
 
 @media (max-width: 575px) {
     .pd-hero-section {
-        padding-top: 30px !important;
+        padding-top: 28px;
     }
 
-    .pd-hero-title {
-        font-size: 28px !important;
-    }
-
-    .pd-props-bar {
-        padding: 20px;
-        gap: 16px 0;
-    }
-
-    .pd-prop-item,
-    .pd-prop-client {
-        flex: 0 0 100%;
-        width: 100%;
+    .pd-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 </style>

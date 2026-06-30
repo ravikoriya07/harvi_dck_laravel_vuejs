@@ -55,7 +55,8 @@
    Shared outer rail (--pd-meta-gallery-max); inner boxed blocks stay 1260px (readable column).
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.pxl-project-detail {
+.pxl-project-detail,
+.pxl-social-value-detail {
     --pd-meta-gallery-max: 1600px;
 }
 
@@ -74,7 +75,8 @@
 }
 
 /* Detail column width (~reference screenshot): 90% of `.pd-project-shell` rail, centred */
-#pxl-main #pxl-main-content.pxl-project-detail.elementor {
+#pxl-main #pxl-main-content.pxl-project-detail.elementor,
+#pxl-main #pxl-main-content.pxl-social-value-detail.elementor {
     width: 90%;
     max-width: 90%;
     margin-left: auto;
@@ -85,7 +87,8 @@
 }
 
 @media (max-width: 1024px) {
-    #pxl-main #pxl-main-content.pxl-project-detail.elementor {
+    #pxl-main #pxl-main-content.pxl-project-detail.elementor,
+    #pxl-main #pxl-main-content.pxl-social-value-detail.elementor {
         width: 92%;
         max-width: 92%;
     }
@@ -97,13 +100,10 @@
 }
 
 @media (max-width: 767px) {
-    #pxl-main #pxl-main-content.pxl-project-detail.elementor {
+    #pxl-main #pxl-main-content.pxl-project-detail.elementor,
+    #pxl-main #pxl-main-content.pxl-social-value-detail.elementor {
         width: 100%;
         max-width: 100%;
-    }
-
-    .pxl-project-detail .pd-hero-left > .elementor-element-populated {
-        margin-left: 0;
     }
 }
 
@@ -117,8 +117,9 @@
     padding: 0;
 }
 
-/* Never stretch project detail sections to the viewport (Vue pages omit stretch JS reliably). */
-.pxl-project-detail > .elementor-section {
+/* Never stretch detail sections to the viewport (Vue pages omit stretch JS reliably). */
+.pxl-project-detail > .elementor-section,
+.pxl-social-value-detail > .elementor-section {
     width: 100%;
     max-width: 100%;
     margin-left: auto;
@@ -126,31 +127,21 @@
     box-sizing: border-box;
 }
 
-.pxl-project-detail .pd-hero-section > .elementor-container {
-    max-width: var(--pd-meta-gallery-max);
+.pxl-project-detail .pd-hero-section,
+.pxl-project-detail .pd-meta-section,
+.pxl-social-value-detail .pd-hero-section,
+.pxl-social-value-detail .pd-meta-section {
     width: 100%;
+    max-width: var(--pd-meta-gallery-max);
     margin-left: auto;
     margin-right: auto;
-    padding-left: 0;
-    padding-right: 0;
     box-sizing: border-box;
 }
 
-/* Title column offset — reference `.elementor-element-a08450a` populated */
-.pxl-project-detail .pd-hero-left > .elementor-element-populated {
-    margin: 0 0 0 50px;
-}
-
-.pxl-project-detail .pd-title-wrap .pxl-heading--inner {
-    max-width: 948px;
-}
-
-.pxl-project-detail .pd-cats-wrap .elementor-widget-container {
-    margin: 0 0 4px 0;
-}
-
 .pxl-project-detail .pd-props-max,
-.pxl-project-detail .pd-gallery-max {
+.pxl-project-detail .pd-gallery-max,
+.pxl-social-value-detail .pd-props-max,
+.pxl-social-value-detail .pd-gallery-max {
     max-width: var(--pd-meta-gallery-max);
     width: 100%;
     margin-left: auto;
@@ -161,7 +152,8 @@
 }
 
 /* Scope / description rail (boxed section `.pd-body-section`) — outer matches hero/meta/gallery */
-.pxl-project-detail .pd-body-section > .elementor-container {
+.pxl-project-detail .pd-body-section > .elementor-container,
+.pxl-social-value-detail .pd-body-section > .elementor-container {
     max-width: var(--pd-meta-gallery-max) !important;
     width: 100%;
     margin-left: auto;
@@ -172,13 +164,15 @@
 }
 
 /* Inner Elementor rows: narrower text column (reference ~1260px) centred inside the rail */
-.pxl-project-detail .elementor-inner-section.elementor-section-boxed > .elementor-container {
+.pxl-project-detail .elementor-inner-section.elementor-section-boxed > .elementor-container,
+.pxl-social-value-detail .elementor-inner-section.elementor-section-boxed > .elementor-container {
     max-width: 1260px !important;
     margin-left: auto;
     margin-right: auto;
 }
 
-.pxl-project-detail .pd-nav-section > .elementor-container {
+.pxl-project-detail .pd-nav-section > .elementor-container,
+.pxl-social-value-detail .pd-nav-section > .elementor-container {
     max-width: var(--pd-meta-gallery-max) !important;
     width: 100%;
     margin-left: auto;
