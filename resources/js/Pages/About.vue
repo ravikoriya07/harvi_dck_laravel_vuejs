@@ -7,7 +7,7 @@
             <AboutStorySection />
             <AboutApproachSection />
             <AboutCEOSection />
-            <AboutTeamGridSection />
+            <AboutTeamGridSection :team-members="teamMembers" />
             <AboutPartnersSection />
             <AboutParallaxSection />
         </div>
@@ -25,4 +25,11 @@ import AboutCEOSection from '@/Components/Sections/AboutCEOSection.vue';
 import AboutTeamGridSection from '@/Components/Sections/AboutTeamGridSection.vue';
 import AboutPartnersSection from '@/Components/Sections/AboutPartnersSection.vue';
 import AboutParallaxSection from '@/Components/Sections/AboutParallaxSection.vue';
+
+defineProps({
+    teamMembers: {
+        type: Array,
+        default: () => [],
+    },
+});
 </script>

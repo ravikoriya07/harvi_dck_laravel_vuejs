@@ -2,7 +2,7 @@
 
 namespace App\Filament\Admin\Resources\SocialValues\Schemas;
 
-use App\Filament\Support\AvifFileUpload;
+use App\Filament\Support\ManagedImageUpload;
 use App\Models\SocialValue;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -46,26 +46,17 @@ class SocialValueForm
                     ->required()
                     ->helperText('Lower numbers appear first on the listing.'),
 
-                FileUpload::make('image')
-                    ->label('Thumbnail Image')
-                    ->image()
-                    ->disk('public')
-                    ->directory('social-values')
-                    ->imageEditor()
-                    ->maxSize(5120)
-                    ->helperText('Upload the thumbnail. Images are stored as AVIF automatically.')
-                    ->tap(fn (FileUpload $field) => AvifFileUpload::configure($field))
-                    ->formatStateUsing(function ($state) {
-                        if (is_string($state) && str_starts_with($state, '/')) {
-                            return null;
-                        }
-
-                        return $state;
-                    })
-                    ->dehydrateStateUsing(function (?string $state, ?SocialValue $record): ?string {
-                        return $state ?? $record?->image;
-                    })
-                    ->columnSpanFull(),
+                ManagedImageUpload::configure(
+                    FileUpload::make('image')
+                        ->label('Thumbnail Image')
+                        ->image()
+                        ->disk('public')
+                        ->directory('social-values')
+                        ->imageEditor()
+                        ->maxSize(5120)
+                        ->helperText('Upload the thumbnail. Images are stored as AVIF automatically.')
+                        ->columnSpanFull(),
+                ),
 
                 TextInput::make('value')
                     ->label('Value')

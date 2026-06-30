@@ -2,7 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Projects\Schemas;
 
-use App\Filament\Support\AvifFileUpload;
+use App\Filament\Support\ManagedImageUpload;
 use App\Models\Project;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -47,28 +47,17 @@ class ProjectForm
                     ->helperText('Lower numbers appear first on the listing.'),
 
                 // ── Thumbnail image ───────────────────────────────────────────────
-                FileUpload::make('image')
-                    ->label('Thumbnail Image')
-                    ->image()
-                    ->disk('public')
-                    ->directory('projects')
-                    ->imageEditor()
-                    ->maxSize(5120)
-                    ->helperText('Upload the project thumbnail. Images are stored as AVIF automatically.')
-                    ->tap(fn (FileUpload $field) => AvifFileUpload::configure($field))
-                    ->formatStateUsing(function ($state) {
-                        // Legacy absolute paths (/assets/...) are not on the public disk,
-                        // so return null to avoid broken preview; they still work on the frontend.
-                        if (is_string($state) && str_starts_with($state, '/')) {
-                            return null;
-                        }
-                        return $state;
-                    })
-                    ->dehydrateStateUsing(function (?string $state, ?Project $record): ?string {
-                        // Preserve existing path when no new file is uploaded.
-                        return $state ?? $record?->image;
-                    })
-                    ->columnSpanFull(),
+                ManagedImageUpload::configure(
+                    FileUpload::make('image')
+                        ->label('Thumbnail Image')
+                        ->image()
+                        ->disk('public')
+                        ->directory('projects')
+                        ->imageEditor()
+                        ->maxSize(5120)
+                        ->helperText('Upload the project thumbnail. Images are stored as AVIF automatically.')
+                        ->columnSpanFull(),
+                ),
 
                 // ── Detail page fields ───────────────────────────────────────────
 

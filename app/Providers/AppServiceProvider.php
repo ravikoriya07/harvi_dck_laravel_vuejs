@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\ProjectImage;
 use App\Models\SocialValue;
 use App\Models\SocialValueImage;
+use App\Models\TeamMember;
 use App\Observers\AvifImageObserver;
 use App\Services\AvifConversionService;
 use Illuminate\Support\Facades\Schema;
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         ProjectImage::saved(fn (ProjectImage $image) => $observer->saved($image));
         SocialValue::saved(fn (SocialValue $socialValue) => $observer->saved($socialValue));
         SocialValueImage::saved(fn (SocialValueImage $image) => $observer->saved($image));
+        TeamMember::saved(fn (TeamMember $member) => $observer->saved($member));
         Blog::saved(fn (Blog $blog) => $observer->saved($blog));
         ContactCard::saved(fn (ContactCard $card) => $observer->saved($card));
     }

@@ -30,5 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JobSeeder::class);
 
         $this->call(BlogSeeder::class);
+
+        $this->call(TeamMemberSeeder::class);
     }
 }

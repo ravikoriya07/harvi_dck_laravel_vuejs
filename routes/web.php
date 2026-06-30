@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SocialValueController;
 use App\Http\Middleware\UseCardLayout;
 use App\Models\Project;
+use App\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -30,7 +31,20 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return Inertia::render('About');
+    $teamMembers = TeamMember::query()
+        ->orderBy('sort_order')
+        ->orderBy('id')
+        ->get()
+        ->map(fn (TeamMember $member) => [
+            'name'        => $member->name,
+            'position'    => $member->position,
+            'image'       => $member->image_url,
+            'description' => $member->description,
+        ]);
+
+    return Inertia::render('About', [
+        'teamMembers' => $teamMembers,
+    ]);
 });
 
 Route::get('/contact', function () {

@@ -74,7 +74,7 @@ class SocialValue extends Model
         }
 
         if (str_starts_with($path, '/')) {
-            return ImagePaths::preferAvif($path);
+            return asset(ImagePaths::preferAvif($path));
         }
 
         $resolved = ImagePaths::preferAvif($path);

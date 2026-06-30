@@ -36,7 +36,8 @@
                                                             <a>{{ member.name }}</a>
                                                         </h3>
                                                         <div class="pxl-item--position">{{ member.position }}</div>
-                                                        <div class="pxl-item--desc"></div>
+                                                        <div v-if="member.description" class="pxl-item--desc">{{ member.description }}</div>
+                                                        <div v-else class="pxl-item--desc"></div>
                                                         <div class="pxl-item--social"></div>
                                                     </div>
                                                 </div>
@@ -57,17 +58,10 @@
 </template>
 
 <script setup>
-const teamMembers = [
-    { name: 'Anvarjon Umarov',    position: 'Project Manager',           image: '/assets/images/1.avif' },
-    { name: 'Iurii Sama',         position: 'Division Manager',          image: '/assets/images/21.avif' },
-    { name: 'Oleksandr Morozov',  position: 'Contracts Manager',         image: '/assets/images/9-scaled.avif' },
-    { name: 'Tom Sessions',       position: 'Managing Quantity Surveyor', image: '/assets/images/8.avif' },
-    { name: 'Omar Khalid',        position: 'Social Value Manager',       image: '/assets/images/22-scaled.avif' },
-    { name: 'Iurii Torchynovich', position: 'Senior Quantity Surveyor',   image: '/assets/images/18.avif' },
-    { name: 'Ruslan Bizans',      position: 'Project Manager',           image: '/assets/images/11.avif' },
-    { name: 'Janis Bizans',       position: 'Site Manager',              image: '/assets/images/16.avif' },
-    { name: 'Josh Newman',        position: 'Site Manager',              image: '/assets/images/10.avif' },
-    { name: 'Dmytro Biienko',     position: 'Quantity Surveyor',         image: '/assets/images/6-1.avif' },
-    { name: 'Andrei Capinus',     position: 'RLO',                       image: '/assets/images/17.avif' },
-];
+defineProps({
+    teamMembers: {
+        type: Array,
+        default: () => [],
+    },
+});
 </script>
