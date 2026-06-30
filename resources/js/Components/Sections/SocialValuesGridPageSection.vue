@@ -14,39 +14,39 @@
                         data-layout="fitRows">
                         <div class="pxl-grid-inner pxl-grid-masonry row" data-gutter="15">
                             <div
-                                v-for="project in projects"
-                                :key="project.href"
+                                v-for="item in items"
+                                :key="item.href"
                                 class="pxl-grid-item col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                 <div class="pxl-post--inner" data-wow-duration="1.2s">
                                     <div class="pxl-post--featured">
-                                        <AppLink :href="project.href">
+                                        <AppLink :href="item.href">
                                             <img
                                                 loading="lazy"
                                                 decoding="async"
                                                 class="no-lazyload"
-                                                :src="project.image"
-                                                :alt="project.title"
+                                                :src="item.image"
+                                                :alt="item.title"
                                             />
                                         </AppLink>
                                         <div class="pxl-post-content-hide">
                                             <div class="pxl-post-content-top">
                                                 <div class="pxl-post--content"></div>
                                             </div>
-                                            <AppLink class="btn-readmore" :href="project.href">
+                                            <AppLink class="btn-readmore" :href="item.href">
                                                 <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 20 20" height="17" viewBox="0 0 20 20" width="21">
                                                     <path d="m12 2-1.4 1.4 5.6 5.6h-16.2v2h16.2l-5.6 5.6 1.4 1.4 8-8z" fill="#fff" />
                                                 </svg>
                                             </AppLink>
                                         </div>
-                                        <AppLink class="pxl-item--overlay" :href="project.href"></AppLink>
+                                        <AppLink class="pxl-item--overlay" :href="item.href"></AppLink>
                                     </div>
 
                                     <div class="pxl-post--holder">
                                         <div class="pxl-post--category">
-                                            <a href="#">{{ project.category }}</a>
+                                            <a href="#">{{ item.category }}</a>
                                         </div>
                                         <h5 class="pxl-post--title">
-                                            <AppLink :href="project.href">{{ project.title }}</AppLink>
+                                            <AppLink :href="item.href">{{ item.title }}</AppLink>
                                         </h5>
                                     </div>
                                 </div>
@@ -57,21 +57,22 @@
                     <div v-else class="pxl-grid-empty" role="status">
                         <div class="pxl-grid-empty-icon" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" />
-                                <path d="M3 9h18" />
-                                <path d="M9 21V9" />
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                                <line x1="8" y1="7" x2="16" y2="7" />
+                                <line x1="8" y1="11" x2="14" y2="11" />
                             </svg>
                         </div>
-                        <h2 class="pxl-grid-empty-title">No projects to display</h2>
+                        <h2 class="pxl-grid-empty-title">No social values to display</h2>
                         <p class="pxl-grid-empty-text">
-                            There are no projects available at the moment. Please check back soon.
+                            There are no social value stories available at the moment. Please check back soon.
                         </p>
                     </div>
 
                     <div
                         v-if="!isEmpty && pagination.last_page > 1"
                         class="navigation page-links pxl-projects-pagination-nav"
-                        aria-label="Projects pagination">
+                        aria-label="Social Values pagination">
                         <template v-for="(link, index) in normalizedLinks" :key="index">
                             <template v-if="link.variant === 'prev'">
                                 <Link
@@ -135,11 +136,10 @@ const props = defineProps({
     },
 });
 
-const projects = computed(() => props.pagination.data ?? []);
+const items = computed(() => props.pagination.data ?? []);
 
-const isEmpty = computed(() => (props.pagination.total ?? projects.value.length) === 0);
+const isEmpty = computed(() => (props.pagination.total ?? items.value.length) === 0);
 
-/** Laravel labels prev/next as long text; theme CSS uses fixed 36×36 tiles — classify for compact « » controls */
 const normalizedLinks = computed(() => {
     const links = props.pagination.links ?? [];
     return links.map((link) => {

@@ -8,6 +8,8 @@ const PAGE_STYLES = {
     Services: ['services-elementor-generated.css'],
     Projects: ['projects-elementor-generated.css'],
     ProjectDetail: ['projects-elementor-generated.css'],
+    SocialValues: ['projects-elementor-generated.css'],
+    SocialValueDetail: ['projects-elementor-generated.css'],
     Blog: ['blog-elementor-generated.css', 'blog-detail-elementor-generated.css'],
     BlogDetail: ['blog-elementor-generated.css', 'blog-detail-elementor-generated.css'],
     Contact: ['contact-elementor-generated.css'],

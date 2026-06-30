@@ -164,6 +164,7 @@ const navItems = computed(() => {
         { label: 'About US', href: '/about' },
         { label: 'Services', href: '/services' },
         { label: 'Projects', href: '/projects' },
+        { label: 'Social Values', href: '/social-values' },
         { label: 'Contact Us', href: '/contact' },
         { label: 'Blog', href: '/blog' },
         { label: 'Current Jobs', href: '/jobs' },

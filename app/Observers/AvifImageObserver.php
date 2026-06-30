@@ -6,6 +6,8 @@ use App\Models\Blog;
 use App\Models\ContactCard;
 use App\Models\Project;
 use App\Models\ProjectImage;
+use App\Models\SocialValue;
+use App\Models\SocialValueImage;
 use App\Services\AvifConversionService;
 
 final class AvifImageObserver
@@ -14,11 +16,13 @@ final class AvifImageObserver
         private AvifConversionService $converter,
     ) {}
 
-    public function saved(Project|ProjectImage|Blog|ContactCard $model): void
+    public function saved(Project|ProjectImage|SocialValue|SocialValueImage|Blog|ContactCard $model): void
     {
         $column = match (true) {
             $model instanceof Project => 'image',
             $model instanceof ProjectImage => 'path',
+            $model instanceof SocialValue => 'image',
+            $model instanceof SocialValueImage => 'path',
             $model instanceof Blog => 'image_path',
             $model instanceof ContactCard => 'profile_image',
             default => null,

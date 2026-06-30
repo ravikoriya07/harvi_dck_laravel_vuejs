@@ -12,6 +12,8 @@ return [
         'services/*' => ['services-elementor-generated.css'],
         'projects' => ['projects-elementor-generated.css'],
         'works/*' => ['projects-elementor-generated.css'],
+        'social-values' => ['projects-elementor-generated.css'],
+        'social-values/*' => ['projects-elementor-generated.css'],
         'blog' => ['blog-elementor-generated.css', 'blog-detail-elementor-generated.css'],
         'blog/*' => ['blog-elementor-generated.css', 'blog-detail-elementor-generated.css'],
         'contact' => ['contact-elementor-generated.css'],

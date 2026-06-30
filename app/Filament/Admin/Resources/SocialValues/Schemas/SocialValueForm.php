@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Projects\Schemas;
+namespace App\Filament\Admin\Resources\SocialValues\Schemas;
 
 use App\Filament\Support\AvifFileUpload;
-use App\Models\Project;
+use App\Models\SocialValue;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
@@ -12,7 +12,7 @@ use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
-class ProjectForm
+class SocialValueForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -31,14 +31,14 @@ class ProjectForm
 
                 TextInput::make('slug')
                     ->required()
-                    ->unique(Project::class, 'slug', ignoreRecord: true)
+                    ->unique(SocialValue::class, 'slug', ignoreRecord: true)
                     ->maxLength(255)
-                    ->helperText('Detail page URL: /works/{slug}'),
+                    ->helperText('Detail page URL: /social-values/{slug}'),
 
                 TextInput::make('category')
                     ->required()
                     ->maxLength(255)
-                    ->placeholder('e.g. Construction, Refurbishment'),
+                    ->placeholder('e.g. Community, Sustainability'),
 
                 TextInput::make('sort_order')
                     ->numeric()
@@ -46,45 +46,40 @@ class ProjectForm
                     ->required()
                     ->helperText('Lower numbers appear first on the listing.'),
 
-                // ── Thumbnail image ───────────────────────────────────────────────
                 FileUpload::make('image')
                     ->label('Thumbnail Image')
                     ->image()
                     ->disk('public')
-                    ->directory('projects')
+                    ->directory('social-values')
                     ->imageEditor()
                     ->maxSize(5120)
-                    ->helperText('Upload the project thumbnail. Images are stored as AVIF automatically.')
+                    ->helperText('Upload the thumbnail. Images are stored as AVIF automatically.')
                     ->tap(fn (FileUpload $field) => AvifFileUpload::configure($field))
                     ->formatStateUsing(function ($state) {
-                        // Legacy absolute paths (/assets/...) are not on the public disk,
-                        // so return null to avoid broken preview; they still work on the frontend.
                         if (is_string($state) && str_starts_with($state, '/')) {
                             return null;
                         }
+
                         return $state;
                     })
-                    ->dehydrateStateUsing(function (?string $state, ?Project $record): ?string {
-                        // Preserve existing path when no new file is uploaded.
+                    ->dehydrateStateUsing(function (?string $state, ?SocialValue $record): ?string {
                         return $state ?? $record?->image;
                     })
                     ->columnSpanFull(),
 
-                // ── Detail page fields ───────────────────────────────────────────
-
                 TextInput::make('value')
-                    ->label('Project Value')
+                    ->label('Value')
                     ->maxLength(255)
                     ->placeholder('e.g. £3.5 million')
                     ->helperText('Displayed in the properties bar on the detail page.'),
 
                 TextInput::make('date')
-                    ->label('Project Date')
+                    ->label('Date')
                     ->maxLength(255)
                     ->placeholder('e.g. November 2023'),
 
                 TextInput::make('status')
-                    ->label('Project Status')
+                    ->label('Status')
                     ->maxLength(255)
                     ->placeholder('e.g. Completed in 2024'),
 
@@ -101,7 +96,7 @@ class ProjectForm
                     ->columnSpanFull(),
 
                 RichEditor::make('description')
-                    ->label('Project Description')
+                    ->label('Description')
                     ->nullable()
                     ->toolbarButtons([
                         'bold', 'italic', 'underline', 'strike',
@@ -109,7 +104,7 @@ class ProjectForm
                         'bulletList', 'orderedList', 'blockquote',
                         'link', 'redo', 'undo',
                     ])
-                    ->helperText('Full project description shown on the detail page.')
+                    ->helperText('Full description shown on the detail page.')
                     ->columnSpanFull(),
             ]);
     }

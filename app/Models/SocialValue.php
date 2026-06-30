@@ -1,0 +1,148 @@
+<?php
+
+namespace App\Models;
+
+use App\Support\ImagePaths;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
+
+class SocialValue extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'category',
+        'image',
+        'sort_order',
+        'value',
+        'date',
+        'status',
+        'client',
+        'scope',
+        'description',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'sort_order' => 'integer',
+        ];
+    }
+
+    protected static function booted(): void
+    {
+        static::deleting(function (SocialValue $socialValue): void {
+            $socialValue->galleryImages()->get()->each(fn (SocialValueImage $image) => $image->delete());
+
+            self::deleteManagedPublicDiskPath($socialValue->image ?? '');
+        });
+    }
+
+    /**
+     * Delete storage-backed files under the public disk (social-values/* only).
+     * Legacy absolute URLs (/assets/…) and remote URLs are skipped.
+     */
+    public static function deleteManagedPublicDiskPath(string $path): void
+    {
+        if ($path === '' || str_starts_with($path, '/') || preg_match('#\.\.#', $path)) {
+            return;
+        }
+
+        if (! str_starts_with($path, 'social-values/')) {
+            return;
+        }
+
+        $disk = Storage::disk('public');
+
+        if ($disk->exists($path)) {
+            $disk->delete($path);
+        }
+    }
+
+    public static function absoluteMediaUrl(string $path): string
+    {
+        if ($path === '') {
+            return '';
+        }
+
+        if (preg_match('#^https?://#i', $path)) {
+            return $path;
+        }
+
+        if (str_starts_with($path, '/')) {
+            return ImagePaths::preferAvif($path);
+        }
+
+        $resolved = ImagePaths::preferAvif($path);
+
+        if (Storage::disk('public')->exists($resolved)) {
+            return asset('storage/' . $resolved);
+        }
+
+        $legacy = ImagePaths::resolveLegacyAssetByBasename(basename($path));
+
+        if ($legacy !== null) {
+            return $legacy;
+        }
+
+        return asset('storage/' . $path);
+    }
+
+    /** @return HasMany<SocialValueImage, $this> */
+    public function galleryImages(): HasMany
+    {
+        return $this->hasMany(SocialValueImage::class)->orderBy('sort_order')->orderBy('id');
+    }
+
+    public function getImageUrlAttribute(): string
+    {
+        return static::absoluteMediaUrl($this->image ?? '');
+    }
+
+    /**
+     * Ordered gallery URLs for the detail carousel (social_value_images only).
+     */
+    public function getGalleryUrlsAttribute(): array
+    {
+        $paths = $this->relationalGalleryPathsOrdered();
+
+        if ($paths === [] && ($this->image ?? '') !== '') {
+            $paths = [$this->image];
+        }
+
+        return array_values(array_filter(array_map(fn (string $p) => static::absoluteMediaUrl($p), $paths)));
+    }
+
+    /**
+     * @return list<string>
+     */
+    protected function relationalGalleryPathsOrdered(): array
+    {
+        if ($this->relationLoaded('galleryImages')) {
+            return $this->galleryImages
+                ->pluck('path')
+                ->filter(fn ($p) => is_string($p) && $p !== '')
+                ->values()
+                ->all();
+        }
+
+        if (! $this->exists) {
+            return [];
+        }
+
+        return $this->galleryImages()
+            ->pluck('path')
+            ->filter(fn ($p) => is_string($p) && $p !== '')
+            ->values()
+            ->all();
+    }
+
+    public function getDetailHrefAttribute(): string
+    {
+        return '/social-values/' . $this->slug;
+    }
+}

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\JobApplicationResumeController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SocialValueController;
 use App\Http\Middleware\UseCardLayout;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,9 @@ Route::get('/services/{slug}', function () {
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/works/{slug}', [ProjectController::class, 'show'])->name('projects.show');
+
+Route::get('/social-values', [SocialValueController::class, 'index'])->name('social-values.index');
+Route::get('/social-values/{slug}', [SocialValueController::class, 'show'])->name('social-values.show');
 
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{slug}', [JobController::class, 'show'])->name('jobs.show');
