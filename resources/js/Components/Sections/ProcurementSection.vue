@@ -77,8 +77,8 @@
 
                     <div class="elementor-element elementor-element-f2b4d29 elementor-widget elementor-widget-pxl_tabs_slip">
                         <div class="elementor-widget-container">
-                            <div class="pxl-tabs-slip pxl-tabs-slip1 style-2">
-                                <div class="pxl-tabs--content" style="width: 300%;">
+            <div class="pxl-tabs-slip pxl-tabs-slip1 style-2">
+                <div class="pxl-tabs--content">
                                     <nav class="anchor-nav" role="navigation">
                                         <a href="#tab-item-0" class="anchor">1</a>
                                         <a href="#tab-item-1" class="anchor">2</a>
@@ -103,7 +103,13 @@
                                                 <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-fe1041d pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no"
                                                      data-element_type="column">
                                                     <div class="elementor-widget-wrap elementor-element-populated">
-                                                        <div class="pxl-column-bg-parallax" data-parallax="[]"></div>
+                                                        <div class="pxl-column-bg-parallax"
+                                                             data-parallax="[]"
+                                                             :style="{
+                                                                 backgroundImage: `url('${tab.image}')`,
+                                                                 backgroundPosition: 'center center',
+                                                                 backgroundSize: 'cover',
+                                                             }"></div>
                                                         <div class="elementor-element elementor-widget elementor-widget-pxl_image elementor-hidden-desktop elementor-hidden-laptop elementor-hidden-tablet_extra elementor-hidden-tablet elementor-hidden-mobile_extra">
                                                             <div class="elementor-widget-container">
                                                                 <div class="pxl-image-single df pxl-disable-parallax-sm pxl-hide-sr-lg">
@@ -202,14 +208,14 @@ const tabs = [
         elementorClass: 'elementor-10728',
         title: 'Working with People',
         desc: 'Our experience in occupied properties has taught us the value of communication, care and respect. We work closely with residents, clients and partners to ensure every project runs smoothly with minimal disruption.',
-        image: '/assets/images/home1-appro1.avif',
+        image: '/assets/images/work7.avif',
         bgImage: '/assets/images/home-1-01.avif',
     },
     {
         elementorClass: 'elementor-10729',
         title: 'Safety & Compliance First',
         desc: 'Health, safety and compliance are at the core of everything we do. From fire safety works to complex refurbishments, our processes meet the highest industry standards and regulatory requirements.',
-        image: '/assets/images/home1-appro2.avif',
+        image: '/assets/images/work8.avif',
         bgImage: '/assets/images/home-3-s3-3.avif',
     },
 ];

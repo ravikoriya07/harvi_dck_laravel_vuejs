@@ -115,7 +115,7 @@ function initWidgetsInScope($scope) {
         elementorFrontend.hooks.doAction('frontend/element_ready/pxl_client_carousel.default', $scope);
     }
 
-    if ($(window).width() > 767 &&
+    if ($(window).width() > 1024 &&
         $scope.find('.pxl-tabs-slip1.style-2, .pxl-tabs-slip.style-1').length > 0) {
         elementorFrontend.hooks.doAction('frontend/element_ready/pxl_tabs_slip.default', $scope);
     }
@@ -265,6 +265,51 @@ export function scheduleThemeEffects({ hideLoader = true, scope = null } = {}) {
             }
         }, 8000);
     }, 16);
+}
+
+function destroySwipersInScope($scope) {
+    $scope.find('.pxl-swiper-container').each(function () {
+        if (this.swiper) {
+            this.swiper.destroy(true, true);
+        }
+    });
+}
+
+function clearWidgetInitFlags(scope) {
+    if (! scope) {
+        return;
+    }
+
+    scope.querySelectorAll(`[${SPLIT_INIT_ATTR}]`).forEach((el) => {
+        el.removeAttribute(SPLIT_INIT_ATTR);
+    });
+
+    scope.querySelectorAll(`[${ENTRANCE_BOUND_ATTR}]`).forEach((el) => {
+        el.removeAttribute(ENTRANCE_BOUND_ATTR);
+    });
+}
+
+/**
+ * Re-run Maiko/Elementor widgets inside a DOM subtree (split-text, swipers, entrances).
+ */
+export function reinitWidgetsInScope(scope) {
+    if (! legacyScriptsReady() || ! scope) {
+        return false;
+    }
+
+    const $scope = jQuery(scope);
+
+    if (! $scope.length) {
+        return false;
+    }
+
+    clearWidgetInitFlags(scope);
+    destroySwipersInScope($scope);
+    $scope.find('.pxl-swiper-slider, .pxl-header-mobile-elementor').css('opacity', '1');
+    initWidgetsInScope($scope);
+    scheduleScrollTriggerRefresh();
+
+    return true;
 }
 
 function initPendingWidgetsInMain() {

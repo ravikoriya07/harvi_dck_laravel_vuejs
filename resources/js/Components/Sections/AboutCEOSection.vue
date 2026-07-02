@@ -40,7 +40,7 @@
                 <div class="elementor-widget-wrap elementor-element-populated">
                     <div class="elementor-element elementor-element-274ddd0c elementor-widget-widescreen__width-initial elementor-widget elementor-widget-pxl_image">
                         <div class="elementor-widget-container">
-                            <div class="pxl-image-single noise pxl-disable-parallax-sm pxl-hide-sr-lg">
+                            <div class="pxl-image-single noise pxl-disable-parallax-sm">
                                 <div class="pxl-item--inner">
                                     <div class="pxl-item--image noise">
                                         <img loading="lazy" decoding="async" width="832" height="1159"

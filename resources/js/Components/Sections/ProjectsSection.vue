@@ -1,5 +1,6 @@
 <template>
     <!-- Projects heading + divider -->
+    <div ref="projectsRoot">
     <section
         class="elementor-section elementor-top-section elementor-element elementor-element-66518a7 elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl_parallax_bg_img_noise-none pxl-bg-color-none pxl-section-overlay-none">
         <div class="elementor-container elementor-column-gap-extended">
@@ -78,8 +79,7 @@
 
     <!-- Portfolio carousel -->
     <section
-        class="elementor-section elementor-top-section elementor-element elementor-element-0b58c60 elementor-section-full_width elementor-section-stretched pxl-full-content-with-space-start elementor-section-height-default elementor-section-height-default pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl_parallax_bg_img_noise-none pxl-bg-color-none pxl-section-overlay-none"
-        style="padding-left: calc( (100% - 1290px)/2);">
+        class="elementor-section elementor-top-section elementor-element elementor-element-0b58c60 elementor-section-full_width elementor-section-stretched pxl-full-content-with-space-start home-projects-carousel-section elementor-section-height-default elementor-section-height-default pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl_parallax_bg_img_noise-none pxl-bg-color-none pxl-section-overlay-none">
         <div class="elementor-container elementor-column-gap-no">
             <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-55f6511 pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
                 <div class="elementor-widget-wrap elementor-element-populated">
@@ -89,7 +89,7 @@
                             <div class="pxl-swiper-slider pxl-portfolio-carousel pxl-portfolio-carousel5 pxl-portfolio-style1">
                                 <div class="pxl-carousel-inner">
                                     <div class="pxl-swiper-container" dir="ltr"
-                                         data-settings='{"slide_direction":"horizontal","slide_percolumn":1,"slide_percolumnfill":1,"slide_mode":"slide","center_slide":false,"slides_to_show":2,"slides_to_show_xxl":2,"slides_to_show_lg":2,"slides_to_show_md":2,"slides_to_show_sm":1,"slides_to_show_xs":1,"slides_to_scroll":1,"slides_gutter":30,"arrow":true,"pagination":true,"pagination_type":"progressbar","autoplay":false,"pause_on_hover":false,"pause_on_interaction":true,"delay":5000,"loop":false,"speed":500,"center":false}'>
+                                         data-settings='{"slide_direction":"horizontal","slide_percolumn":1,"slide_percolumnfill":1,"slide_mode":"slide","center_slide":false,"slides_to_show":2,"slides_to_show_xxl":2,"slides_to_show_lg":2,"slides_to_show_md":2,"slides_to_show_sm":1,"slides_to_show_xs":1,"slides_to_scroll":1,"slides_gutter":30,"arrow":true,"pagination":true,"pagination_type":"progressbar","autoplay":true,"pause_on_hover":true,"pause_on_interaction":true,"delay":5000,"loop":true,"speed":700,"center":false}'>
                                         <div class="pxl-swiper-wrapper">
                                             <div v-for="project in projects" :key="project.href" class="pxl-swiper-slide" data-filter="">
                                                 <div class="pxl-post--inner">
@@ -146,15 +146,44 @@
             </div>
         </div>
     </section>
+    </div>
 </template>
 
 <script setup>
+import { nextTick, onMounted, useTemplateRef } from 'vue';
 import AppLink from '@/Components/AppLink.vue';
+import { reinitWidgetsInScope } from '@/composables/themeEffects';
+
+const projectsRoot = useTemplateRef('projectsRoot');
 
 defineProps({
     projects: {
         type: Array,
         default: () => [],
     },
+});
+
+onMounted(() => {
+    nextTick(() => {
+        const bootstrap = () => {
+            if (! projectsRoot.value) {
+                return false;
+            }
+
+            return reinitWidgetsInScope(projectsRoot.value);
+        };
+
+        if (bootstrap()) {
+            return;
+        }
+
+        const retry = setInterval(() => {
+            if (bootstrap()) {
+                clearInterval(retry);
+            }
+        }, 200);
+
+        setTimeout(() => clearInterval(retry), 8000);
+    });
 });
 </script>

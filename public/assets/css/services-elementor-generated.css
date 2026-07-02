@@ -4,7 +4,7 @@
     --margin-bottom: 0px;
     --margin-left: 0px;
     --margin-right: 0px;
-    --padding-top: 100px;
+    --padding-top: 0px;
     --padding-bottom: 0px;
     --padding-left: 0px;
     --padding-right: 0px;
@@ -15,6 +15,37 @@
     background-color: #f1f2eb;
     background-image: url("/assets/images/home_bg.avif");
     background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.elementor-5160 .services-page-hero {
+    position: relative;
+    isolation: isolate;
+}
+
+.elementor-5160 .services-page-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.45) 100%),
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, transparent 70%);
+}
+
+.elementor-5160 .services-page-hero > .e-con-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(380px, 52vh, 580px);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 60px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .elementor-5160 .elementor-element.elementor-element-d93430d {
@@ -38,11 +69,50 @@
 }
 
 .elementor-5160 .elementor-element.elementor-element-d93430d .pxl-heading .pxl-item--title {
-    color: #f3f3f3;
-    -webkit-text-stroke-color: #f3f3f3;
+    color: #FFFFFF;
+    -webkit-text-stroke-color: #FFFFFF;
     font-size: 75px;
-    margin-bottom: 146px;
-    white-space: nowrap;
+    font-weight: 700;
+    line-height: 1.12;
+    margin-bottom: 0;
+    white-space: normal;
+}
+
+.elementor-5160 .services-page-hero__title {
+    display: block;
+    opacity: 0;
+    animation: services-hero-title-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.elementor-5160 .services-page-hero__title-line {
+    display: block;
+    color: #FFFFFF;
+    text-shadow:
+        0 2px 24px rgba(0, 0, 0, 0.45),
+        0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.elementor-5160 .services-page-hero__title-line + .services-page-hero__title-line {
+    margin-top: 0.08em;
+}
+
+@keyframes services-hero-title-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .elementor-5160 .services-page-hero__title {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
 }
 
 .elementor-5160 .elementor-element.elementor-element-d93430d .pxl-heading .pxl-item--title.style-outline .pxl-text-line-backdrop svg {
@@ -126,6 +196,16 @@
 }
 
 @media (max-width: 767px) {
+    .elementor-5160 .services-page-hero > .e-con-inner {
+        min-height: clamp(280px, 45vh, 400px);
+        padding: 40px 16px;
+    }
+
+    .elementor-5160 .elementor-element.elementor-element-a3bb56c:not(.elementor-motion-effects-element-type-background),
+    .elementor-5160 .elementor-element.elementor-element-a3bb56c > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+        background-position: center center;
+    }
+
     .elementor-5160 .elementor-element.elementor-element-d93430d .pxl-heading .pxl-item--title {
         font-size: 34px;
     }

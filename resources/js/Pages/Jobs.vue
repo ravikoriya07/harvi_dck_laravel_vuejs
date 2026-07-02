@@ -16,7 +16,10 @@
                 <div class="jobs-hero-overlay"></div>
                 <div class="container">
                     <div class="jobs-hero-content">
-                        <h1 class="jobs-hero-title">Current Jobs</h1>
+                        <h1 class="jobs-hero-title">
+                            <span class="jobs-hero-title-line">Current</span>
+                            <span class="jobs-hero-title-line">Jobs</span>
+                        </h1>
                         <p class="jobs-hero-sub">Join our team — explore the latest opportunities at DCK Construction</p>
                         <nav class="jobs-breadcrumb" aria-label="Breadcrumb">
                             <AppLink href="/" class="jobs-breadcrumb-link">Home</AppLink>
@@ -55,9 +58,18 @@ defineProps({
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 .jobs-hero {
     position: relative;
-    padding: 80px 0 70px;
+    min-height: clamp(380px, 52vh, 580px);
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     overflow: hidden;
+}
+
+.jobs-hero .container {
+    width: 100%;
+    max-width: 100%;
 }
 
 .jobs-hero-photo {
@@ -73,33 +85,63 @@ defineProps({
 .jobs-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(13,27,42,0.82) 0%, rgba(19,85,165,0.72) 100%);
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.45) 100%),
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, transparent 70%);
 }
 
 .jobs-hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    width: 100%;
 }
 
 .jobs-hero-title {
-    font-size: 44px;
-    font-weight: 800;
+    font-size: 75px;
+    font-weight: 700;
     color: #fff;
     margin: 0;
-    letter-spacing: -0.01em;
-    line-height: 1.15;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    opacity: 0;
+    animation: jobs-hero-title-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.jobs-hero-title-line {
+    display: block;
+    text-shadow:
+        0 2px 24px rgba(0, 0, 0, 0.45),
+        0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.jobs-hero-title-line + .jobs-hero-title-line {
+    margin-top: 0.08em;
+}
+
+@keyframes jobs-hero-title-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .jobs-hero-sub {
     font-size: 17px;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.9);
     margin: 0;
-    max-width: 480px;
+    max-width: 520px;
     line-height: 1.55;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
 }
 
 /* Breadcrumb */
@@ -124,13 +166,33 @@ defineProps({
 .jobs-breadcrumb-current { color: rgba(255,255,255,0.9); font-weight: 500; }
 
 /* ── Responsive ────────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-    .jobs-hero        { padding: 60px 0 52px; }
-    .jobs-hero-title  { font-size: 32px; }
-    .jobs-hero-sub    { font-size: 15px; }
+@media (prefers-reduced-motion: reduce) {
+    .jobs-hero-title {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
 }
 
-@media (max-width: 480px) {
-    .jobs-hero-title { font-size: 26px; }
+@media (max-width: 1200px) {
+    .jobs-hero-title { font-size: 65px; }
+}
+
+@media (max-width: 1024px) {
+    .jobs-hero {
+        min-height: clamp(320px, 48vh, 500px);
+    }
+
+    .jobs-hero-title { font-size: 54px; }
+}
+
+@media (max-width: 768px) {
+    .jobs-hero {
+        min-height: clamp(280px, 45vh, 400px);
+        padding: 40px 16px;
+    }
+
+    .jobs-hero-title { font-size: 34px; }
+    .jobs-hero-sub    { font-size: 15px; }
 }
 </style>

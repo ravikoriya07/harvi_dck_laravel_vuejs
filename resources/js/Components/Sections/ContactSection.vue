@@ -151,7 +151,7 @@
                                 <div class="elementor-widget-wrap elementor-element-populated">
                                     <div class="elementor-element elementor-element-b878c08 elementor-widget elementor-widget-pxl_image">
                                         <div class="elementor-widget-container">
-                                            <div class="pxl-image-single df pxl-disable-parallax-sm pxl-hide-sr-lg">
+                                            <div class="pxl-image-single df pxl-disable-parallax-sm">
                                                 <div class="pxl-item--inner" data-wow-delay="120ms">
                                                     <div class="pxl-item--image df move-from-right">
                                                         <img loading="lazy" decoding="async"

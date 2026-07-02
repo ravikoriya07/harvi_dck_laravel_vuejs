@@ -33,6 +33,12 @@ class TeamMembersTable
                     ->sortable()
                     ->wrap(),
 
+                TextColumn::make('department.name')
+                    ->label('Department / Group')
+                    ->searchable()
+                    ->sortable()
+                    ->wrap(),
+
                 TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable(),

@@ -1,5 +1,5 @@
 <template>
-    <!-- Team grid: all DCK staff members -->
+    <!-- Team grid: DCK staff members grouped by department -->
     <section
         class="elementor-section elementor-top-section elementor-element elementor-element-3b0a10c0 elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none"
         data-settings='{"stretch_section":"section-stretched"}'>
@@ -16,37 +16,50 @@
                                         <span class="filter-item active" data-filter="*">All</span>
                                     </div>
                                 </div>
-                                <div class="pxl-grid-inner pxl-grid-masonry row" data-gutter="15">
 
-                                    <div v-for="member in teamMembers" :key="member.name"
-                                         class="pxl-grid-item col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                                        <div class="pxl-item--inner wow skewIn">
-                                            <div class="pxl-effect--direction">
-                                                <div class="pxl-item--image">
-                                                    <a>
-                                                        <img decoding="async"
-                                                             :src="member.image"
-                                                             class="no-lazyload attachment-full"
-                                                             :alt="member.name" />
-                                                    </a>
-                                                </div>
-                                                <div class="pxl-item--holder pxl-effect--content">
-                                                    <div class="pxl-item--meta pxl-flex-grow">
-                                                        <h3 class="pxl-item--title">
-                                                            <a>{{ member.name }}</a>
-                                                        </h3>
-                                                        <div class="pxl-item--position">{{ member.position }}</div>
-                                                        <div v-if="member.description" class="pxl-item--desc">{{ member.description }}</div>
-                                                        <div v-else class="pxl-item--desc"></div>
-                                                        <div class="pxl-item--social"></div>
+                                <div v-for="group in teamGroups" :key="group.name"
+                                     class="pxl-team-department-group">
+                                    <div class="pxl-team-department-heading">
+                                        <div class="pxl-heading px-sub-title-default style-default-style">
+                                            <div class="pxl-heading--inner">
+                                                <h3 class="pxl-item--title style-default highlight-default">
+                                                    {{ group.name }}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pxl-grid-inner pxl-grid-masonry row" data-gutter="15">
+                                        <div v-for="member in group.members" :key="member.name"
+                                             class="pxl-grid-item col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="pxl-item--inner wow skewIn">
+                                                <div class="pxl-effect--direction">
+                                                    <div class="pxl-item--image">
+                                                        <a>
+                                                            <img decoding="async"
+                                                                 :src="member.image"
+                                                                 class="no-lazyload attachment-full"
+                                                                 :alt="member.name" />
+                                                        </a>
+                                                    </div>
+                                                    <div class="pxl-item--holder pxl-effect--content">
+                                                        <div class="pxl-item--meta pxl-flex-grow">
+                                                            <h3 class="pxl-item--title">
+                                                                <a>{{ member.name }}</a>
+                                                            </h3>
+                                                            <div class="pxl-item--position">{{ member.position }}</div>
+                                                            <div v-if="member.description" class="pxl-item--desc">{{ member.description }}</div>
+                                                            <div v-else class="pxl-item--desc"></div>
+                                                            <div class="pxl-item--social"></div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="grid-sizer col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12"></div>
+                                        <div class="grid-sizer col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12"></div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -59,7 +72,7 @@
 
 <script setup>
 defineProps({
-    teamMembers: {
+    teamGroups: {
         type: Array,
         default: () => [],
     },

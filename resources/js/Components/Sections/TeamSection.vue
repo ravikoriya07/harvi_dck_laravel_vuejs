@@ -23,7 +23,7 @@
                     <!-- Staff photo -->
                     <div class="elementor-element elementor-element-3d7cd7b elementor-widget elementor-widget-pxl_image">
                         <div class="elementor-widget-container">
-                            <div class="pxl-image-single df pxl-disable-parallax-sm pxl-hide-sr-lg">
+                            <div class="pxl-image-single df pxl-disable-parallax-sm">
                                 <div class="pxl-item--inner" data-wow-delay="120ms">
                                     <div class="pxl-item--image df">
                                         <img loading="lazy" decoding="async"

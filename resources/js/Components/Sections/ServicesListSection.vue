@@ -31,7 +31,7 @@
                                 <div class="pxl-grid-inner pxl-list-inner d-flex-wrap relative row" data-gutter="15">
                                     <div
                                         v-for="(service, index) in services"
-                                        :key="service.title"
+                                        :key="service.href"
                                         class="pxl-grid-item col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
                                         :style="{ zIndex: index + 1 }">
                                         <div class="pxl-post--inner" data-wow-duration="1.2s">
@@ -81,55 +81,10 @@
 <script setup>
 import AppLink from '@/Components/AppLink.vue';
 
-const services = [
-    {
-        title: 'Structural Works',
-        href: '/services/architecture-services',
-        desc: 'Structural Works Division delivers reliable, safe, and fully compliant structural solutions for residential, commercial, and public-sector projects.',
-        image: '/assets/images/bg-3-795x653.avif',
-        alt: 'construction silhouette',
+defineProps({
+    services: {
+        type: Array,
+        default: () => [],
     },
-    {
-        title: 'Disrepairs / Responsive',
-        href: '/services/disrepair',
-        desc: 'We provide a comprehensive Disrepair and Responsive Maintenance Service designed to resolve property issues quickly, efficiently, and to the highest standard.',
-        image: '/assets/images/image-2-795x475.avif',
-        alt: 'image-2',
-    },
-    {
-        title: 'Loft / Extension',
-        href: '/services/loft-extension',
-        desc: 'We specialise in creating additional living space through expertly designed loft conversions and house extensions.',
-        image: '/assets/images/image_1-768x653.avif',
-        alt: 'image_1',
-    },
-    {
-        title: 'Roofing Works',
-        href: '/services/roofing',
-        desc: 'We deliver specialist roofing works, including full roof replacements, structural repairs, and weatherproofing solutions.',
-        image: '/assets/images/Gemini_Generated_Image_q882q7q882q7q882-e1762265925894-795x608.avif',
-        alt: 'Roofing Works',
-    },
-    {
-        title: 'Aids and Adaptations',
-        href: '/services/adaptions',
-        desc: 'We provide specialist mobility adaptations, including Level Access Showers, disabled access ramps, and lifting solutions.',
-        image: '/assets/images/LAS18-795x653.avif',
-        alt: 'LAS18',
-    },
-    {
-        title: 'Fire Safety Works',
-        href: '/services/fire-safety',
-        desc: 'DCK delivers comprehensive fire safety solutions, including fire door installations, compartmentation works, and fire-stopping measures.',
-        image: '/assets/images/JOB-17-of-155-scaled-795x653.avif',
-        alt: 'Fire Safety Works',
-    },
-    {
-        title: 'Refurbishment / General Build',
-        href: '/services/general-build',
-        desc: 'We have vast experience of delivering high-quality construction projects in several specialist sectors with strong client partnerships.',
-        image: '/assets/images/image_5-4-795x653.avif',
-        alt: 'Refurbishment / General Build',
-    },
-];
+});
 </script>

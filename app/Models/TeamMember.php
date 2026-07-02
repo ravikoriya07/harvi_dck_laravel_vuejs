@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Support\ImagePaths;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 
 class TeamMember extends Model
@@ -14,6 +15,7 @@ class TeamMember extends Model
     protected $fillable = [
         'name',
         'position',
+        'team_department_id',
         'image',
         'description',
         'sort_order',
@@ -77,6 +79,11 @@ class TeamMember extends Model
         }
 
         return asset('storage/' . $path);
+    }
+
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(TeamDepartment::class, 'team_department_id');
     }
 
     public function getImageUrlAttribute(): string

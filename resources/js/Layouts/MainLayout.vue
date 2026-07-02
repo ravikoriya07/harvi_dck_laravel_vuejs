@@ -23,16 +23,19 @@ import {
 
 const page = usePage();
 
-function applyPageAssets() {
-    ensurePageStyles(page.component);
+async function applyPageAssets() {
+    await ensurePageStyles(page.component);
+    scheduleThemeEffects({ hideLoader: true });
 }
 
-watch(() => page.component, applyPageAssets);
+watch(() => page.component, () => {
+    void applyPageAssets();
+});
 
 onMounted(() => {
-    applyPageAssets();
     bindMobileMenuHandlers();
     observeDynamicSections();
+    void applyPageAssets();
 });
 
 router.on('start', () => {
@@ -40,6 +43,6 @@ router.on('start', () => {
 });
 
 router.on('finish', () => {
-    scheduleThemeEffects({ hideLoader: true });
+    void applyPageAssets();
 });
 </script>

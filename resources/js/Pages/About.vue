@@ -7,7 +7,7 @@
             <AboutStorySection />
             <AboutApproachSection />
             <AboutCEOSection />
-            <AboutTeamGridSection :team-members="teamMembers" />
+            <AboutTeamGridSection :team-groups="teamGroups" />
             <AboutPartnersSection />
             <AboutParallaxSection />
         </div>
@@ -27,7 +27,7 @@ import AboutPartnersSection from '@/Components/Sections/AboutPartnersSection.vue
 import AboutParallaxSection from '@/Components/Sections/AboutParallaxSection.vue';
 
 defineProps({
-    teamMembers: {
+    teamGroups: {
         type: Array,
         default: () => [],
     },

@@ -81,7 +81,7 @@
                                     <div class="pxl-swiper-container" dir="ltr"
                                          data-settings='{"slide_direction":"horizontal","slide_percolumn":1,"slide_mode":"slide","slides_to_show":3,"slides_to_show_xxl":3,"slides_to_show_lg":3,"slides_to_show_md":2,"slides_to_show_sm":1,"slides_to_show_xs":1,"slides_to_scroll":1,"slides_gutter":30,"arrow":true,"pagination":true,"pagination_type":"bullets","autoplay":true,"pause_on_hover":true,"pause_on_interaction":true,"delay":5000,"loop":true,"speed":700,"center":true}'>
                                         <div class="pxl-swiper-wrapper">
-                                            <div v-for="service in services" :key="service.title" class="pxl-swiper-slide">
+                                            <div v-for="service in services" :key="service.href" class="pxl-swiper-slide">
                                                 <div class="pxl-post--inner">
                                                     <div class="pxl-post--featured">
                                                         <AppLink :href="service.href">
@@ -129,42 +129,10 @@
 <script setup>
 import AppLink from '@/Components/AppLink.vue';
 
-const services = [
-    {
-        title: 'Refurbishment / General Build',
-        href: '/services/general-build',
-        image: '/assets/images/image_5-4.avif',
-        desc: 'We have vast experience of delivering high-quality construction projects in several specialist sectors. Key to our success is building strong client partnerships and our ability to work quickly, safely and efficiently in challenging environments.',
+defineProps({
+    services: {
+        type: Array,
+        default: () => [],
     },
-    {
-        title: 'Fire Safety Works',
-        href: '/services/fire-safety',
-        image: '/assets/images/JOB-17-of-155-scaled.avif',
-        desc: 'DCK delivers comprehensive fire safety solutions, including fire door installations, compartmentation works, and fire-stopping measures. Our expert team ensures compliance with the latest regulations, enhancing the safety and protection of residential and commercial properties.',
-    },
-    {
-        title: 'Aids and Adaptations',
-        href: '/services/adaptions',
-        image: '/assets/images/LAS18.avif',
-        desc: 'We provide specialist mobility adaptations, including Level Access Showers, disabled access ramps, and lifting solutions. Working with a trusted supply chain, we install stairlifts, hoists, platform lifts, and door entry systems.',
-    },
-    {
-        title: 'Roofing',
-        href: '/services/roofing',
-        image: '/assets/images/service-sg1.avif',
-        desc: 'Our roofing specialists deliver high-quality solutions for residential and commercial properties. From flat roof systems and pitched roofing to emergency repairs and full replacements, we ensure lasting protection.',
-    },
-    {
-        title: 'Architecture Services',
-        href: '/services/architecture-services',
-        image: '/assets/images/service-sg2-833x534.avif',
-        desc: 'Our architectural team offers comprehensive design and planning services, ensuring your project meets both aesthetic aspirations and regulatory requirements from concept through to completion.',
-    },
-    {
-        title: 'Disrepair',
-        href: '/services/disrepair',
-        image: '/assets/images/service-sg3-1-360x534.avif',
-        desc: 'We specialise in addressing property disrepair for social housing, local authorities, and housing associations. Our rapid-response teams ensure properties are restored to a high standard with minimal disruption.',
-    },
-];
+});
 </script>

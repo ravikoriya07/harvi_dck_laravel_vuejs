@@ -102,7 +102,7 @@
                 <div class="elementor-widget-wrap elementor-element-populated">
                     <div class="elementor-element elementor-element-53757912 elementor-widget elementor-widget-pxl_image">
                         <div class="elementor-widget-container">
-                            <div class="pxl-image-single circle pxl-disable-parallax-sm pxl-hide-sr-lg pxl-parallax-scroll-over">
+                            <div class="pxl-image-single circle pxl-disable-parallax-sm pxl-parallax-scroll-over">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
                                     <defs>
                                         <clipPath id="clip-circle">

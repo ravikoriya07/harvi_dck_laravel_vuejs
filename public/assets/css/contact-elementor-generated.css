@@ -5,6 +5,27 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ── Hero section ────────────────────────────────────────────────────── */
+.elementor-1306 .contact-page-hero {
+    position: relative;
+    isolation: isolate;
+    padding: 0 !important;
+    min-height: clamp(380px, 52vh, 580px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.elementor-1306 .contact-page-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.45) 100%),
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, transparent 70%);
+}
+
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-container > .elementor-column > .elementor-widget-wrap {
     align-content: center;
     align-items: center;
@@ -13,16 +34,22 @@
 .elementor-1306 .elementor-element.elementor-element-4c0ec44:not(.elementor-motion-effects-element-type-background),
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
     background-color: transparent;
-    background-image: linear-gradient(180deg, #AAAAAA 0%, #f2295b 100%);
+    background-image: none;
 }
 
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-container {
-    max-width: 500px;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    padding: 60px 20px;
+    box-sizing: border-box;
 }
 
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 .pxl-section-bg-parallax {
     background-image: url('/assets/images/pt-about1.avif');
     background-position: center center;
+    background-size: cover;
 }
 
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 .pxl-overlay--image.pxl-overlay--imageLeft .bg-image {
@@ -39,7 +66,6 @@
 
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 {
     transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 254px 0px 70px 0px;
 }
 
 .elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-background-overlay {
@@ -48,18 +74,57 @@
 
 /* ── Hero heading ────────────────────────────────────────────────────── */
 .elementor-1306 .elementor-element.elementor-element-916b968.elementor-element {
-    --align-self: flex-start;
+    --align-self: center;
 }
 
 .elementor-1306 .elementor-element.elementor-element-916b968 {
     text-align: center;
+    width: 100%;
 }
 
 .elementor-1306 .elementor-element.elementor-element-916b968 .elementor-heading-title {
-    font-family: "Roboto", Sans-serif;
-    font-size: 70px;
-    font-weight: 600;
+    font-family: inherit;
+    font-size: 75px;
+    font-weight: 700;
+    line-height: 1.12;
     color: #FFFFFF;
+    margin: 0;
+}
+
+.elementor-1306 .contact-page-hero__title {
+    display: block;
+    opacity: 0;
+    animation: contact-hero-title-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.elementor-1306 .contact-page-hero__title-line {
+    display: block;
+    text-shadow:
+        0 2px 24px rgba(0, 0, 0, 0.45),
+        0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.elementor-1306 .contact-page-hero__title-line + .contact-page-hero__title-line {
+    margin-top: 0.08em;
+}
+
+@keyframes contact-hero-title-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .elementor-1306 .contact-page-hero__title {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
 }
 
 /* ── Offices heading section ─────────────────────────────────────────── */
@@ -72,6 +137,9 @@
 }
 
 .elementor-1306 .elementor-element.elementor-element-ac3fb01 .pxl-heading .pxl-item--title {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.12;
     margin-bottom: 27px;
 }
 
@@ -304,9 +372,7 @@
     background-repeat: no-repeat;
 }
 
-/* ── Hero top padding accounts for the solid black header height (~110px) */
-/* The solid header (px-header--default) sits in document flow, so the hero
-   section's own padding (254px top) already clears it. No extra margin needed. */
+/* ── Hero sits directly below the solid header (in document flow) ───── */
 
 /* ═══════════════════════════════════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
@@ -314,8 +380,8 @@
 
 /* Tablet landscape (≤1200px) */
 @media (max-width: 1200px) {
-    .elementor-1306 .elementor-element.elementor-element-4c0ec44 {
-        padding: 100px 0px 70px 0px;
+    .elementor-1306 .elementor-element.elementor-element-916b968 .elementor-heading-title {
+        font-size: 65px;
     }
 
     .elementor-1306 .elementor-element.elementor-element-7aca63b iframe {
@@ -325,8 +391,12 @@
 
 /* Tablet portrait (≤1024px) */
 @media (max-width: 1024px) {
-    .elementor-1306 .elementor-element.elementor-element-4c0ec44 {
-        padding: 80px 0px 80px 0px;
+    .elementor-1306 .contact-page-hero {
+        min-height: clamp(320px, 48vh, 500px);
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-916b968 .elementor-heading-title {
+        font-size: 54px;
     }
 
     .elementor-1306 .elementor-element.elementor-element-da221b4 {
@@ -344,16 +414,24 @@
 
 /* Mobile (≤767px) */
 @media (max-width: 767px) {
-    .elementor-1306 .elementor-element.elementor-element-4c0ec44 {
-        padding: 80px 0px 100px 0px;
+    .elementor-1306 .contact-page-hero {
+        min-height: clamp(280px, 45vh, 400px);
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-4c0ec44 > .elementor-container {
+        padding: 40px 16px;
     }
 
     .elementor-1306 .elementor-element.elementor-element-916b968 .elementor-heading-title {
-        font-size: 44px;
+        font-size: 34px;
     }
 
     .elementor-1306 .elementor-element.elementor-element-da221b4 {
         padding: 50px 0px 0px 0px;
+    }
+
+    .elementor-1306 .elementor-element.elementor-element-ac3fb01 .pxl-heading .pxl-item--title {
+        font-size: 34px;
     }
 
     .elementor-1306 .elementor-element.elementor-element-427c71f > .elementor-element-populated {

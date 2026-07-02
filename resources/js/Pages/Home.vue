@@ -10,7 +10,7 @@
             <AboutImagesSection />
             <WhyChooseUsSection />
             <WhyUsSection />
-            <ServicesSection />
+            <ServicesSection :services="services" />
             <ClientsSection />
             <ProjectsSection :projects="projects" />
             <ProcurementSection />
@@ -35,6 +35,10 @@ import ProjectsSection from '@/Components/Sections/ProjectsSection.vue';
 
 defineProps({
     projects: {
+        type: Array,
+        default: () => [],
+    },
+    services: {
         type: Array,
         default: () => [],
     },

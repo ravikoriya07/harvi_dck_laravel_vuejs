@@ -11,7 +11,7 @@
                     <div v-for="img in images" :key="img.src"
                          :class="['elementor-element', img.elId, 'elementor-widget__width-auto', 'elementor-widget-laptop__width-initial', 'elementor-widget', 'elementor-widget-pxl_image']">
                         <div class="elementor-widget-container">
-                            <div class="pxl-image-single df pxl-disable-parallax-sm pxl-hide-sr-lg pxl-parallax-scroll-over wow skewInBottom"
+                            <div class="pxl-image-single df pxl-disable-parallax-sm pxl-parallax-scroll-over wow skewInBottom"
                                  :data-wow-delay="img.delay">
                                 <div class="pxl-item--inner" data-wow-delay="120ms" data-parallax='{"y":80}'>
                                     <div class="pxl-item--image df" :data-wow-delay="img.delay">

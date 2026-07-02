@@ -4,9 +4,9 @@
    Relative url() paths corrected to absolute /assets/images/ paths.
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* ── Hero — solid black header sits above; 110px top gap replicates reference pxl-main padding ─ */
-/* Note: elementor-generated.css zeros #pxl-wapper #pxl-main padding, so we restore
-   the 110px white gap via margin-top on the hero container itself. */
+/* ── Hero — sits directly below the solid black header (in document flow) ─ */
+/* Do not add margin-top here: margin is outside the box, so it shows as empty
+   white space above the background image. Contact page uses the same pattern. */
 .elementor-26444 .elementor-element.elementor-element-39681a1e {
     --display: flex;
     --margin-top: 0px;
@@ -17,7 +17,7 @@
     --padding-bottom: 0px;
     --padding-left: 0px;
     --padding-right: 0px;
-    margin-top: 110px;
+    margin-top: 0;
 }
 
 .elementor-26444 .elementor-element.elementor-element-39681a1e:not(.elementor-motion-effects-element-type-background),
@@ -27,6 +27,23 @@
     background-position: center right;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/* Darken busy photo behind centered headline for readable contrast */
+.elementor-26444 .about-page-hero {
+    position: relative;
+    isolation: isolate;
+}
+
+.elementor-26444 .about-page-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.45) 100%),
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, transparent 70%);
 }
 
 /* Hero inner: vertically centered copy, height matches reference viewport crop */
@@ -40,6 +57,8 @@
     box-sizing: border-box;
     padding-top: 60px;
     padding-bottom: 60px;
+    position: relative;
+    z-index: 1;
 }
 
 /* Hero heading */
@@ -64,11 +83,42 @@
     line-height: 1.12;
     margin-bottom: 0;
 }
+
+.elementor-26444 .about-page-hero__title {
+    display: block;
+    opacity: 0;
+    animation: about-hero-title-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
 .elementor-26444 .about-page-hero__title-line {
     display: block;
+    color: #FFFFFF;
+    text-shadow:
+        0 2px 24px rgba(0, 0, 0, 0.45),
+        0 1px 2px rgba(0, 0, 0, 0.35);
 }
+
 .elementor-26444 .about-page-hero__title-line + .about-page-hero__title-line {
-    margin-top: 0.12em;
+    margin-top: 0.08em;
+}
+
+@keyframes about-hero-title-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .elementor-26444 .about-page-hero__title {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
 }
 .elementor-26444 .elementor-element.elementor-element-79d97d22 .pxl-heading .pxl-item--subtitle .pxl-item--subtext {
     padding: 0;
@@ -106,7 +156,10 @@
     height: 689px !important;
 }
 .elementor-26444 .elementor-element.elementor-element-1aa439a3 .pxl-image-single img {
-    width: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
 }
 
 /* Counters — absolutely positioned over photo */
@@ -238,7 +291,12 @@ body.rtl .elementor-26444 .elementor-element.elementor-element-537ec651 { right:
 .elementor-26444 .elementor-element.elementor-element-53757912 .pxl-item--image {
     height: 714px !important;
 }
-.elementor-26444 .elementor-element.elementor-element-53757912 .pxl-image-single img { width: auto; }
+.elementor-26444 .elementor-element.elementor-element-53757912 .pxl-image-single img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
 
 /* ── CEO / Meet The DCK section (3-col) ────────────────── */
 .elementor-26444 .elementor-element.elementor-element-7f300843:not(.elementor-motion-effects-element-type-background),
@@ -299,7 +357,12 @@ body.rtl .elementor-26444 .elementor-element.elementor-element-537ec651 { right:
     width: 100% !important;
     height: 650px !important;
 }
-.elementor-26444 .elementor-element.elementor-element-274ddd0c .pxl-image-single img { width: 100%; }
+.elementor-26444 .elementor-element.elementor-element-274ddd0c .pxl-image-single img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
 
 /* Right quote col */
 .elementor-26444 .elementor-element.elementor-element-6ec4d2ff:not(.elementor-motion-effects-element-type-background) > .elementor-widget-wrap,
@@ -331,7 +394,7 @@ body.rtl .elementor-26444 .elementor-element.elementor-element-537ec651 { right:
 
 /* ── Team grid section ─────────────────────────────────── */
 .elementor-26444 .elementor-element.elementor-element-3b0a10c0 > .elementor-container { max-width: 1350px; }
-.elementor-26444 .elementor-element.elementor-element-3b0a10c0 { padding: 100px 0px 120px 0px; }
+.elementor-26444 .elementor-element.elementor-element-3b0a10c0 { padding: 100px 0px 60px 0px; }
 .elementor-26444 .elementor-element.elementor-element-52953d08.elementor-element { --flex-grow: 0; --flex-shrink: 0; }
 .elementor-26444 .elementor-element.elementor-element-52953d08 .pxl-grid .pxl-grid-item { padding: 15px; }
 .elementor-26444 .elementor-element.elementor-element-52953d08 .pxl-grid .pxl-item--inner { margin-bottom: 0px; }
@@ -342,11 +405,128 @@ body.rtl .elementor-26444 .elementor-element.elementor-element-537ec651 { right:
 
 /* ── Partners section ──────────────────────────────────── */
 .elementor-26444 .elementor-element.elementor-element-5a68fd6b > .elementor-container { max-width: 1350px; }
-.elementor-26444 .elementor-element.elementor-element-5a68fd6b { padding: 100px 0px 120px 0px; }
+.elementor-26444 .elementor-element.elementor-element-5a68fd6b {
+    padding: 0 0 120px 0;
+}
 .elementor-26444 .elementor-element.elementor-element-746c73cf .pxl-heading { text-align: center; }
 .elementor-26444 .elementor-element.elementor-element-746c73cf .pxl-heading .pxl-item--title {
     font-size: 50px;
     margin-bottom: 64px;
+}
+
+.elementor-26444 .elementor-element.elementor-element-5ddc7d3f {
+    width: 100%;
+    max-width: 100%;
+}
+.elementor-26444 .elementor-element.elementor-element-5ddc7d3f > .elementor-widget-container {
+    margin: 0;
+    padding: 0;
+}
+
+/* Static 3-column partner grid (matches reference bordered layout) */
+.elementor-26444 .about-partners-grid__row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-left: 1px solid rgba(17, 17, 17, 0.15);
+    border-right: 1px solid rgba(17, 17, 17, 0.15);
+}
+
+.elementor-26444 .about-partners-grid__cell {
+    min-height: 150px;
+    height: 150px;
+}
+
+.elementor-26444 .about-partners-grid__cell .pxl-item--inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 10px;
+    border: 1px solid rgba(17, 17, 17, 0.15);
+    border-right-width: 0;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.elementor-26444 .about-partners-grid__cell.is-first .pxl-item--inner {
+    border-left-color: transparent;
+}
+
+.elementor-26444 .about-partners-grid__cell .pxl-item--inner a {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.elementor-26444 .about-partners-grid__cell .pxl-item--inner a img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    max-height: 79px;
+    position: relative;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.elementor-26444 .about-partners-grid__cell .pxl-item--inner a img:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    opacity: 1;
+}
+
+.elementor-26444 .about-partners-grid__cell .pxl-item--inner:hover img:nth-child(1) {
+    transform: translateY(120%);
+}
+
+.elementor-26444 .about-partners-grid__cell .pxl-item--inner:hover img:nth-child(2) {
+    top: 100%;
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .elementor-26444 .about-partners-grid__row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .elementor-26444 .about-partners-grid__cell {
+        min-height: 130px;
+        height: 130px;
+    }
+
+    .elementor-26444 .about-partners-grid__cell .pxl-item--inner a img {
+        max-height: 65px;
+    }
+}
+
+@media (max-width: 767px) {
+    .elementor-26444 .about-partners-grid__row {
+        grid-template-columns: 1fr;
+        border-right: none;
+    }
+
+    .elementor-26444 .about-partners-grid__cell {
+        min-height: 120px;
+        height: auto;
+    }
+
+    .elementor-26444 .about-partners-grid__cell .pxl-item--inner {
+        border-right-width: 1px;
+        border-left-width: 1px;
+        border-left-color: rgba(17, 17, 17, 0.15);
+    }
+
+    .elementor-26444 .about-partners-grid__cell.is-first .pxl-item--inner {
+        border-left-color: rgba(17, 17, 17, 0.15);
+    }
+
+    .elementor-26444 .about-partners-grid__cell:not(:last-child) .pxl-item--inner {
+        border-bottom-width: 0;
+    }
+
+    .elementor-26444 .about-partners-grid__cell .pxl-item--inner a img {
+        max-height: 60px;
+    }
 }
 
 /* ── Full-width parallax image section ─────────────────── */
@@ -382,7 +562,6 @@ body.rtl .elementor-26444 .elementor-element.elementor-element-537ec651 { right:
 
 /* ── Tablet Extra (max 1200px) ─────────────────────────── */
 @media (max-width: 1200px) {
-    .elementor-26444 .elementor-element.elementor-element-39681a1e { margin-top: 70px; }
     .elementor-26444 .about-page-hero > .e-con-inner { min-height: clamp(280px, 45vh, 480px); padding-top: 40px; padding-bottom: 40px; }
     .elementor-26444 .elementor-element.elementor-element-79d97d22 .pxl-heading .pxl-item--title { font-size: 60px; }
     .elementor-26444 .elementor-element.elementor-element-6dd37147 { padding: 90px 0px 0px 0px; }
@@ -431,8 +610,8 @@ body.rtl .elementor-26444 .elementor-element.elementor-element-537ec651 { right:
     .elementor-26444 .elementor-element.elementor-element-53757912 .pxl-item--image { height: 100% !important; }
     .elementor-26444 .elementor-element.elementor-element-7f300843 { padding: 80px 0px 80px 0px; }
     .elementor-26444 .elementor-element.elementor-element-3ce691ff .pxl-heading .pxl-item--title { font-size: 34px; }
-    .elementor-26444 .elementor-element.elementor-element-3b0a10c0 { padding: 60px 0px 80px 0px; }
-    .elementor-26444 .elementor-element.elementor-element-5a68fd6b { padding: 60px 0px 80px 0px; }
+    .elementor-26444 .elementor-element.elementor-element-3b0a10c0 { padding: 60px 0px 40px 0px; }
+    .elementor-26444 .elementor-element.elementor-element-5a68fd6b { padding: 0 0 80px 0; }
     .elementor-26444 .elementor-element.elementor-element-746c73cf .pxl-heading .pxl-item--title { font-size: 34px; margin-bottom: 40px; }
     .elementor-26444 .elementor-element.elementor-element-6bc8ad73 > .elementor-container { min-height: 550px; }
     .elementor-26444 .elementor-element.elementor-element-6bc8ad73 .pxl-section-bg-parallax { bottom: 0; }
@@ -464,8 +643,11 @@ body.rtl .elementor-26444 .elementor-element.elementor-element-537ec651 { right:
 
 /* ── Mobile (max 767px) ────────────────────────────────── */
 @media (max-width: 767px) {
-    .elementor-26444 .elementor-element.elementor-element-39681a1e { margin-top: 50px; }
-    .elementor-26444 .about-page-hero > .e-con-inner { min-height: clamp(220px, 40vh, 360px); padding-top: 30px; padding-bottom: 30px; }
+    .elementor-26444 .about-page-hero > .e-con-inner { min-height: clamp(220px, 40vh, 360px); padding-top: 30px; padding-bottom: 30px; padding-left: 20px; padding-right: 20px; }
+    .elementor-26444 .elementor-element.elementor-element-39681a1e:not(.elementor-motion-effects-element-type-background),
+    .elementor-26444 .elementor-element.elementor-element-39681a1e > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+        background-position: center center;
+    }
     .elementor-26444 .elementor-element.elementor-element-79d97d22 .pxl-heading .pxl-item--title { font-size: 34px; }
     .elementor-26444 .elementor-element.elementor-element-6dd37147 { padding: 50px 0px 0px 0px; }
     .elementor-26444 .elementor-element.elementor-element-1aa439a3.elementor-widget-pxl_image,

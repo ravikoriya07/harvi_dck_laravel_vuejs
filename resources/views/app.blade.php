@@ -4,6 +4,7 @@
 @php
     use App\Support\PageAssets;
 
+    $cssVersion = time();
     $isJobs = request()->is('jobs*');
     $syncStylesheets = PageAssets::stylesheetsForRequest(request());
     $asyncStylesheets = array_values(array_diff(PageAssets::allStylesheetBundles(), $syncStylesheets));
@@ -29,52 +30,54 @@
     {{-- Font Awesome (local CSS + webfonts in /assets/webfonts/) --}}
     <link rel="preload" href="/assets/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/assets/fonts/all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/all.min.css?v={{ $cssVersion }}">
 
     {{-- Elementor icon font + frontend base --}}
-    <link rel="stylesheet" href="/assets/css/elementor-icons.min.css">
-    <link rel="stylesheet" href="/assets/css/custom-frontend.min.css">
-    <link rel="stylesheet" href="/assets/css/frontend.css">
-    <link rel="stylesheet" href="/assets/css/frontend2.css">
+    <link rel="stylesheet" href="/assets/css/elementor-icons.min.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/custom-frontend.min.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/frontend.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/frontend2.css?v={{ $cssVersion }}">
 
     {{-- Swiper / carousel --}}
-    <link rel="stylesheet" href="/assets/css/swiper.min.css">
-    <link rel="stylesheet" href="/assets/css/e-swiper.min.css">
+    <link rel="stylesheet" href="/assets/css/swiper.min.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/e-swiper.min.css?v={{ $cssVersion }}">
 
     {{-- Animations (animate.min.css covers fadeIn, bounce, etc.) --}}
-    <link rel="stylesheet" href="/assets/css/animate.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.min.css?v={{ $cssVersion }}">
 
     {{-- UI plugins (skip jquery-ui on homepage — not used above the fold) --}}
-    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="/assets/css/perfect-scrollbar.min.css">
-    <link rel="stylesheet" href="/assets/css/hint.min.css">
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/perfect-scrollbar.min.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/hint.min.css?v={{ $cssVersion }}">
     @if ($isJobs)
-        <link rel="stylesheet" href="/assets/css/jquery-ui.css">
+        <link rel="stylesheet" href="/assets/css/jquery-ui.css?v={{ $cssVersion }}">
     @endif
 
     {{-- Theme layout + components --}}
-    <link rel="stylesheet" href="/assets/css/grid.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/info-card.css">
-    <link rel="stylesheet" href="/assets/css/components.css">
-    <link rel="stylesheet" href="/assets/css/icons.css">
-    <link rel="stylesheet" href="/assets/css/custom-theme.css">
+    <link rel="stylesheet" href="/assets/css/grid.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/main.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/info-card.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/components.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/icons.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/custom-theme.css?v={{ $cssVersion }}">
 
     {{-- Primary theme stylesheet (maiko-style.css is the full 38K-line theme CSS) --}}
-    <link rel="stylesheet" href="/assets/css/maiko-style.css">
-    <link rel="stylesheet" href="/assets/css/maiko.css">
+    <link rel="stylesheet" href="/assets/css/maiko-style.css?v={{ $cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/maiko.css?v={{ $cssVersion }}">
 
     {{-- Current page Elementor CSS (sync) + other pages (async, for Inertia SPA navigation) --}}
     @foreach ($syncStylesheets as $stylesheet)
-        <link rel="stylesheet" href="/assets/css/{{ $stylesheet }}">
+        <link rel="stylesheet" href="/assets/css/{{ $stylesheet }}?v={{ $cssVersion }}">
     @endforeach
     @foreach ($asyncStylesheets as $stylesheet)
-        <link rel="stylesheet" href="/assets/css/{{ $stylesheet }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="/assets/css/{{ $stylesheet }}"></noscript>
+        <link rel="stylesheet" href="/assets/css/{{ $stylesheet }}?v={{ $cssVersion }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="/assets/css/{{ $stylesheet }}?v={{ $cssVersion }}"></noscript>
     @endforeach
 
     {{-- Custom overrides for Vue/Inertia structure (must load last to win specificity) --}}
-    <link rel="stylesheet" href="/assets/css/custom-fix.css">
+    <link rel="stylesheet" href="/assets/css/custom-fix.css?v={{ $cssVersion }}">
+
+    <script>window.__cssVersion = @json($cssVersion);</script>
 
     @inertiaHead
 </head>

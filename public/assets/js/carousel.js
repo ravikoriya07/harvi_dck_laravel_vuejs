@@ -28,8 +28,17 @@
     function pxl_swiper_handler($scope){
         $scope.find('.pxl-swiper-slider').each(function(index, element) {
             var $this = $(this);
+            var $container = $this.find(".pxl-swiper-container");
+
+            if (!$container.length) {
+                return;
+            }
+
+            if ($container[0].swiper) {
+                return;
+            }
             
-            var settings = $this.find(".pxl-swiper-container").data().settings;
+            var settings = $container.data().settings;
             var numberOfSlides = $this.find(".pxl-swiper-slide").length;
             var carousel_settings = {
                 direction: settings['slide_direction'],

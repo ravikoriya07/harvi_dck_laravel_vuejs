@@ -67,21 +67,19 @@
                             </figure>
                         </div>
                     </div>
-                    <!-- Arrows -->
-                    <div class="pd-gallery-btn pd-gallery-prev" ref="prevBtn">
+                    <div class="pd-gallery-btn pd-gallery-prev" ref="prevBtn" aria-label="Previous image">
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 2 6.6 3.4l5.6 5.6H-4v2h16.2l-5.6 5.6L8 18l8-8z" fill="currentColor"
                                 transform="rotate(180,10,10)" />
                         </svg>
                     </div>
-                    <div class="pd-gallery-btn pd-gallery-next" ref="nextBtn">
+                    <div class="pd-gallery-btn pd-gallery-next" ref="nextBtn" aria-label="Next image">
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2l-1.4 1.4 5.6 5.6H0v2h16.2l-5.6 5.6L12 18l8-8z" fill="currentColor" />
                         </svg>
                     </div>
-                    <!-- Pagination dots -->
-                    <div class="pd-gallery-pagination" ref="paginationEl"></div>
                 </div>
+                <div v-if="galleryImages.length > 1" class="pd-gallery-pagination" ref="paginationEl"></div>
             </div>
             </div>
 
@@ -203,10 +201,11 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+import { computed } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import AppLink from '@/Components/AppLink.vue';
+import { useDetailGallerySwiper } from '@/composables/useDetailGallerySwiper';
 
 const props = defineProps({
     project:     { type: Object, required: true },
@@ -233,50 +232,7 @@ const hasMetaFields = computed(() =>
     ),
 );
 
-// ── Gallery Swiper ────────────────────────────────────────────────────────────
-const galleryWrap   = ref(null);
-const prevBtn       = ref(null);
-const nextBtn       = ref(null);
-const paginationEl  = ref(null);
-let swiperInstance  = null;
-
-onMounted(() => {
-    if (!galleryImages.value.length || !galleryWrap.value) return;
-    if (typeof window.Swiper === 'undefined') return;
-
-    const el = galleryWrap.value.querySelector('.pd-gallery-swiper');
-    const count = galleryImages.value.length;
-    swiperInstance = new window.Swiper(el, {
-        // Loop requires at least slidesPerView+1 clones on each side; use ≥6 as safe threshold.
-        loop: count >= 6,
-        speed: 500,
-        slidesPerView: 3,
-        spaceBetween: 0,
-        breakpoints: {
-            0:    { slidesPerView: 1 },
-            576:  { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-        },
-        autoplay: count > 1
-            ? { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }
-            : false,
-        navigation: {
-            prevEl: prevBtn.value,
-            nextEl: nextBtn.value,
-        },
-        pagination: {
-            el: paginationEl.value,
-            clickable: true,
-            bulletClass: 'pd-dot',
-            bulletActiveClass: 'pd-dot--active',
-        },
-    });
-});
-
-onUnmounted(() => {
-    swiperInstance?.destroy(true, true);
-    swiperInstance = null;
-});
+const { galleryWrap, prevBtn, nextBtn, paginationEl } = useDetailGallerySwiper(galleryImages);
 </script>
 
 <style scoped>
@@ -393,95 +349,9 @@ onUnmounted(() => {
     word-break: break-word;
 }
 
-/* ── Gallery ───────────────────────────────────────────────────────────────── */
+/* ── Gallery (layout rail only — carousel UI in custom-fix.css) ───────────── */
 .pd-gallery-section {
     margin-top: clamp(24px, 4vw, 40px);
-}
-
-.pd-gallery-wrap {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    line-height: 0;
-    box-sizing: border-box;
-}
-
-.pd-gallery-figure {
-    margin: 0;
-    line-height: 0;
-    display: block;
-}
-
-/* Square images — natural aspect ratio, no fixed height */
-.pd-gallery-img {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    display: block;
-}
-
-/* Prev / Next arrow buttons */
-.pd-gallery-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 52px;
-    height: 52px;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.pd-gallery-btn:hover {
-    background: rgba(255, 255, 255, 1);
-}
-
-.pd-gallery-btn svg {
-    width: 18px;
-    height: 18px;
-    color: #111;
-}
-
-.pd-gallery-prev {
-    left: 20px;
-}
-
-.pd-gallery-next {
-    right: 20px;
-}
-
-/* Dots pagination */
-.pd-gallery-pagination {
-    position: absolute;
-    bottom: 16px;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-:deep(.pd-dot) {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: background 0.2s;
-    display: inline-block;
-}
-
-:deep(.pd-dot--active) {
-    background: #fff;
 }
 
 /* ── Content section (scope + description) ───────────────────────────────────── */
@@ -570,11 +440,6 @@ onUnmounted(() => {
 }
 
 @media (max-width: 767px) {
-    .pd-gallery-btn {
-        width: 40px;
-        height: 40px;
-    }
-
     .pd-content-section {
         padding-top: 56px;
     }

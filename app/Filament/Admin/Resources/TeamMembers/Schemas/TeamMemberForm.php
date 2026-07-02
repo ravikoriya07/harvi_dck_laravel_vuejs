@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources\TeamMembers\Schemas;
 
 use App\Filament\Support\ManagedImageUpload;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -23,6 +24,19 @@ class TeamMemberForm
                     ->required()
                     ->maxLength(255)
                     ->placeholder('e.g. Project Manager'),
+
+                Select::make('team_department_id')
+                    ->label('Department / Group')
+                    ->relationship(
+                        name: 'department',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn ($query) => $query->orderBy('sort_order')->orderBy('id'),
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->native(false)
+                    ->helperText('Determines which section this member appears under on the About page.'),
 
                 TextInput::make('sort_order')
                     ->numeric()

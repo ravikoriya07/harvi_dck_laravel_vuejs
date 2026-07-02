@@ -9,7 +9,7 @@
                         <div class="elementor-widget-container">
                             <div class="pxl-heading px-sub-title-default style-default-style">
                                 <div class="pxl-heading--inner">
-                                    <h1 class="pxl-item--title pxl-split-text style-default highlight-default split-lines-rotation-x">
+                                    <h1 class="pxl-item--title style-default highlight-default">
                                         Offices
                                     </h1>
                                 </div>
@@ -27,14 +27,13 @@
         <div class="elementor-container elementor-column-gap-default">
 
             <!-- London, U.K. column -->
-            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-b9ef462 pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no elementor-invisible"
-                data-settings='{"animation":"fadeInUp"}'>
+            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-b9ef462 pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
                 <div class="elementor-widget-wrap elementor-element-populated">
 
                     <!-- Office photo -->
                     <div class="elementor-element elementor-element-c583c8a elementor-widget__width-auto elementor-widget elementor-widget-pxl_image">
                         <div class="elementor-widget-container">
-                            <div class="pxl-image-single hover-noise pxl-disable-parallax-sm pxl-hide-sr-lg">
+                            <div class="pxl-image-single hover-noise pxl-disable-parallax-sm">
                                 <div class="pxl-item--inner">
                                     <div class="pxl-item--image hover-noise">
                                         <img decoding="async" width="800" height="800"
@@ -113,14 +112,13 @@
             </div>
 
             <!-- Dubai, UAE column -->
-            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-427c71f pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no elementor-invisible"
-                data-settings='{"animation":"fadeInUp","animation_delay":300}'>
+            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-427c71f pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
                 <div class="elementor-widget-wrap elementor-element-populated">
 
                     <!-- Office photo -->
                     <div class="elementor-element elementor-element-629c561 elementor-widget__width-auto elementor-widget elementor-widget-pxl_image">
                         <div class="elementor-widget-container">
-                            <div class="pxl-image-single hover-noise pxl-disable-parallax-sm pxl-hide-sr-lg">
+                            <div class="pxl-image-single hover-noise pxl-disable-parallax-sm">
                                 <div class="pxl-item--inner">
                                     <div class="pxl-item--image hover-noise">
                                         <img decoding="async" width="800" height="800"

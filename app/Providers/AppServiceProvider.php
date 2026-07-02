@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\ContactCard;
 use App\Models\Project;
 use App\Models\ProjectImage;
+use App\Models\Service;
 use App\Models\SocialValue;
 use App\Models\SocialValueImage;
 use App\Models\TeamMember;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         SocialValue::saved(fn (SocialValue $socialValue) => $observer->saved($socialValue));
         SocialValueImage::saved(fn (SocialValueImage $image) => $observer->saved($image));
         TeamMember::saved(fn (TeamMember $member) => $observer->saved($member));
+        Service::saved(fn (Service $service) => $observer->saved($service));
         Blog::saved(fn (Blog $blog) => $observer->saved($blog));
         ContactCard::saved(fn (ContactCard $card) => $observer->saved($card));
     }

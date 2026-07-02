@@ -12,7 +12,7 @@
                     <!-- Staff photo -->
                     <div class="elementor-element elementor-element-1aa439a3 elementor-widget elementor-widget-pxl_image">
                         <div class="elementor-widget-container">
-                            <div class="pxl-image-single df pxl-disable-parallax-sm pxl-hide-sr-lg pxl-parallax-scroll-over"
+                            <div class="pxl-image-single df pxl-disable-parallax-sm pxl-parallax-scroll-over"
                                  data-wow-delay="ms">
                                 <div class="pxl-item--inner" data-wow-delay="120ms" data-parallax='{"y":80}'>
                                     <div class="pxl-item--image df" data-wow-delay="ms">
