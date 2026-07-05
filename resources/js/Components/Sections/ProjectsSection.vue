@@ -79,7 +79,7 @@
 
     <!-- Portfolio carousel -->
     <section
-        class="elementor-section elementor-top-section elementor-element elementor-element-0b58c60 elementor-section-full_width elementor-section-stretched pxl-full-content-with-space-start home-projects-carousel-section elementor-section-height-default elementor-section-height-default pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl_parallax_bg_img_noise-none pxl-bg-color-none pxl-section-overlay-none">
+        class="elementor-section elementor-top-section elementor-element elementor-element-0b58c60 elementor-section-stretched elementor-section-boxed home-projects-carousel-section elementor-section-height-default elementor-section-height-default pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl_parallax_bg_img_noise-none pxl-bg-color-none pxl-section-overlay-none">
         <div class="elementor-container elementor-column-gap-no">
             <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-55f6511 pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
                 <div class="elementor-widget-wrap elementor-element-populated">
@@ -89,7 +89,7 @@
                             <div class="pxl-swiper-slider pxl-portfolio-carousel pxl-portfolio-carousel5 pxl-portfolio-style1">
                                 <div class="pxl-carousel-inner">
                                     <div class="pxl-swiper-container" dir="ltr"
-                                         data-settings='{"slide_direction":"horizontal","slide_percolumn":1,"slide_percolumnfill":1,"slide_mode":"slide","center_slide":false,"slides_to_show":2,"slides_to_show_xxl":2,"slides_to_show_lg":2,"slides_to_show_md":2,"slides_to_show_sm":1,"slides_to_show_xs":1,"slides_to_scroll":1,"slides_gutter":30,"arrow":true,"pagination":true,"pagination_type":"progressbar","autoplay":true,"pause_on_hover":true,"pause_on_interaction":true,"delay":5000,"loop":true,"speed":700,"center":false}'>
+                                         data-settings='{"slide_direction":"horizontal","slide_percolumn":1,"slide_percolumnfill":1,"slide_mode":"slide","center_slide":false,"slides_to_show":2,"slides_to_show_xxl":2,"slides_to_show_lg":2,"slides_to_show_md":1,"slides_to_show_sm":1,"slides_to_show_xs":1,"slides_to_scroll":1,"slides_gutter":30,"arrow":true,"pagination":true,"pagination_type":"progressbar","autoplay":true,"pause_on_hover":true,"pause_on_interaction":true,"delay":5000,"loop":true,"speed":700,"center":false}'>
                                         <div class="pxl-swiper-wrapper">
                                             <div v-for="project in projects" :key="project.href" class="pxl-swiper-slide" data-filter="">
                                                 <div class="pxl-post--inner">
@@ -116,25 +116,7 @@
                                                         </AppLink>
                                                     </div>
                                                 </div>
-                                                <ul class="multi-text">
-                                                    <li class="box-multi"><p><a href="#"></a></p></li>
-                                                </ul>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container wrap-arrow">
-                                    <div class="pxl-swiper-dots style-1"></div>
-                                    <div class="pxl-swiper-arrow-wrap style-1">
-                                        <div class="pxl-swiper-arrow pxl-swiper-arrow-prev">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="36" id="Layer_1" x="0px" y="0px" viewBox="0 0 1230.3 556.2" style="enable-background:new 0 0 1230.3 556.2;" xml:space="preserve">
-                                                <g><polyline style="fill:none;stroke:#000000;stroke-width:55;stroke-miterlimit:10;" points="983.5,91.5 1165.3,279.2 983.5,464.7"/><line style="fill:none;stroke:#000000;stroke-width:55;stroke-miterlimit:10;" x1="1165.3" y1="279.2" x2="22.7" y2="279.2"/></g>
-                                            </svg>
-                                        </div>
-                                        <div class="pxl-swiper-arrow pxl-swiper-arrow-next">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="36" id="Layer_1" x="0px" y="0px" viewBox="0 0 1230.3 556.2" style="enable-background:new 0 0 1230.3 556.2;" xml:space="preserve">
-                                                <g><polyline style="fill:none;stroke:#000000;stroke-width:55;stroke-miterlimit:10;" points="983.5,91.5 1165.3,279.2 983.5,464.7"/><line style="fill:none;stroke:#000000;stroke-width:55;stroke-miterlimit:10;" x1="1165.3" y1="279.2" x2="22.7" y2="279.2"/></g>
-                                            </svg>
                                         </div>
                                     </div>
                                 </div>
@@ -142,6 +124,25 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav: aligned with carousel track (same container gutter) -->
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="projects-carousel-nav">
+                <div class="wrap-arrow">
+                    <div class="pxl-swiper-arrow pxl-swiper-arrow-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" viewBox="0 0 1230.3 556.2" aria-hidden="true">
+                            <g><polyline style="fill:none;stroke:#000000;stroke-width:55;stroke-miterlimit:10;" points="983.5,91.5 1165.3,279.2 983.5,464.7"/><line style="fill:none;stroke:#000000;stroke-width:55;stroke-miterlimit:10;" x1="1165.3" y1="279.2" x2="22.7" y2="279.2"/></g>
+                        </svg>
+                    </div>
+                    <div class="pxl-swiper-dots pxl-swiper-pagination-progressbar"></div>
+                    <div class="pxl-swiper-arrow pxl-swiper-arrow-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" viewBox="0 0 1230.3 556.2" aria-hidden="true">
+                            <g><polyline style="fill:none;stroke:#000000;stroke-width:55;stroke-miterlimit:10;" points="983.5,91.5 1165.3,279.2 983.5,464.7"/><line style="fill:none;stroke:#000000;stroke-width:55;stroke-miterlimit:10;" x1="1165.3" y1="279.2" x2="22.7" y2="279.2"/></g>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -163,6 +164,76 @@ defineProps({
     },
 });
 
+function rebindProjectsCarouselNav(root) {
+    const slider = root?.querySelector('.home-projects-carousel-section .pxl-swiper-container');
+
+    if (! slider?.swiper) {
+        return false;
+    }
+
+    const nav = root.querySelector('.home-projects-carousel-section .projects-carousel-nav');
+
+    if (! nav) {
+        return false;
+    }
+
+    const prev = nav.querySelector('.pxl-swiper-arrow-prev');
+    const next = nav.querySelector('.pxl-swiper-arrow-next');
+    const dots = nav.querySelector('.pxl-swiper-dots');
+    const swiper = slider.swiper;
+
+    if (prev && next) {
+        swiper.params.navigation.prevEl = prev;
+        swiper.params.navigation.nextEl = next;
+        swiper.navigation.destroy();
+        swiper.navigation.init();
+        swiper.navigation.update();
+    }
+
+    if (dots) {
+        swiper.params.pagination.el = dots;
+        swiper.params.pagination.type = 'progressbar';
+
+        if (swiper.pagination) {
+            swiper.pagination.destroy();
+        }
+
+        swiper.pagination.init();
+        swiper.pagination.render();
+        swiper.pagination.update();
+    }
+
+    const settingsRaw = slider.getAttribute('data-settings');
+
+    if (settingsRaw) {
+        try {
+            const settings = JSON.parse(settingsRaw);
+            const gutter = Number(settings.slides_gutter);
+
+            if (! Number.isNaN(gutter) && gutter >= 0) {
+                swiper.params.spaceBetween = gutter;
+                swiper.update();
+            }
+        } catch {
+            // keep theme defaults
+        }
+    }
+
+    return true;
+}
+
+function scheduleProjectsCarouselNavRebind(root) {
+    const attempt = (triesLeft) => {
+        if (rebindProjectsCarouselNav(root) || triesLeft <= 0) {
+            return;
+        }
+
+        setTimeout(() => attempt(triesLeft - 1), 100);
+    };
+
+    attempt(15);
+}
+
 onMounted(() => {
     nextTick(() => {
         const bootstrap = () => {
@@ -170,7 +241,13 @@ onMounted(() => {
                 return false;
             }
 
-            return reinitWidgetsInScope(projectsRoot.value);
+            const ready = reinitWidgetsInScope(projectsRoot.value);
+
+            if (ready) {
+                scheduleProjectsCarouselNavRebind(projectsRoot.value);
+            }
+
+            return ready;
         };
 
         if (bootstrap()) {

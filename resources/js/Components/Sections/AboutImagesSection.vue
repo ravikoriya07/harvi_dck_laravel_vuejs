@@ -2,7 +2,7 @@
     <!-- Three parallax staff photos shown as floating cards -->
     <section
         class="elementor-section elementor-top-section elementor-element elementor-element-d5a9a96 elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none"
-        style="margin-top: -140px; margin-bottom: 0;">
+        style="margin-bottom: 0;">
 
         <div class="elementor-container elementor-column-gap-extended">
             <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1fbfd70 pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no" data-element_type="column">

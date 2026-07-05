@@ -31,6 +31,18 @@
     }
 }
 
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .elementor-15 .elementor-element-e9f5301 > .elementor-widget-container,
+    .elementor-9365 .elementor-element-e9f5301 > .elementor-widget-container {
+        margin-left: 32px !important;
+    }
+
+    .elementor-15 .elementor-element-396e816 > .elementor-widget-container,
+    .elementor-9365 .elementor-element-396e816 > .elementor-widget-container {
+        margin-right: 24px !important;
+    }
+}
+
 /* ─── HEADER NAV ALIGNMENT ────────────────────────────────── */
 .elementor-15 .elementor-element-de87c60 .elementor-widget-wrap,
 .elementor-9365 .elementor-element-de87c60 .elementor-widget-wrap {
@@ -195,6 +207,16 @@
 .elementor-element-e695b57 .elementor-widget-wrap {
     position: relative;
     min-height: 670px;
+}
+@media (max-width: 880px) {
+    .elementor-element-e695b57 .elementor-widget-wrap {
+        min-height: 400px;
+    }
+}
+@media (max-width: 767px) {
+    .elementor-element-e695b57 .elementor-widget-wrap {
+        min-height: 350px;
+    }
 }
 .elementor-background-slideshow {
     position: absolute;
@@ -413,10 +435,13 @@ html, body {
     }
 }
 
+/* ─── ABOUT IMAGES: negative overlap (desktop only) ─────────── */
+.elementor-18 .elementor-element.elementor-element-d5a9a96 {
+    margin-top: -140px;
+}
+
 /* ─── ABOUT IMAGES: inline margin-top override ───────────────────
-   The Vue section has style="margin-top:-140px" (inline) which
-   blocks the elementor-generated.css reset at ≤1200px.
-   !important is required to beat inline style specificity.       */
+   Reset overlap on tablet/mobile so content does not clip.       */
 @media (max-width: 1200px) {
     .elementor-18 .elementor-element.elementor-element-d5a9a96 {
         margin-top: 0px !important;
@@ -1078,13 +1103,27 @@ html, body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HOME PAGE — OUR PROJECTS
+   HOME PAGE — OUR PROJECTS (projects section only)
    ═══════════════════════════════════════════════════════════ */
 
-.elementor-18 .elementor-element-66518a7 > .elementor-container {
-    max-width: 1290px;
+.elementor-18 .elementor-element-66518a7 > .elementor-container,
+.elementor-18 .home-projects-carousel-section > .elementor-container {
+    max-width: 1320px;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.elementor-18 .elementor-element-0b58c60 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 48px !important;
+}
+
+.elementor-18 .elementor-element-55f6511 > .elementor-element-populated {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .elementor-18 .elementor-element-0c4d8f8 .pxl-item--title,
@@ -1092,7 +1131,6 @@ html, body {
     visibility: visible !important;
 }
 
-/* Keep split-text chars on one line until GSAP animates them in */
 .elementor-18 .elementor-element-0c4d8f8 .pxl-item--title.pxl-split-text {
     white-space: normal;
 }
@@ -1114,61 +1152,59 @@ html, body {
     overflow: hidden;
 }
 
-/* Carousel: left aligns with site container, bleeds to the right edge */
-.elementor-18 .home-projects-carousel-section {
+/* Projects carousel — centered boxed layout, equal left/right gutters */
+.home-projects-carousel-section {
     width: 100% !important;
-    max-width: 100vw;
+    max-width: 100%;
     margin-left: 0 !important;
     left: 0 !important;
-    padding-left: max(15px, calc((100vw - 1290px) / 2));
-    padding-right: 0;
-    box-sizing: border-box;
     overflow: hidden;
 }
 
-.elementor-18 .home-projects-carousel-section > .elementor-container {
-    max-width: none;
-    width: 100%;
-}
-
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 {
+.home-projects-carousel-section .pxl-portfolio-carousel5 {
     width: 100%;
     position: relative;
     min-height: 0;
-    padding-bottom: 90px;
+    padding-bottom: 0;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-carousel-inner,
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-swiper-container {
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-carousel-inner,
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-swiper-container {
     width: 100%;
     overflow: hidden;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-swiper-container {
-    margin: -15px -15px -15px -15px;
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-swiper-container,
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-swiper-wrapper {
+    height: auto !important;
+    min-height: 0 !important;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-swiper-slide {
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-swiper-container {
+    margin: 0 !important;
+}
+
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-swiper-slide {
     height: auto;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 0 !important;
     opacity: 1 !important;
     transform: none !important;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-post--inner {
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-post--inner {
     position: relative;
     overflow: hidden;
     background-color: #f3f3f3;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-post--featured {
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-post--featured {
     display: block;
     width: 100%;
     line-height: 0;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-post--featured img {
+.home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-post--featured img {
     display: block;
     width: 100%;
     height: clamp(320px, 42vw, 599px);
@@ -1176,81 +1212,113 @@ html, body {
     background-color: #f3f3f3;
 }
 
-/* Progress bar + arrows (aligned with content width) */
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow.container {
-    position: absolute;
-    left: 0;
-    right: max(15px, calc((100vw - 1290px) / 2));
-    bottom: 24px;
-    width: auto;
-    max-width: none;
+.home-projects-carousel-section > .elementor-container + .elementor-container {
+    padding-top: 24px;
+}
+
+.home-projects-carousel-section .projects-carousel-nav {
+    position: relative;
+    width: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    z-index: 3;
+    box-sizing: border-box;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-dots.style-1 {
-    flex: 1 1 auto;
-    min-width: 0;
+/* Grid: [←] [──────── line ────────] [→] — symmetric gaps */
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: none !important;
     margin: 0 !important;
-    height: 1px;
-    background-color: rgba(17, 17, 17, 0.15);
-    position: relative;
-}
-
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-dots.pxl-swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-    height: 3px;
-    background-color: #111111;
-}
-
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-arrow-wrap.style-1 {
-    position: relative;
-    display: flex;
+    padding: 0;
+    display: grid !important;
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    column-gap: 16px;
     align-items: center;
-    gap: 10px;
-    flex: 0 0 auto;
-    margin: 0;
+    box-sizing: border-box;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-arrow-wrap.style-1 .pxl-swiper-arrow {
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow {
     position: relative !important;
     top: auto !important;
     left: auto !important;
     right: auto !important;
     transform: none !important;
     opacity: 1 !important;
+    grid-row: 1;
+    flex: none;
     width: 36px;
     height: 36px;
+    margin: 0;
+    padding: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-arrow-wrap.style-1 .pxl-swiper-arrow svg {
-    transform: none;
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow-prev {
+    grid-column: 1;
+}
+
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow-next {
+    grid-column: 3;
+}
+
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow svg {
+    display: block;
     width: 36px;
     height: auto;
+    transform: none;
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-arrow-wrap.style-1 .pxl-swiper-arrow-next svg {
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow-prev svg {
     transform: scaleX(-1);
 }
 
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-arrow-wrap.style-1 .pxl-swiper-arrow svg path,
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-arrow-wrap.style-1 .pxl-swiper-arrow svg polyline,
-.elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-arrow-wrap.style-1 .pxl-swiper-arrow svg line {
-    stroke: #111111 !important;
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow-next svg {
+    transform: none;
 }
 
-@media (max-width: 1320px) {
-    .elementor-18 .home-projects-carousel-section {
-        padding-left: 15px;
-    }
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow svg path,
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow svg polyline,
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow svg line {
+    stroke: rgba(17, 17, 17, 0.35) !important;
+}
 
-    .elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow.container {
-        right: 15px;
-    }
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-dots.pxl-swiper-pagination-progressbar {
+    grid-column: 2;
+    grid-row: 1;
+    flex: none;
+    min-width: 0;
+    width: 100% !important;
+    max-width: none !important;
+    height: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: rgba(17, 17, 17, 0.15) !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    overflow: hidden;
+    text-align: left !important;
+    border-radius: 0;
+    align-self: center;
+}
+
+.home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-dots.pxl-swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    height: 1px !important;
+    top: 0 !important;
+    bottom: auto !important;
+    left: 0 !important;
+    background-color: #111111 !important;
+    transform-origin: left center;
 }
 
 @media (max-width: 1024px) {
@@ -1279,17 +1347,8 @@ html, body {
         max-width: 100%;
     }
 
-    .elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 {
-        padding-bottom: 80px;
-    }
-
-    .elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-post--featured img {
+    .home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-post--featured img {
         height: clamp(300px, 48vw, 500px) !important;
-    }
-
-    .elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow.container {
-        right: 15px;
-        bottom: 20px;
     }
 }
 
@@ -1314,30 +1373,107 @@ html, body {
         height: 80px !important;
     }
 
-    .elementor-18 .home-projects-carousel-section {
-        padding-bottom: 80px !important;
-        padding-right: 0;
+    .home-projects-carousel-section {
+        padding-bottom: 32px !important;
     }
 
-    .elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 {
-        padding-bottom: 72px;
+    .elementor-18 .elementor-element-0b58c60 {
+        padding-bottom: 32px !important;
     }
 
-    .elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .pxl-post--featured img {
+    .home-projects-carousel-section > .elementor-container + .elementor-container {
+        padding-top: 16px;
+    }
+
+    .home-projects-carousel-section .pxl-portfolio-carousel5 .pxl-post--featured img {
         height: clamp(240px, 68vw, 380px) !important;
     }
 
-    .elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow.container {
-        left: 0;
-        right: 15px;
-        bottom: 16px;
-        flex-direction: row;
-        align-items: center;
-        gap: 16px;
+    .home-projects-carousel-section .projects-carousel-nav .wrap-arrow {
+        column-gap: 12px;
+        grid-template-columns: 32px minmax(0, 1fr) 32px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL RESPONSIVE SAFETY (all pages)
+   CSS-only — preserves existing design; prevents overflow.
+   ═══════════════════════════════════════════════════════════ */
+
+#pxl-wapper,
+#pxl-main,
+#pxl-main-content,
+.pxl-wapper {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    #pxl-main:not(:has(.elementor-blog)):not(:has(#service)) {
+        overflow-x: clip;
     }
 
-    .elementor-18 .elementor-element-48f5864 .pxl-portfolio-carousel5 .wrap-arrow .pxl-swiper-arrow-wrap.style-1 {
-        justify-content: flex-end;
+    @supports not (overflow: clip) {
+        #pxl-main:not(:has(.elementor-blog)):not(:has(#service)) {
+            overflow-x: hidden;
+        }
+    }
+}
+
+/* Media: scale down without changing art direction */
+#pxl-main img,
+#pxl-main video,
+#pxl-main iframe {
+    max-width: 100%;
+}
+
+/* Contact map embed */
+.elementor-1306 .elementor-widget-google_maps iframe,
+.elementor-1306 .elementor-custom-embed iframe {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    min-height: 280px;
+    border: 0;
+}
+
+/* Footer: long addresses wrap on narrow screens */
+#pxl-footer-elementor .pxl-text-editor .pxl-item--inner,
+#pxl-footer-elementor .pxl-text-editor p,
+#pxl-footer-elementor .pxl-text-editor a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Procurement heading row stacks on tablet */
+@media (max-width: 1024px) {
+    .elementor-18 .elementor-element-c210c2e .elementor-col-50 {
+        width: 100% !important;
+    }
+}
+
+/* Small phones: tighten carousel nav */
+@media (max-width: 430px) {
+    .home-projects-carousel-section .projects-carousel-nav .wrap-arrow {
+        column-gap: 10px;
+        grid-template-columns: 32px minmax(0, 1fr) 32px;
+    }
+
+    .home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow {
+        width: 32px;
+        height: 32px;
+    }
+
+    .home-projects-carousel-section .projects-carousel-nav .wrap-arrow > .pxl-swiper-arrow svg {
+        width: 32px;
+    }
+}
+
+/* Jobs listing: filter row on very small screens */
+@media (max-width: 480px) {
+    .elementor-jobs .jobs-filter-category,
+    .elementor-jobs .jobs-filter-select {
+        min-width: 0;
+        width: 100%;
     }
 }
 

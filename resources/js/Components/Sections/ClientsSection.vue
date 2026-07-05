@@ -57,7 +57,7 @@
                             <div class="pxl-swiper-slider pxl-client-carousel pxl-client-carousel1 pxl-swiper-arrow-show style-2" data-arrow="">
                                 <div class="pxl-carousel-inner">
                                     <div class="pxl-swiper-container" dir="ltr"
-                                         data-settings='{"slide_direction":"horizontal","slide_percolumn":1,"slide_mode":"slide","slides_to_show":5,"slides_to_show_xxl":5,"slides_to_show_lg":4,"slides_to_show_md":3,"slides_to_show_sm":2,"slides_to_show_xs":2,"slides_to_scroll":1,"arrow":false,"pagination":false,"pagination_type":"bullets","autoplay":true,"pause_on_hover":false,"pause_on_interaction":true,"delay":2000,"loop":true,"speed":1000}'>
+                                         data-settings='{"slide_direction":"horizontal","slide_percolumn":1,"slide_mode":"slide","slides_to_show":5,"slides_to_show_xxl":5,"slides_to_show_lg":4,"slides_to_show_md":3,"slides_to_show_sm":2,"slides_to_show_xs":1,"slides_to_scroll":1,"arrow":false,"pagination":false,"pagination_type":"bullets","autoplay":true,"pause_on_hover":false,"pause_on_interaction":true,"delay":2000,"loop":true,"speed":1000}'>
                                         <div class="pxl-swiper-wrapper">
                                             <div v-for="client in clients" :key="client.normal" class="pxl-swiper-slide">
                                                 <div class="pxl-item--inner wow fadeInRight">
