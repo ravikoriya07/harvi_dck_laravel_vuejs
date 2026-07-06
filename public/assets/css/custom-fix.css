@@ -266,6 +266,9 @@
 /* elementor-generated.css uses relative URL url(assets/images/...) */
 .elementor-18 .elementor-element.elementor-element-f4fdb44 .pxl-section-bg-parallax {
     background-image: url('/assets/images/home1-team-3.avif') !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
 }
 
 /* ─── TEAM SECTION BACKGROUND (elementor-9009579) ───────── */

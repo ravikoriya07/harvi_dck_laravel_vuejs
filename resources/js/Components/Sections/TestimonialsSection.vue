@@ -67,8 +67,10 @@
 
     <!-- Full-width interior image strip between testimonials and contact -->
     <section
-        class="elementor-section elementor-top-section elementor-element elementor-element-f4fdb44 elementor-section-height-min-height elementor-section-stretched pxl-section-overflow-hidden elementor-section-boxed elementor-section-height-default elementor-section-items-middle pxl-row-scroll-none pxl-zoom-point-false pxl-section-fix-none pxl_parallax_bg_img_noise-none pxl-bg-color-none pxl-section-overlay-none">
-        <div class="pxl-section-bg-parallax" data-parallax='{"y":-100}'></div>
+        class="elementor-section elementor-top-section elementor-element elementor-element-f4fdb44 elementor-section-height-min-height elementor-section-stretched pxl-section-overflow-hidden pxl-bg-prx-effect-mask-parallax elementor-section-boxed elementor-section-height-default elementor-section-items-middle pxl-row-scroll-none pxl-zoom-point-false pxl-section-fix-none pxl_parallax_bg_img_noise-none pxl-bg-color-none pxl-section-overlay-none">
+        <div class="mask-parallax">
+            <div class="pxl-section-bg-parallax mask-parallax" data-parallax='{"y":-100}'></div>
+        </div>
         <div class="elementor-container elementor-column-gap-default">
             <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-73fbfcf pxl-column-none pxl-column-overflow-hidden-no pxl-column-zoom-no">
                 <div class="elementor-widget-wrap"></div>
