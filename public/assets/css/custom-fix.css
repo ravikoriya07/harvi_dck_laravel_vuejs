@@ -15,7 +15,8 @@
 
 /* Inner-page heroes (About, Contact, etc.) must not add outer margin */
 .elementor-26444 .elementor-element.elementor-element-39681a1e,
-.elementor-1306 .contact-page-hero {
+.elementor-1306 .contact-page-hero,
+.elementor-26442 .disclaimer-page-hero {
     margin-top: 0 !important;
 }
 
@@ -181,6 +182,35 @@
 .pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a,
 .pxl-header-elementor-main.px-header--default .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a {
     color: #3E68FF;
+}
+
+/* ─── LIGHT HEADER (Disclaimer / white bar like thedck.com) ─ */
+.pxl-header-elementor-main.px-header--light {
+    background-color: #FFFFFF;
+    position: relative;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+}
+.pxl-header-elementor-main.px-header--light .elementor-section {
+    background-color: #FFFFFF;
+}
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu .pxl-menu-primary > li > a {
+    color: #111111;
+}
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu .pxl-menu-primary > li > a .pxl-menu-item-text {
+    border-color: rgba(17, 17, 17, 0.18);
+}
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu.fr-style-box .pxl-divider-move {
+    background-color: #111111;
+}
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a,
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a,
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a {
+    color: #3E68FF;
+}
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu.fr-style-box .pxl-menu-primary > li:hover > a .pxl-menu-item-text,
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current-menu-item > a .pxl-menu-item-text,
+.pxl-header-elementor-main.px-header--light .pxl-nav-menu.fr-style-box .pxl-menu-primary > li.current_page_item > a .pxl-menu-item-text {
+    background-color: transparent;
 }
 
 /* ─── FOOTER LOGO ─────────────────────────────────────────── */

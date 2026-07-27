@@ -1,8 +1,8 @@
 <template>
     <header id="pxl-header-elementor" class="is-sticky pxl-header-show">
 
-        <!-- ── Home: transparent (overlays hero). Inner pages: solid black (px-header--default). ── -->
-            <div :class="['pxl-header-elementor-main', isHomePage ? 'px-header--transparent' : 'px-header--default']">
+        <!-- ── Home: transparent. Disclaimer: white. Other inner pages: solid black. ── -->
+            <div :class="['pxl-header-elementor-main', headerVariant]">
                 <div class="pxl-header-content">
                     <div class="elementor elementor-15">
                         <section class="elementor-section elementor-top-section elementor-element elementor-element-6514195 elementor-section-stretched elementor-section-boxed pxl-row-scroll-none pxl-zoom-point-false pxl-section-overflow-visible pxl-section-fix-none pxl-bg-color-none pxl-section-overlay-none">
@@ -148,6 +148,15 @@ const currentPath = computed(() => {
 });
 
 const isHomePage = computed(() => currentPath.value === '/');
+
+/** Pages that use the solid white header (matches thedck.com disclaimer). */
+const isLightHeaderPage = computed(() => currentPath.value === '/disclaimer');
+
+const headerVariant = computed(() => {
+    if (isHomePage.value) return 'px-header--transparent';
+    if (isLightHeaderPage.value) return 'px-header--light';
+    return 'px-header--default';
+});
 
 function itemIsActive(item) {
     const p = currentPath.value;

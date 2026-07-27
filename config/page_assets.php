@@ -17,6 +17,7 @@ return [
         'blog' => ['blog-elementor-generated.css', 'blog-detail-elementor-generated.css'],
         'blog/*' => ['blog-elementor-generated.css', 'blog-detail-elementor-generated.css'],
         'contact' => ['contact-elementor-generated.css'],
+        'disclaimer' => ['disclaimer-elementor-generated.css'],
         'jobs' => [],
         'jobs/*' => [],
         'cards/*' => [],
@@ -35,6 +36,9 @@ return [
         ],
         'contact' => [
             ['href' => '/assets/images/pt-about1.avif'],
+        ],
+        'disclaimer' => [
+            ['href' => '/assets/images/pt-about1.webp'],
         ],
         'jobs' => [
             ['href' => '/assets/images/bg-2_H-e1760689052181_1_11zon.avif'],

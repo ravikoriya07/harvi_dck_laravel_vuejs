@@ -59,6 +59,10 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 });
 
+Route::get('/disclaimer', function () {
+    return Inertia::render('Disclaimer');
+});
+
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 
