@@ -20,7 +20,6 @@ return [
         'disclaimer' => ['disclaimer-elementor-generated.css'],
         'jobs' => [],
         'jobs/*' => [],
-        'cards/*' => [],
     ],
 
     'preload_images' => [

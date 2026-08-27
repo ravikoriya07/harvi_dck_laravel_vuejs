@@ -59,7 +59,7 @@ class ContactCardsTable
                 Action::make('view_card')
                     ->label('View')
                     ->icon(Heroicon::OutlinedEye)
-                    ->url(fn (ContactCard $record): string => url('/cards/'.$record->slug))
+                    ->url(fn (ContactCard $record): string => url('/'.$record->slug))
                     ->openUrlInNewTab(),
                 EditAction::make(),
                 DeleteAction::make(),

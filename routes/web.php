@@ -79,10 +79,17 @@ Route::post('/jobs/{job}/apply', [JobApplicationController::class, 'store'])->na
 Route::get('/blog',        [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::get('/cards/{slug}', [ContactCardController::class, 'show'])
-    ->middleware(UseCardLayout::class);
-
 Route::middleware('auth')->group(function (): void {
     Route::get('/admin/job-applications/{jobApplication}/resume', JobApplicationResumeController::class)
         ->name('admin.job-applications.resume.download');
 });
+
+// Legacy card URLs → root slug (e.g. /cards/alex_novok_card → /alex_novok_card)
+Route::get('/cards/{slug}', function (string $slug) {
+    return redirect('/'.$slug, 301);
+});
+
+// Contact cards at root: /alex_novok_card (must stay after all fixed routes)
+Route::get('/{slug}', [ContactCardController::class, 'show'])
+    ->middleware(UseCardLayout::class)
+    ->where('slug', '^(?!admin$).+');
