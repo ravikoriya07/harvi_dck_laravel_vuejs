@@ -20,6 +20,7 @@ class JobInfolist
 
                 TextEntry::make('description')
                     ->label('Description')
+                    ->html()
                     ->columnSpanFull()
                     ->placeholder('—'),
 

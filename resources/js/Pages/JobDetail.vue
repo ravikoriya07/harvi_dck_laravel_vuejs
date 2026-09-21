@@ -48,7 +48,7 @@
                         <div class="jd-main">
                             <div class="jd-card">
                                 <h2 class="jd-section-title">Job Description</h2>
-                                <div class="jd-description" v-html="job.description"></div>
+                                <div v-if="descriptionHtml" class="jd-description" v-html="descriptionHtml"></div>
                             </div>
                         </div>
 
@@ -183,7 +183,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch } from 'vue';
+import { computed, ref, reactive, watch } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import AppLink from '@/Components/AppLink.vue';
@@ -194,6 +194,41 @@ import * as yup from 'yup';
 const { job } = defineProps({
     job: { type: Object, required: true },
 });
+
+const descriptionHtml = computed(() => decodeDescriptionHtml(job.description));
+
+function decodeDescriptionHtml(value) {
+    if (!value) {
+        return '';
+    }
+
+    const decodeText = (text) => {
+        let decoded = String(text);
+        let previous = '';
+
+        for (let i = 0; i < 3 && decoded !== previous; i++) {
+            previous = decoded;
+            decoded = decoded
+                .replace(/&nbsp;/gi, ' ')
+                .replace(/&#0*39;/g, "'")
+                .replace(/&#x27;/gi, "'")
+                .replace(/&apos;/g, "'")
+                .replace(/&quot;/g, '"')
+                .replace(/&amp;/g, '&');
+        }
+
+        return decoded;
+    };
+
+    // Decode entities in text nodes only so <p>, <ul>, <a href> stay intact.
+    return String(value).replace(/(^|>)([^<]*)(<|$)/g, (match, open, text, close) => {
+        if (!text) {
+            return match;
+        }
+
+        return `${open}${decodeText(text)}${close}`;
+    });
+}
 
 // ── Modal ────────────────────────────────────────────────────────────────────
 const modalOpen   = ref(false);
@@ -500,6 +535,142 @@ async function submitApplication() {
     font-size: 15px;
     line-height: 1.8;
     color: #4a5568;
+    overflow-wrap: anywhere;
+}
+
+.jd-description :deep(p),
+.jd-description :deep(ul),
+.jd-description :deep(ol),
+.jd-description :deep(blockquote) {
+    margin: 0 0 16px;
+}
+
+.jd-description :deep(p:last-child),
+.jd-description :deep(ul:last-child),
+.jd-description :deep(ol:last-child),
+.jd-description :deep(blockquote:last-child),
+.jd-description :deep(h2:last-child),
+.jd-description :deep(h3:last-child) {
+    margin-bottom: 0;
+}
+
+.jd-description :deep(h2),
+.jd-description :deep(h3) {
+    color: #2d3748 !important;
+    font-family: inherit !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    clear: none !important;
+}
+
+.jd-description :deep(h2) {
+    font-size: 1.25rem !important;
+    margin: 24px 0 12px !important;
+}
+
+.jd-description :deep(h3) {
+    font-size: 1.1rem !important;
+    margin: 20px 0 10px !important;
+}
+
+.jd-description :deep(h2:first-child),
+.jd-description :deep(h3:first-child) {
+    margin-top: 0 !important;
+}
+
+.jd-description :deep(p) {
+    margin: 0 0 16px;
+}
+
+.jd-description :deep(strong),
+.jd-description :deep(b) {
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.jd-description :deep(em),
+.jd-description :deep(i) {
+    font-style: italic;
+}
+
+.jd-description :deep(u) {
+    text-decoration: underline;
+}
+
+.jd-description :deep(s),
+.jd-description :deep(del),
+.jd-description :deep(strike) {
+    text-decoration: line-through;
+}
+
+.jd-description :deep(ul),
+.jd-description :deep(ol) {
+    padding-left: 1.5em !important;
+    margin: 0 0 16px !important;
+}
+
+.jd-description :deep(ul) {
+    list-style: disc outside !important;
+}
+
+.jd-description :deep(ol) {
+    list-style: decimal outside !important;
+}
+
+.jd-description :deep(li) {
+    margin: 0 0 6px;
+    padding: 0;
+    list-style: inherit !important;
+    list-style-position: outside !important;
+}
+
+.jd-description :deep(li > p) {
+    margin: 0;
+}
+
+.jd-description :deep(ul ul),
+.jd-description :deep(ol ol),
+.jd-description :deep(ul ol),
+.jd-description :deep(ol ul) {
+    margin: 6px 0 0 !important;
+}
+
+.jd-description :deep(ul ul) {
+    list-style-type: circle !important;
+}
+
+.jd-description :deep(blockquote) {
+    margin: 0 0 16px !important;
+    padding: 10px 16px !important;
+    border: 0 !important;
+    border-left: 3px solid #1355a5 !important;
+    background: #f7fafc !important;
+    background-image: none !important;
+    color: #4a5568 !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    position: static !important;
+}
+
+.jd-description :deep(blockquote)::before,
+.jd-description :deep(blockquote)::after {
+    display: none !important;
+    content: none !important;
+}
+
+.jd-description :deep(blockquote p) {
+    margin: 0;
+    padding: 0 !important;
+}
+
+.jd-description :deep(a) {
+    color: #1355a5 !important;
+    text-decoration: underline !important;
+    word-break: break-word;
+}
+
+.jd-description :deep(a:hover) {
+    color: #0d4485 !important;
 }
 
 /* ── Sidebar ───────────────────────────────────────────────────────────────── */

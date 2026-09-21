@@ -2,8 +2,8 @@
 
 namespace App\Filament\Admin\Resources\Jobs\Schemas;
 
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -33,11 +33,16 @@ class JobForm
                     ->required()
                     ->helperText('Select the job category that best describes this role.'),
 
-                Textarea::make('description')
+                RichEditor::make('description')
                     ->label('Description')
                     ->required()
-                    ->rows(10)
-                    ->maxLength(65000)
+                    ->toolbarButtons([
+                        'bold', 'italic', 'underline', 'strike',
+                        'h2', 'h3',
+                        'bulletList', 'orderedList', 'blockquote',
+                        'link', 'redo', 'undo',
+                    ])
+                    ->helperText('Full job description shown on the job detail page.')
                     ->columnSpanFull(),
             ]);
     }

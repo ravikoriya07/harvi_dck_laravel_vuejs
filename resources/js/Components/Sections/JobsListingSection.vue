@@ -101,8 +101,8 @@
 
                             <h3 class="job-card-title">{{ job.title }}</h3>
 
-                            <p v-if="job.description" class="job-card-description">
-                                {{ truncate(job.description, 160) }}
+                            <p v-if="cardExcerpt(job.description)" class="job-card-description">
+                                {{ cardExcerpt(job.description) }}
                             </p>
                         </div>
 
@@ -482,9 +482,18 @@ function handleFileChange(event) {
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
-function truncate(text, max) {
+function cardExcerpt(text, max = 160) {
     if (!text) return '';
-    const plain = text.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+    const plain = String(text)
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/&nbsp;/gi, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/\s+/g, ' ')
+        .trim();
     return plain.length > max ? plain.slice(0, max).trimEnd() + '…' : plain;
 }
 </script>

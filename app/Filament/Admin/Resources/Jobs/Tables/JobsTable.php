@@ -28,6 +28,7 @@ class JobsTable
                     ->sortable(),
 
                 TextColumn::make('description')
+                    ->formatStateUsing(fn (?string $state): string => strip_tags($state ?? ''))
                     ->limit(80)
                     ->wrap(),
 

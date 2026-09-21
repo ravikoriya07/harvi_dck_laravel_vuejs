@@ -34,7 +34,7 @@ class JobController extends Controller
                 'href'        => $job->slug ? "/jobs/{$job->slug}" : "/jobs/{$job->id}",
                 'title'       => $job->title,
                 'category'    => $job->jobCategory?->name,
-                'description' => $job->description,
+                'description' => $job->plainExcerpt(160),
                 'posted_at'   => $job->created_at->diffForHumans(),
             ]);
 
@@ -62,7 +62,7 @@ class JobController extends Controller
                 'slug'        => $job->slug,
                 'title'       => $job->title,
                 'category'    => $job->jobCategory?->name,
-                'description' => $job->description,
+                'description' => $job->htmlDescription(),
                 'posted_at'   => $job->created_at->diffForHumans(),
                 'posted_date' => $job->created_at->format('d M Y'),
             ],
