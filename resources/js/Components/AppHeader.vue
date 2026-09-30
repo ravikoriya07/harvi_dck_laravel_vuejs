@@ -176,6 +176,7 @@ const navItems = computed(() => {
         { label: 'Social Values', href: '/social-values' },
         { label: 'Contact Us', href: '/contact' },
         { label: 'Blog', href: '/blog' },
+        { label: 'News', href: '/news' },
         { label: 'Current Jobs', href: '/jobs' },
     ];
     return base.map((item) => ({ ...item, active: itemIsActive(item) }));

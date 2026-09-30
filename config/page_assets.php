@@ -20,6 +20,7 @@ return [
         'disclaimer' => ['disclaimer-elementor-generated.css'],
         'jobs' => [],
         'jobs/*' => [],
+        'news' => [],
     ],
 
     'preload_images' => [
@@ -44,6 +45,9 @@ return [
         ],
         'jobs/*' => [
             ['href' => '/assets/images/bg-2_H-e1760689052181_1_11zon.avif'],
+        ],
+        'news' => [
+            ['href' => '/assets/images/JOB-70-of-155-scaled-1920x1280.avif'],
         ],
     ],
 

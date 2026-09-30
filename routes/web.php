@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactCardController;
 use App\Http\Controllers\Admin\JobApplicationResumeController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SocialValueController;
@@ -78,6 +79,8 @@ Route::post('/jobs/{job}/apply', [JobApplicationController::class, 'store'])->na
 
 Route::get('/blog',        [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 
 Route::middleware('auth')->group(function (): void {
     Route::get('/admin/job-applications/{jobApplication}/resume', JobApplicationResumeController::class)
