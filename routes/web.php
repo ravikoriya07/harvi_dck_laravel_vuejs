@@ -5,11 +5,13 @@ use App\Http\Controllers\ContactCardController;
 use App\Http\Controllers\Admin\JobApplicationResumeController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LegalPageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SocialValueController;
 use App\Http\Middleware\UseCardLayout;
+use App\Models\LegalPage;
 use App\Models\Project;
 use App\Models\TeamDepartment;
 use App\Models\TeamMember;
@@ -63,6 +65,13 @@ Route::get('/contact', function () {
 Route::get('/disclaimer', function () {
     return Inertia::render('Disclaimer');
 });
+
+Route::get('/terms-of-use', [LegalPageController::class, 'show'])
+    ->defaults('slug', LegalPage::TERMS_OF_USE)
+    ->name('legal.terms-of-use');
+Route::get('/privacy-policy', [LegalPageController::class, 'show'])
+    ->defaults('slug', LegalPage::PRIVACY_POLICY)
+    ->name('legal.privacy-policy');
 
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');

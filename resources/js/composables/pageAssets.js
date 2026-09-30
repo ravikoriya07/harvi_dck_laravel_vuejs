@@ -15,6 +15,7 @@ const PAGE_STYLES = {
     BlogDetail: ['blog-elementor-generated.css', 'blog-detail-elementor-generated.css'],
     Contact: ['contact-elementor-generated.css'],
     Disclaimer: ['disclaimer-elementor-generated.css'],
+    LegalPage: ['disclaimer-elementor-generated.css'],
 };
 
 const loaded = new Set();

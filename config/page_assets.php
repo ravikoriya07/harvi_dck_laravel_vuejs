@@ -18,6 +18,8 @@ return [
         'blog/*' => ['blog-elementor-generated.css', 'blog-detail-elementor-generated.css'],
         'contact' => ['contact-elementor-generated.css'],
         'disclaimer' => ['disclaimer-elementor-generated.css'],
+        'terms-of-use' => ['disclaimer-elementor-generated.css'],
+        'privacy-policy' => ['disclaimer-elementor-generated.css'],
         'jobs' => [],
         'jobs/*' => [],
         'news' => [],
@@ -38,6 +40,12 @@ return [
             ['href' => '/assets/images/pt-about1.avif'],
         ],
         'disclaimer' => [
+            ['href' => '/assets/images/pt-about1.webp'],
+        ],
+        'terms-of-use' => [
+            ['href' => '/assets/images/pt-about1.webp'],
+        ],
+        'privacy-policy' => [
             ['href' => '/assets/images/pt-about1.webp'],
         ],
         'jobs' => [
