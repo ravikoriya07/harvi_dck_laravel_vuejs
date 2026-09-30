@@ -149,8 +149,9 @@ const currentPath = computed(() => {
 
 const isHomePage = computed(() => currentPath.value === '/');
 
-/** Pages that use the solid white header (matches thedck.com disclaimer). */
-const isLightHeaderPage = computed(() => currentPath.value === '/disclaimer');
+/** Pages that use the solid white header (matches thedck.com disclaimer; legal pages share its layout). */
+const LIGHT_HEADER_PATHS = ['/disclaimer', '/terms-of-use', '/privacy-policy'];
+const isLightHeaderPage = computed(() => LIGHT_HEADER_PATHS.includes(currentPath.value));
 
 const headerVariant = computed(() => {
     if (isHomePage.value) return 'px-header--transparent';

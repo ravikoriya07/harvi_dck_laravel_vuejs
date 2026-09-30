@@ -144,7 +144,7 @@
                                                 <div class="elementor-widget-container">
                                                     <div class="pxl-text-editor">
                                                         <div class="pxl-item--inner ft-gt">
-                                                            <p><a href="#">Terms of use</a> / <a href="#">Privacy Environmental Policy</a></p>
+                                                            <p><Link href="/terms-of-use">Terms of Use</Link> / <Link href="/privacy-policy">Privacy Policy</Link></p>
                                                         </div>
                                                     </div>
                                                 </div>
